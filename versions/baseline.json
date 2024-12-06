@@ -5,8 +5,8 @@
       "port-version": 4
     },
     "7zip": {
-      "baseline": "24.08",
-      "port-version": 1
+      "baseline": "24.09",
+      "port-version": 0
     },
     "ableton": {
       "baseline": "3.0.6",
@@ -433,7 +433,7 @@
       "port-version": 0
     },
     "aws-crt-cpp": {
-      "baseline": "0.28.3",
+      "baseline": "0.29.6",
       "port-version": 0
     },
     "aws-lambda-cpp": {
@@ -441,7 +441,7 @@
       "port-version": 0
     },
     "aws-sdk-cpp": {
-      "baseline": "1.11.428",
+      "baseline": "1.11.460",
       "port-version": 0
     },
     "azmq": {
@@ -2357,8 +2357,8 @@
       "port-version": 4
     },
     "discordcoreapi": {
-      "baseline": "2.0.7",
-      "port-version": 1
+      "baseline": "2.0.8",
+      "port-version": 0
     },
     "discount": {
       "baseline": "3.0.0d",
@@ -3909,8 +3909,8 @@
       "port-version": 0
     },
     "jsonifier": {
-      "baseline": "0.9.97",
-      "port-version": 1
+      "baseline": "0.9.98",
+      "port-version": 0
     },
     "jsonnet": {
       "baseline": "0.20.0",
@@ -4537,8 +4537,8 @@
       "port-version": 3
     },
     "libfabric": {
-      "baseline": "1.13.2",
-      "port-version": 2
+      "baseline": "1.22.0",
+      "port-version": 0
     },
     "libffi": {
       "baseline": "3.4.6",
@@ -6705,8 +6705,8 @@
       "port-version": 4
     },
     "openimageio": {
-      "baseline": "3.0.0.3",
-      "port-version": 2
+      "baseline": "3.0.1.0",
+      "port-version": 0
     },
     "openjpeg": {
       "baseline": "2.5.2",
@@ -7069,8 +7069,8 @@
       "port-version": 8
     },
     "plibsys": {
-      "baseline": "0.0.4",
-      "port-version": 7
+      "baseline": "0.0.5",
+      "port-version": 0
     },
     "plog": {
       "baseline": "1.1.10",
@@ -7905,7 +7905,7 @@
       "port-version": 0
     },
     "reflectcpp": {
-      "baseline": "0.13.0",
+      "baseline": "0.16.0",
       "port-version": 0
     },
     "refprop-headers": {
@@ -9229,7 +9229,7 @@
       "port-version": 2
     },
     "unordered-dense": {
-      "baseline": "4.4.0",
+      "baseline": "4.5.0",
       "port-version": 0
     },
     "unqlite": {
