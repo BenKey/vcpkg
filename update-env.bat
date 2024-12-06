@@ -5,37 +5,38 @@ if "%_ShowDebugMessages%" equ "" set _ShowDebugMessages=no
 set _IncludeMSYS64=%~2
 if "%_IncludeMSYS64%" equ "" set _IncludeMSYS64=no
 
-
 call :GetBatchFileDirectory _MyDir
 call :SetOPT
 if not defined OPT goto :EOF
 
-set DOTNET_VERSION=8.0.202
+set DOTNET_VERSION=9.0.101
 set HOME=%LOCALAPPDATA%\Home
-set JDK_HOME=C:\Program Files\Eclipse Adoptium\jdk-21.0.2.13-hotspot
-set JDK_HOME_X64=C:\Program Files\Eclipse Adoptium\jdk-21.0.2.13-hotspot
-set JDK_HOME_X86=C:\Program Files (x86)\Eclipse Adoptium\jdk-19.0.2.7-hotspot
-set PANDOC_EXE=%LOCALAPPDATA%\Pandoc\pandoc.exe
+set JDK_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-21.0.5.11-hotspot
+set JDK_HOME_X64=%ProgramW6432%\Eclipse Adoptium\jdk-21.0.5.11-hotspot
+set JDK_HOME_X86=%ProgramFiles(x86)%\Eclipse Adoptium\jdk-19.0.2.7-hotspot
+set PANDOC_EXE=%ProgramW6432%\Pandoc\pandoc.exe
 set VCPKG_FEATURE_FLAGS=-binarycaching
 set VCPKG_ROOT=%_MyDir%
 set CMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%/scripts/buildsystems.vcpkg.cmake
 
 for %%a in (
 "%_MyDir%\installed\%Platform%-windows\tools\icu\bin"
-"%_MyDir%\downloads\tools\7zip-23.01-windows\x64"
-"%_MyDir%\downloads\tools\cmake-3.29.0-windows\cmake-3.29.0-windows-i386\bin"
+"%_MyDir%\downloads\tools\7zip-24.08-windows\x64"
+"%_MyDir%\downloads\tools\7zr-24.08-windows"
+"%_MyDir%\downloads\tools\cmake-3.30.1-windows\cmake-3.30.1-windows-i386\bin"
 "%_MyDir%\downloads\tools\jom\jom-1_1_4"
 "%_MyDir%\downloads\tools\nasm\nasm-2.16.01"
-"%_MyDir%\downloads\tools\perl\5.38.0.1\c\bin"
-"%_MyDir%\downloads\tools\perl\5.38.0.1\c\i686-w64-mingw32\bin"
-"%_MyDir%\downloads\tools\perl\5.38.0.1\perl\site\bin"
-"%_MyDir%\downloads\tools\perl\5.38.0.1\perl\bin"
-"%_MyDir%\downloads\tools\python\python-3.11.8-%Platform%"
+"%_MyDir%\downloads\tools\perl\5.40.0.1\c\bin"
+"%_MyDir%\downloads\tools\perl\5.40.0.1\c\i686-w64-mingw32\bin"
+"%_MyDir%\downloads\tools\perl\5.40.0.1\perl\site\bin"
+"%_MyDir%\downloads\tools\perl\5.40.0.1\perl\bin"
+"%_MyDir%\downloads\tools\python\python-3.12.7-%Platform%"
+"%_MyDir%\downloads\tools\python\python-3.12.7-%Platform%-1"
 "%ProgramW6432%\Beyond Compare 4"
 "%ProgramW6432%\Git\cmd"
-"%SystemDrive%\Perl64\c\bin"
-"%SystemDrive%\Perl64\perl\site\bin"
-"%SystemDrive%\Perl64\perl\bin"
+"%SystemDrive%\Strawberry\c\bin"
+"%SystemDrive%\Strawberry\perl\site\bin"
+"%SystemDrive%\Strawberry\perl\bin"
 "%JDK_HOME%\bin"
 "%JDK_HOME%\bin\server"
 "%ProgramW6432%\dotnet"
@@ -46,9 +47,9 @@ for %%a in (
 "%ProgramW6432%\nodejs"
 "%ProgramW6432%\Perforce"
 "%ProgramW6432%\PowerShell\7"
-"%ProgramW6432%\Python312"
+"%ProgramW6432%\Python313"
 "%ProgramW6432%\TortoiseSVN\bin"
-"%LOCALAPPDATA%\Pandoc"
+"%ProgramW6432%\Pandoc"
 "%ProgramFiles(x86)%\Poedit"
 "%ProgramFiles(x86)%\Poedit\GettextTools\bin"
 "%LOCALAPPDATA%\Programs\Microsoft VS Code"

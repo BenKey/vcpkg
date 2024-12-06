@@ -5,11 +5,164 @@ import os
 import subprocess
 import sys
 
+type str_list = list[str]
+
 x64OnlyPackageList = [
-  'crashpad', 'eathread', 'folly[bzip2,zlib,zstd]', 'foonathan-lexy', 'qt[default-features]', 'qtspeech', 'qwt', 'yasm-tool', 'yasm-tool-helper'
 ]
 
 x86OnlyPackageList = [
+]
+
+arm64PackageList = [
+  ([
+    'boost-accumulators[core]',
+    'boost-algorithm[core]',
+    'boost-align[core]',
+    'boost-any[core]',
+    'boost-array[core]',
+    'boost-assert[core]',
+    'boost-assign[core]',
+    'boost-atomic[core]',
+    'boost-beast[core]',
+    'boost-bimap[core]',
+    'boost-bind[core]',
+    'boost-callable-traits[core]',
+    'boost-charconv[core]',
+    'boost-chrono[core]',
+    'boost-circular-buffer[core]',
+    'boost-cobalt[core]',
+    'boost-compat[core]',
+    'boost-compatibility[core]',
+    'boost-compute[core]',
+    'boost-concept-check[core]',
+    'boost-config[core]',
+    'boost-container[core]',
+    'boost-container-hash[core]',
+    'boost-context[core]',
+    'boost-contract[core]',
+    'boost-convert[core]',
+    'boost-core[core]',
+    'boost-crc[core]',
+    'boost-date-time[core]',
+    'boost-describe[core]',
+    'boost-detail[core]',
+    'boost-dll[core]',
+    'boost-dynamic-bitset[core]',
+    'boost-endian[core]',
+    'boost-exception[core]',
+    'boost-filesystem[core]',
+    'boost-flyweight[core]',
+    'boost-foreach[core]',
+    'boost-format[core]',
+    'boost-function[core]',
+    'boost-function-types[core]',
+    'boost-functional[core]',
+    'boost-fusion[core]',
+    'boost-geometry[core]',
+    'boost-gil[core]',
+    'boost-graph[core]',
+    'boost-hana[core]',
+    'boost-headers[core]',
+    'boost-heap[core]',
+    'boost-histogram[core]',
+    'boost-hof[core]',
+    'boost-icl[core]',
+    'boost-integer[core]',
+    'boost-interprocess[core]',
+    'boost-interval[core]',
+    'boost-intrusive[core]',
+    'boost-io[core]',
+    'boost-iostreams[core]',
+    'boost-iterator[core]',
+    'boost-json[core]',
+    'boost-lambda[core]',
+    'boost-lambda2[core]',
+    'boost-leaf[core]',
+    'boost-lexical-cast[core]',
+    'boost-local-function[core]',
+    'boost-locale[core]',
+    'boost-lockfree[core]',
+    'boost-log[core]',
+    'boost-logic[core]',
+    'boost-math[core]',
+    'boost-metaparse[core]',
+    'boost-move[core]',
+    'boost-mp11[core]',
+    'boost-mpl[core]',
+    'boost-msm[core]',
+    'boost-multi-array[core]',
+    'boost-multi-index[core]',
+    'boost-multiprecision[core]',
+    'boost-mysql[core]',
+    'boost-nowide[core]',
+    'boost-odeint[core]',
+    'boost-optional[core]',
+    'boost-outcome[core]',
+    'boost-parameter[core]',
+    'boost-pfr[core]',
+    'boost-phoenix[core]',
+    'boost-poly-collection[core]',
+    'boost-polygon[core]',
+    'boost-pool[core]',
+    'boost-predef[core]',
+    'boost-preprocessor[core]',
+    'boost-process[core]',
+    'boost-program-options[core]',
+    'boost-property-map[core]',
+    'boost-property-tree[core]',
+    'boost-proto[core]',
+    'boost-ptr-container[core]',
+    'boost-qvm[core]',
+    'boost-random[core]',
+    'boost-range[core]',
+    'boost-ratio[core]',
+    'boost-rational[core]',
+    'boost-redis[core]',
+    'boost-regex[core]',
+    'boost-safe-numerics[core]',
+    'boost-scope[core]',
+    'boost-scope-exit[core]',
+    'boost-serialization[core]',
+    'boost-signals2[core]',
+    'boost-smart-ptr[core]',
+    'boost-sort[core]',
+    'boost-spirit[core]',
+    'boost-stacktrace[core]',
+    'boost-statechart[core]',
+    'boost-static-assert[core]',
+    'boost-static-string[core]',
+    'boost-stl-interfaces[core]',
+    'boost-system[core]',
+    'boost-test[core]',
+    'boost-thread[core]',
+    'boost-throw-exception[core]',
+    'boost-timer[core]',
+    'boost-tokenizer[core]',
+    'boost-tti[core]',
+    'boost-tuple[core]',
+    'boost-type-erasure[core]',
+    'boost-type-index[core]',
+    'boost-type-traits[core]',
+    'boost-typeof[core]',
+    'boost-ublas[core]',
+    'boost-units[core]',
+    'boost-unordered[core]',
+    'boost-url[core]',
+    'boost-utility[core]',
+    'boost-uuid[core]',
+    'boost-variant[core]',
+    'boost-variant2[core]',
+    'boost-vmd[core]',
+    'boost-wave[core]',
+    'boost-winapi[core]',
+    'boost-xpressive[core]',
+    'boost-yap[core]',
+    'mp3lame',
+    'ms-gsl',
+    'strtk',
+    'wil',
+    'wtl'
+  ], False)
 ]
 
 packageList = [
@@ -65,7 +218,7 @@ def GetScriptFile() -> str:
         # the following format: {PathToExeFile}\{NameOfPythonSourceFile}. This
         # makes it necessary to strip off the file name to get the correct path.
         ret = os.path.dirname(ret)
-  GetScriptFile.file: str = ret
+  GetScriptFile.file = ret
   return GetScriptFile.file
 
 def GetScriptDirectory() -> str:
@@ -73,29 +226,35 @@ def GetScriptDirectory() -> str:
   if (hasattr(GetScriptDirectory, "dir")):
     return GetScriptDirectory.dir
   module_path: str = GetScriptFile()
-  GetScriptDirectory.dir: str = os.path.dirname(module_path)
+  GetScriptDirectory.dir = os.path.dirname(module_path)
   return GetScriptDirectory.dir
 
-def common_member(a, b):
+def common_member(a: str_list, b: str_list) -> bool:
   a_set = set(a)
   b_set = set(b)
   if len(a_set.intersection(b_set)) > 0:
-    return(True)
-  return(False)
+    return True
+  return False
 
-def InstallPackagesWorker(packages, triplet, recurse):
-  args = []
+def InstallPackagesWorker(packages: str_list, triplet: str, platform: str, recurse: bool) -> bool:
+  print("+++++++++++++++++++")
+  print(f"++ {triplet} ++")
+  print("+++++++++++++++++++")
+  print()
+  scriptDirectory = GetScriptDirectory()
+  args: str_list = []
   args.append("vcpkg")
   args.append("install")
   args.extend(packages)
   args.append("--triplet")
   args.append(triplet)
-  args.append("--x-buildtrees-root=%s/bt" % GetScriptDirectory())
+  args.append(f"--x-buildtrees-root={scriptDirectory}/bt/{platform}")
   if (recurse):
     args.append("--recurse")
   try:
-    separator = ' '
-    print("Calling '%s'." % separator.join(args))
+    separator: str = ' '
+    joinedArgs: str = separator.join(args)
+    print(f"Calling '{joinedArgs}'.")
     subprocess.check_call(args)
     return True
   except subprocess.CalledProcessError:
@@ -103,36 +262,54 @@ def InstallPackagesWorker(packages, triplet, recurse):
   except OSError:
     return False
 
-def InstallPackages(packages, recurse):
+def InstallARM64Packages(packages: str_list, recurse: bool) -> bool:
   print()
   print("################################################################################")
-  print("Installing packages: %s" % packages)
+  print(f"Installing packages: {packages}")
   print("################################################################################")
   print()
+  ret: bool = InstallPackagesWorker(packages, "arm64-windows", "arm64", recurse)
+  print()
+  return ret
+
+def InstallPackages(packages: str_list, recurse: bool) -> bool:
+  print()
+  print("################################################################################")
+  print(f"Installing packages: {packages}")
+  print("################################################################################")
+  print()
+  ret: bool = False
   if (not common_member(x86OnlyPackageList, packages)):
-    print("+++++++++++++++++")
-    print("++ x64-windows ++")
-    print("+++++++++++++++++")
-    print()
-    ret = InstallPackagesWorker(packages, "x64-windows", recurse)
+    ret = InstallPackagesWorker(packages, "x64-windows", "x64", recurse)
     if (not ret):
       return False
     if (common_member(x64OnlyPackageList, packages)):
       return ret
   print()
-  print("+++++++++++++++++")
-  print("++ x86-windows ++")
-  print("+++++++++++++++++")
-  print()
-  ret = InstallPackagesWorker(packages, "x86-windows", recurse)
+  ret = InstallPackagesWorker(packages, "x86-windows", "x86", recurse)
   print()
   return ret
 
-def InstallPackagesInPackageList():
-  for package in packageList:
-    ret = InstallPackages(package[0], package[1])
+def InstallPackagesInARM64PackageList() -> bool:
+  for package in arm64PackageList:
+    ret: bool = InstallARM64Packages(package[0], package[1])
     if ret == False:
       return False
   return True
 
-InstallPackagesInPackageList()
+def InstallPackagesInPackageList() -> bool:
+  for package in packageList:
+    ret: bool = InstallPackages(package[0], package[1])
+    if ret == False:
+      return False
+  return True
+
+ret: bool = InstallPackagesInARM64PackageList()
+if ret == False:
+  sys.exit(1)
+
+ret = InstallPackagesInPackageList()
+if ret == False:
+  sys.exit(2)
+
+sys.exit(os.EX_OK)

@@ -6,14 +6,15 @@
 
 (defconst vcpkg--add-to-path-windows
   '(
-    "${VCPKG_ROOT}/downloads/tools/cmake-3.29.0-windows/cmake-3.29.0-windows-i386/bin"
+    "${VCPKG_ROOT}/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/bin"
     "${VCPKG_ROOT}/downloads/tools/jom/jom-1_1_4"
     "${VCPKG_ROOT}/downloads/tools/nasm/nasm-2.16.01"
-    "${VCPKG_ROOT}/downloads/tools/perl/5.38.0.1/c/bin"
-    "${VCPKG_ROOT}/downloads/tools/perl/5.38.0.1/c/i686-w64-mingw32/bin"
-    "${VCPKG_ROOT}/downloads/tools/perl/5.38.0.1/perl/site/bin"
-    "${VCPKG_ROOT}/downloads/tools/perl/5.38.0.1/perl/bin"
-    "${VCPKG_ROOT}/downloads/tools/python/python-3.11.8-${Platform}"
+    "${VCPKG_ROOT}/downloads/tools/perl/5.40.0.1/c/bin"
+    "${VCPKG_ROOT}/downloads/tools/perl/5.40.0.1/c/i686-w64-mingw32/bin"
+    "${VCPKG_ROOT}/downloads/tools/perl/5.40.0.1/perl/site/bin"
+    "${VCPKG_ROOT}/downloads/tools/perl/5.40.0.1/perl/bin"
+    "${VCPKG_ROOT}/downloads/tools/python/python-3.12.7-${Platform}"
+    "${VCPKG_ROOT}/downloads/tools/python/python-3.12.7-${Platform}-1"
     "${VCPKG_ROOT}/installed/${Platform}-windows/bin"
     "${VCPKG_ROOT}/installed/${Platform}-windows/tools"
    )
@@ -22,7 +23,7 @@
 
 (defconst vcpkg--add-to-path-linux
   '(
-    "${VCPKG_ROOT}/downloads/tools/cmake-3.29.0-linux/cmake-3.29.0-linux-x86_64/bin"
+    "${VCPKG_ROOT}/downloads/tools/cmake-3.30.1-linux/cmake-3.30.1-linux-x86_64/bin"
     "${VCPKG_ROOT}/downloads/tools/ninja/1.10.2-linux"
     "${VCPKG_ROOT}/installed/${Platform}-linux/tools"
     )
