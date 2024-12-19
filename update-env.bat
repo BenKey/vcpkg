@@ -14,20 +14,20 @@ set HOME=%LOCALAPPDATA%\Home
 set JDK_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-21.0.5.11-hotspot
 set JDK_HOME_X64=%ProgramW6432%\Eclipse Adoptium\jdk-21.0.5.11-hotspot
 set JDK_HOME_X86=%ProgramFiles(x86)%\Eclipse Adoptium\jdk-19.0.2.7-hotspot
-set PANDOC_EXE=%ProgramW6432%\Pandoc\pandoc.exe
+set PANDOC_EXE=%LOCALAPPDATA%\Pandoc\pandoc.exe
 set VCPKG_FEATURE_FLAGS=-binarycaching
 set VCPKG_ROOT=%_MyDir%
 set CMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%/scripts/buildsystems.vcpkg.cmake
 
 for %%a in (
 "%_MyDir%\installed\%Platform%-windows\tools\icu\bin"
-"%_MyDir%\downloads\tools\7zip-24.08-windows\x64"
-"%_MyDir%\downloads\tools\7zr-24.08-windows"
+"%_MyDir%\downloads\tools\7zip-24.09-windows"
+"%_MyDir%\downloads\tools\7zr-24.09-windows"
 "%_MyDir%\downloads\tools\cmake-3.30.1-windows\cmake-3.30.1-windows-i386\bin"
 "%_MyDir%\downloads\tools\jom\jom-1_1_4"
 "%_MyDir%\downloads\tools\nasm\nasm-2.16.03"
 "%_MyDir%\downloads\tools\perl\5.40.0.1\c\bin"
-"%_MyDir%\downloads\tools\perl\5.40.0.1\c\i686-w64-mingw32\bin"
+"%_MyDir%\downloads\tools\perl\5.40.0.1\c\x86_64-w64-mingw32\bin"
 "%_MyDir%\downloads\tools\perl\5.40.0.1\perl\site\bin"
 "%_MyDir%\downloads\tools\perl\5.40.0.1\perl\bin"
 "%_MyDir%\downloads\tools\python\python-3.12.7-%Platform%"
@@ -49,7 +49,7 @@ for %%a in (
 "%ProgramW6432%\PowerShell\7"
 "%ProgramW6432%\Python313"
 "%ProgramW6432%\TortoiseSVN\bin"
-"%ProgramW6432%\Pandoc"
+"%LOCALAPPDATA%\Pandoc"
 "%ProgramFiles(x86)%\Poedit"
 "%ProgramFiles(x86)%\Poedit\GettextTools\bin"
 "%LOCALAPPDATA%\Programs\Microsoft VS Code"

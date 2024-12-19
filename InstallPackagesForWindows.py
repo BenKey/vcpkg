@@ -15,6 +15,7 @@ x86OnlyPackageList = [
 
 arm64PackageList = [
   ([
+    'better-enums',
     'boost-accumulators[core]',
     'boost-algorithm[core]',
     'boost-align[core]',
@@ -157,9 +158,12 @@ arm64PackageList = [
     'boost-winapi[core]',
     'boost-xpressive[core]',
     'boost-yap[core]',
+    'fltk',
     'icu[core]',
     'mp3lame',
     'ms-gsl',
+    'nana',
+    'platform-folders',
     'strtk',
     'wil',
     'wtl'
@@ -168,18 +172,22 @@ arm64PackageList = [
 
 packageList = [
   ([
+    'better-enums',
     'boost-asio[core,ssl]',
     'boost-locale[core,icu]',
     'boost-mpi[core,python3]',
     'boost-odeint[core,mpi]',
     'boost-regex[core,icu]',
     'boost[core,mpi]',
+    'fltk',
     'icu[core,tools]',
     'imgui[core,win32-binding]',
     'mp3lame',
     'mpi',
     'ms-gsl',
+    'nana',
     'openal-soft',
+    'platform-folders',
     'portaudio',
     'python3',
     'sdl2-gfx',
