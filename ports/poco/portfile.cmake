@@ -2,7 +2,7 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO pocoproject/poco
     REF "poco-${VERSION}-release"
-    SHA512 084064fb462c9e7993d069ebdf395802af900ed92c5b294465a2c246162bb86caa3505985de329e8110d3e9fb3bc39ae9536d523843729d4ed5ce00c35289d92
+    SHA512 e192818a5f731ec6f6bddf062573d7bedfd15754157f145882c2c9d9bce497b92cf23f639f989d9e5605cb83029c4f303752cab655b525b5a5b5e5b704714725
     HEAD_REF devel
     PATCHES
         # Fix embedded copy of pcre in static linking mode
@@ -33,7 +33,6 @@ vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
         crypto      ENABLE_CRYPTO
         netssl      ENABLE_NETSSL
         pdf         ENABLE_PDF
-        sqlite3     ENABLE_DATA_SQLITE
         postgresql  ENABLE_DATA_POSTGRESQL
 )
 
