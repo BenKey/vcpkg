@@ -9,14 +9,16 @@ call :GetBatchFileDirectory _MyDir
 call :SetOPT
 if not defined OPT goto :EOF
 
-set DOTNET_VERSION=9.0.101
+set DOTNET_VERSION=9.0.200
+set MSVC_TOOLS_VERSION=14.43.34808
 set HOME=%LOCALAPPDATA%\Home
-set JDK_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-21.0.5.11-hotspot
-set JDK_HOME_X64=%ProgramW6432%\Eclipse Adoptium\jdk-21.0.5.11-hotspot
+set JDK_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-23.0.2.7-hotspot
+set JDK_HOME_X64=%ProgramW6432%\Eclipse Adoptium\jdk-23.0.2.7-hotspot
 set JDK_HOME_X86=%ProgramFiles(x86)%\Eclipse Adoptium\jdk-19.0.2.7-hotspot
 set PANDOC_EXE=%LOCALAPPDATA%\Pandoc\pandoc.exe
 set VCPKG_FEATURE_FLAGS=-binarycaching
 set VCPKG_ROOT=%_MyDir%
+set Visual_Studio_2022_Install_Directory=%ProgramW6432%\Microsoft Visual Studio\2022\Professional
 set CMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%/scripts/buildsystems.vcpkg.cmake
 
 for %%a in (
