@@ -222,12 +222,7 @@ def InstallPackagesWorker(packages, triplet, recurse):
     return False
 
 def GetTriplet():
-  system = os.environ.get('MSYSTEM', "")
-  if (system == "MINGW64"):
-    return "x64-mingw-dynamic"
-  if (system == "MINGW32"):
-    return "x86-mingw-dynamic"
-  return ""
+  return "x64-mingw-dynamic"
 
 def InstallPackages(packages, recurse):
   triplet = GetTriplet()
