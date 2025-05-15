@@ -33,7 +33,6 @@ arm64PackageList = [
     'boost-circular-buffer[core]',
     'boost-cobalt[core]',
     'boost-compat[core]',
-    'boost-compatibility[core]',
     'boost-compute[core]',
     'boost-concept-check[core]',
     'boost-config[core]',
