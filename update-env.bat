@@ -9,13 +9,14 @@ call :GetBatchFileDirectory _MyDir
 call :SetOPT
 if not defined OPT goto :EOF
 
-set DOTNET_VERSION=9.0.200
-set MSVC_TOOLS_VERSION=14.43.34808
+set LANG=en_US.UTF-8
+set DOTNET_VERSION=9.0.300
+set MSVC_TOOLS_VERSION=14.44.35207
 set HOME=%LOCALAPPDATA%\Home
 set JDK_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-23.0.2.7-hotspot
 set JDK_HOME_X64=%ProgramW6432%\Eclipse Adoptium\jdk-23.0.2.7-hotspot
 set JDK_HOME_X86=%ProgramFiles(x86)%\Eclipse Adoptium\jdk-19.0.2.7-hotspot
-set PANDOC_EXE=%LOCALAPPDATA%\Pandoc\pandoc.exe
+set PANDOC_EXE=%ProgramW6432%\Pandoc\pandoc.exe
 set VCPKG_FEATURE_FLAGS=-binarycaching
 set VCPKG_ROOT=%_MyDir%
 set Visual_Studio_2022_Install_Directory=%ProgramW6432%\Microsoft Visual Studio\2022\Professional
@@ -23,8 +24,7 @@ set CMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%/scripts/buildsystems.vcpkg.cmake
 
 for %%a in (
 "%_MyDir%\installed\%Platform%-windows\tools\icu\bin"
-"%_MyDir%\downloads\tools\7zip-24.09-windows"
-"%_MyDir%\downloads\tools\7zr-24.09-windows"
+"%_MyDir%\installed\%Platform%-windows\tools\python3\DLLs"
 "%_MyDir%\downloads\tools\cmake-3.30.1-windows\cmake-3.30.1-windows-i386\bin"
 "%_MyDir%\downloads\tools\jom\jom-1_1_4"
 "%_MyDir%\downloads\tools\nasm\nasm-2.16.03"
@@ -44,14 +44,12 @@ for %%a in (
 "%ProgramW6432%\dotnet"
 "%ProgramW6432%\dotnet\sdk\%DOTNET_VERSION%"
 "%USERPROFILE%\.dotnet\tools"
-"%ProgramW6432%\LLVM\bin"
-"%ProgramW6432%\LLVM\share\clang"
 "%ProgramW6432%\nodejs"
 "%ProgramW6432%\Perforce"
 "%ProgramW6432%\PowerShell\7"
 "%ProgramW6432%\Python313"
 "%ProgramW6432%\TortoiseSVN\bin"
-"%LOCALAPPDATA%\Pandoc"
+"%ProgramW6432%\Pandoc"
 "%ProgramFiles(x86)%\Poedit"
 "%ProgramFiles(x86)%\Poedit\GettextTools\bin"
 "%LOCALAPPDATA%\Programs\Microsoft VS Code"
