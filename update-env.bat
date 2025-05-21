@@ -20,11 +20,12 @@ set PANDOC_EXE=%ProgramW6432%\Pandoc\pandoc.exe
 set VCPKG_FEATURE_FLAGS=-binarycaching
 set VCPKG_ROOT=%_MyDir%
 set Visual_Studio_2022_Install_Directory=%ProgramW6432%\Microsoft Visual Studio\2022\Professional
-set CMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%/scripts/buildsystems.vcpkg.cmake
+set CMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%\scripts\buildsystems\vcpkg.cmake
 
 for %%a in (
 "%_MyDir%\installed\%Platform%-windows\tools\icu\bin"
 "%_MyDir%\installed\%Platform%-windows\tools\python3\DLLs"
+"%_MyDir%\downloads\tools\cmake-3.30.1-windows\cmake-3.30.1-windows-i386\bin"
 "%_MyDir%\downloads\tools\jom\jom-1_1_4"
 "%_MyDir%\downloads\tools\nasm\nasm-2.16.03"
 "%_MyDir%\downloads\tools\perl\5.40.0.1\c\bin"
