@@ -19,13 +19,7 @@ set LIBRARY_PATH=%SystemDrive%\mingw64\lib;%SystemDrive%\mingw64\lib\gcc\x86_64-
 set VCPKG_DEFAULT_HOST_TRIPLET=x64-mingw-dynamic
 set VCPKG_DEFAULT_TRIPLET=x64-mingw-dynamic
 
-
 for %%a in (
-"%_MyDir%\downloads\tools\7zip-24.09-windows"
-"%_MyDir%\downloads\tools\7zr-24.09-windows"
-"%_MyDir%\downloads\tools\cmake-3.30.1-windows\cmake-3.30.1-windows-i386\bin"
-"%_MyDir%\downloads\tools\ninja\1.12.1-windows"
-"%_MyDir%\downloads\tools\python\python-3.12.7-x64-1"
 "%ProgramW6432%\Git"
 "%ProgramW6432%\Git\cmd"
 "%JDK_HOME%\bin"
@@ -38,6 +32,27 @@ for %%a in (
   call :AppendToPathIfExists "%%~a"
 )
 
+for %%a in (
+"%_MyDir%\downloads\tools\python\python-3.12.7-x64-1"
+"%_MyDir%\downloads\tools\ninja\1.12.1-windows"
+"%_MyDir%\downloads\tools\cmake-3.30.1-windows\cmake-3.30.1-windows-i386\bin"
+"%_MyDir%\downloads\tools\7zr-24.09-windows"
+"%_MyDir%\downloads\tools\7zip-24.09-windows"
+"%_MyDir%\installed\x64-mingw-dynamic\tools\wxwidgets"
+"%_MyDir%\installed\x64-mingw-dynamic\tools\tiff"
+"%_MyDir%\installed\x64-mingw-dynamic\tools\gperf"
+"%_MyDir%\installed\x64-mingw-dynamic\tools\fltk"
+"%_MyDir%\installed\x64-mingw-dynamic\tools\bzip2"
+"%_MyDir%\installed\x64-mingw-dynamic\tools\brotli"
+"%_MyDir%\installed\x64-mingw-dynamic\tools"
+"%_MyDir%\installed\x64-mingw-dynamic\bin"
+"%SystemDrive%\mingw64\x86_64-w64-mingw32\bin"
+"%SystemDrive%\mingw64\opt\bin"
+"%SystemDrive%\mingw64\libexec\gcc\x86_64-w64-mingw32\14.2.0"
+"%SystemDrive%\mingw64\bin"
+) do (
+  call :PrependToPathIfExists "%%~a"
+)
 
 goto :EOF
 
@@ -67,6 +82,13 @@ goto :EOF
   if not exist "%~1\." call :ShowDebugMessage "'%~1' does not exist."
   if exist "%~1\." set PATH=%PATH%;%~1
 goto :EOF
+
+:PrependToPathIfExists
+  if exist "%~1\." call :ShowDebugMessage "Adding '%~1' to the path."
+  if not exist "%~1\." call :ShowDebugMessage "'%~1' does not exist."
+  if exist "%~1\." set PATH=%~1;%PATH%
+goto :EOF
+
 
 :ShowDebugMessage
   if "%_ShowDebugMessages%" neq "yes" exit /b 1
