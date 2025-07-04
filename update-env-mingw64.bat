@@ -57,6 +57,8 @@ for %%a in (
   call :PrependToPathIfExists "%%~a"
 )
 
+call :AddBusyBox
+
 goto :EOF
 
 ::
