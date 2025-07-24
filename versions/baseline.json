@@ -553,8 +553,8 @@
       "port-version": 3
     },
     "azure-storage-blobs-cpp": {
-      "baseline": "12.13.0",
-      "port-version": 1
+      "baseline": "12.14.0",
+      "port-version": 0
     },
     "azure-storage-common-cpp": {
       "baseline": "12.10.0",
@@ -569,7 +569,7 @@
       "port-version": 1
     },
     "azure-storage-files-shares-cpp": {
-      "baseline": "12.13.0",
+      "baseline": "12.14.0",
       "port-version": 0
     },
     "azure-storage-queues-cpp": {
@@ -1838,7 +1838,7 @@
     },
     "coin": {
       "baseline": "4.0.4",
-      "port-version": 0
+      "port-version": 1
     },
     "coin-or-buildtools": {
       "baseline": "2023-02-02",
@@ -1913,8 +1913,8 @@
       "port-version": 0
     },
     "conjure-enum": {
-      "baseline": "1.1.0",
-      "port-version": 1
+      "baseline": "1.2.0",
+      "port-version": 0
     },
     "console-bridge": {
       "baseline": "1.0.2",
@@ -3957,7 +3957,7 @@
       "port-version": 1
     },
     "itay-grudev-singleapplication": {
-      "baseline": "3.5.2",
+      "baseline": "3.5.3",
       "port-version": 0
     },
     "itk": {
@@ -5286,7 +5286,7 @@
     },
     "libremidi": {
       "baseline": "4.5.0",
-      "port-version": 1
+      "port-version": 2
     },
     "libressl": {
       "baseline": "4.1.0",
@@ -6409,7 +6409,7 @@
       "port-version": 0
     },
     "mqtt-cpp": {
-      "baseline": "13.2.1",
+      "baseline": "13.2.2",
       "port-version": 0
     },
     "ms-angle": {
@@ -7066,7 +7066,7 @@
     },
     "openslide": {
       "baseline": "4.0.0",
-      "port-version": 2
+      "port-version": 3
     },
     "openssl": {
       "baseline": "3.5.1",
@@ -9317,7 +9317,7 @@
       "port-version": 0
     },
     "sundials": {
-      "baseline": "7.1.1",
+      "baseline": "7.4.0",
       "port-version": 0
     },
     "superglu": {
@@ -10094,7 +10094,7 @@
     },
     "vtk": {
       "baseline": "9.3.0-pv5.12.1",
-      "port-version": 7
+      "port-version": 8
     },
     "vtk-dicom": {
       "baseline": "0.8.16",
