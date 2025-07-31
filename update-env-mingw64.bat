@@ -11,8 +11,8 @@ set VCPKG_ROOT=
 
 set LANG=en_US.UTF-8
 set HOME=%LOCALAPPDATA%\Home
-set JAVA_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-24.0.1.9-hotspot
-set JDK_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-24.0.1.9-hotspot
+set JAVA_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-24.0.2.12-hotspot
+set JDK_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-24.0.2.12-hotspot
 set VCPKG_ROOT=%_MyDir%
 set CMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%\scripts\buildsystems\vcpkg.cmake
 set C_INCLUDE_PATH=%SystemDrive%\mingw64\lib\gcc\x86_64-w64-mingw32\15.1.0\include;%SystemDrive%\mingw64\x86_64-w64-mingw32\include;%SystemDrive%\mingw64\x86_64-w64-mingw32\include\sec_api;%SystemDrive%\mingw64\include;%SystemDrive%\mingw64\opt\include;%VCPKG_ROOT%\installed\x64-mingw-dynamic\include
