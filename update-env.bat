@@ -10,11 +10,11 @@ call :SetOPT
 if not defined OPT goto :EOF
 
 set LANG=en_US.UTF-8
-set DOTNET_VERSION=9.0.300
+set DOTNET_VERSION=9.0.302
 set MSVC_TOOLS_VERSION=14.44.35207
 set HOME=%LOCALAPPDATA%\Home
-set JDK_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-24.0.1.9-hotspot
-set JDK_HOME_X64=%ProgramW6432%\Eclipse Adoptium\jdk-24.0.1.9-hotspot
+set JDK_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-24.0.2.12-hotspot
+set JDK_HOME_X64=%ProgramW6432%\Eclipse Adoptium\jdk-24.0.2.12-hotspot
 set JDK_HOME_X86=%ProgramFiles(x86)%\Eclipse Adoptium\jdk-19.0.2.7-hotspot
 set PANDOC_EXE=%ProgramW6432%\Pandoc\pandoc.exe
 set VCPKG_FEATURE_FLAGS=-binarycaching
@@ -28,17 +28,14 @@ for %%a in (
 "%_MyDir%\downloads\tools\cmake-3.30.1-windows\cmake-3.30.1-windows-i386\bin"
 "%_MyDir%\downloads\tools\jom\jom-1_1_4"
 "%_MyDir%\downloads\tools\nasm\nasm-2.16.03"
-"%_MyDir%\downloads\tools\perl\5.40.0.1\c\bin"
-"%_MyDir%\downloads\tools\perl\5.40.0.1\c\x86_64-w64-mingw32\bin"
-"%_MyDir%\downloads\tools\perl\5.40.0.1\perl\site\bin"
-"%_MyDir%\downloads\tools\perl\5.40.0.1\perl\bin"
+"%_MyDir%\downloads\tools\perl\5.40.2.1\c\bin"
+"%_MyDir%\downloads\tools\perl\5.40.2.1\c\x86_64-w64-mingw32\bin"
+"%_MyDir%\downloads\tools\perl\5.40.2.1\perl\site\bin"
+"%_MyDir%\downloads\tools\perl\5.40.2.1\perl\bin"
 "%_MyDir%\downloads\tools\python\python-3.12.7-%Platform%"
 "%_MyDir%\downloads\tools\python\python-3.12.7-%Platform%-1"
 "%ProgramW6432%\Beyond Compare 4"
 "%ProgramW6432%\Git\cmd"
-"%SystemDrive%\Strawberry\c\bin"
-"%SystemDrive%\Strawberry\perl\site\bin"
-"%SystemDrive%\Strawberry\perl\bin"
 "%JDK_HOME%\bin"
 "%JDK_HOME%\bin\server"
 "%ProgramW6432%\dotnet"
@@ -53,7 +50,6 @@ for %%a in (
 "%ProgramFiles(x86)%\Poedit"
 "%ProgramFiles(x86)%\Poedit\GettextTools\bin"
 "%LOCALAPPDATA%\Programs\Microsoft VS Code"
-"%OPT%\Apache-Subversion-1.14.2\bin"
 "%OPT%\bin\X64"
 "%OPT%\bin\X86"
 "%OPT%\ExamDiff"
