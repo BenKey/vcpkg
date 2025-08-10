@@ -9,8 +9,10 @@ call :GetBatchFileDirectory _MyDir
 call :SetOPT
 if not defined OPT goto :EOF
 
+set VCPKG_ROOT=
+
 set LANG=en_US.UTF-8
-set DOTNET_VERSION=9.0.302
+set DOTNET_VERSION=9.0.304
 set MSVC_TOOLS_VERSION=14.44.35207
 set HOME=%LOCALAPPDATA%\Home
 set JDK_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-24.0.2.12-hotspot
@@ -28,10 +30,10 @@ for %%a in (
 "%_MyDir%\downloads\tools\cmake-3.30.1-windows\cmake-3.30.1-windows-i386\bin"
 "%_MyDir%\downloads\tools\jom\jom-1_1_4"
 "%_MyDir%\downloads\tools\nasm\nasm-2.16.03"
-"%_MyDir%\downloads\tools\perl\5.40.2.1\c\bin"
-"%_MyDir%\downloads\tools\perl\5.40.2.1\c\x86_64-w64-mingw32\bin"
-"%_MyDir%\downloads\tools\perl\5.40.2.1\perl\site\bin"
-"%_MyDir%\downloads\tools\perl\5.40.2.1\perl\bin"
+"%_MyDir%\downloads\tools\perl\5.42.0.1\c\bin"
+"%_MyDir%\downloads\tools\perl\5.42.0.1\c\x86_64-w64-mingw32\bin"
+"%_MyDir%\downloads\tools\perl\5.42.0.1\perl\site\bin"
+"%_MyDir%\downloads\tools\perl\5.42.0.1\perl\bin"
 "%_MyDir%\downloads\tools\python\python-3.12.7-%Platform%"
 "%_MyDir%\downloads\tools\python\python-3.12.7-%Platform%-1"
 "%ProgramW6432%\Beyond Compare 4"
@@ -55,7 +57,7 @@ for %%a in (
 "%OPT%\ExamDiff"
 "%OPT%\Scripts"
 ) do (
-  call :AppendToPathIfExists "%%~a"
+  call :AppendToPath "%%~a"
 )
 
 call :AddMSYS64
@@ -101,17 +103,37 @@ goto :EOF
   exit /b 1
 goto :EOF
 
-:AppendToPathIfExists
-  if exist "%~1\." call :ShowDebugMessage "Adding '%~1' to the path."
-  if not exist "%~1\." call :ShowDebugMessage "'%~1' does not exist."
-  if exist "%~1\." set PATH=%PATH%;%~1
+:: Function to append a directory to PATH if it exists
+:: Usage: call :AppendToPath "C:\Path\To\Directory"
+:AppendToPath
+  set "DirToAdd=%~1"
+  if not exist "%DirToAdd%\." call :ShowDebugMessage "'%DirToAdd%' does not exist."
+  if not exist "%DirToAdd%\." exit /b 1
+  call :ShowDebugMessage "Adding '%DirToAdd%' to the path."
+  set PATH=%PATH%;%DirToAdd%
+  exit /b 0
 goto :EOF
 
+:: Function to prepend a directory to PATH if it exists
+:: Usage: call :PrependToPath "C:\Path\To\Directory"
+:PrependToPath
+  set "DirToAdd=%~1"
+  if not exist "%DirToAdd%\." call :ShowDebugMessage "'%DirToAdd%' does not exist."
+  if not exist "%DirToAdd%\." exit /b 1
+  call :ShowDebugMessage "Adding '%DirToAdd%' to the path."
+  set PATH=%DirToAdd%;%PATH%
+  exit /b 0
+goto :EOF
+
+:: Function to show debug messages if debug messages are enabled
+:: Usage: call :ShowDebugMessage "Your message here".
 :ShowDebugMessage
   if "%_ShowDebugMessages%" neq "yes" exit /b 1
   echo %~1
 goto :EOF
 
+:: Function to add MSYS64 directories to PATH if _IncludeMSYS64 is set to "yes".
+:: Usage: call :AddMSYS64
 :AddMSYS64
   if "%_IncludeMSYS64%" neq "yes" exit /b 1
   for %%a in (
@@ -121,6 +143,6 @@ goto :EOF
   "%SystemDrive%\msys64\usr\local\bin"
   "%SystemDrive%\msys64\usr\bin"
   ) do (
-    call :AppendToPathIfExists "%%~a"
+    call :AppendToPath "%%~a"
   )
 goto :EOF
