@@ -61,7 +61,6 @@ for %%a in (
 )
 
 call :AddMSYS64
-call :SetWXWidgetsEnv
 
 goto :EOF
 
@@ -146,15 +145,4 @@ goto :EOF
   ) do (
     call :AppendToPath "%%~a"
   )
-goto :EOF
-
-:: Function to set wxWidgets environment variables
-:: Usage: call :SetWXWidgetsEnv
-:SetWXWidgetsEnv
-  if not exist "%_MyDir%\installed\%Platform%-windows\lib\." exit /b 1
-  if not exist "%_MyDir%\installed\%Platform%-windows\include\wx\." exit /b 1
-  set wxWidgets_CONFIGURATION=mswu
-  set wxWidgets_LIB_DIR=%_MyDir%\installed\%Platform%-windows\lib
-  set wxWidgets_ROOT_DIR=%_MyDir%\installed\%Platform%-windows
-  exit /b 0
 goto :EOF
