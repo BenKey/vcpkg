@@ -47,7 +47,8 @@ for %%a in (
 "%_MyDir%\installed\x64-mingw-dynamic\bin"
 "%SystemDrive%\mingw64\x86_64-w64-mingw32\bin"
 "%SystemDrive%\mingw64\opt\bin"
-"%SystemDrive%\mingw64\libexec\gcc\x86_64-w64-mingw32\15.1.0"
+"%SystemDrive%\mingw64\opt\cmake\bin"
+"%SystemDrive%\mingw64\libexec\gcc\x86_64-w64-mingw32\15.2.0"
 "%SystemDrive%\mingw64\bin"
 ) do (
   call :PrependToPath "%%~a"
@@ -58,9 +59,9 @@ for %%a in (
 :: **********************************************************************
 
 for %%a in (
-  "%SystemDrive%\mingw64\lib\gcc\x86_64-w64-mingw32\15.1.0\include"
-  "%SystemDrive%\mingw64\lib\gcc\x86_64-w64-mingw32\15.1.0\include\c++"
-  "%SystemDrive%\mingw64\lib\gcc\x86_64-w64-mingw32\15.1.0\include\c++\x86_64-w64-mingw32"
+  "%SystemDrive%\mingw64\lib\gcc\x86_64-w64-mingw32\15.2.0\include"
+  "%SystemDrive%\mingw64\lib\gcc\x86_64-w64-mingw32\15.2.0\include\c++"
+  "%SystemDrive%\mingw64\lib\gcc\x86_64-w64-mingw32\15.2.0\include\c++\x86_64-w64-mingw32"
   "%SystemDrive%\mingw64\x86_64-w64-mingw32\include"
   "%SystemDrive%\mingw64\x86_64-w64-mingw32\include\sec_api"
   "%SystemDrive%\mingw64\include"
@@ -75,7 +76,7 @@ for %%a in (
 :: **********************************************************************
 
 for %%a in (
-  "%SystemDrive%\mingw64\lib\gcc\x86_64-w64-mingw32\15.1.0\include"
+  "%SystemDrive%\mingw64\lib\gcc\x86_64-w64-mingw32\15.2.0\include"
   "%SystemDrive%\mingw64\x86_64-w64-mingw32\include"
   "%SystemDrive%\mingw64\x86_64-w64-mingw32\include\sec_api"
   "%SystemDrive%\mingw64\include"
@@ -91,7 +92,7 @@ for %%a in (
 
 for %%a in (
   "%SystemDrive%\mingw64\lib"
-  "%SystemDrive%\mingw64\lib\gcc\x86_64-w64-mingw32\15.1.0"
+  "%SystemDrive%\mingw64\lib\gcc\x86_64-w64-mingw32\15.2.0"
   "%SystemDrive%\mingw64\opt\lib"
   "%SystemDrive%\mingw64\x86_64-w64-mingw32\lib"
   "%_MyDir%\installed\x64-mingw-dynamic\lib"
