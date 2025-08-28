@@ -184,6 +184,7 @@ packageList = [
     'color-console',
     'cpptoml',
     'fltk',
+    'gppanel',
     'guilite',
     'gtest',
     'gumbo',
@@ -218,7 +219,7 @@ packageList = [
     'wil',
     'wtl',
     'wxcharts',
-    'wxwidgets[core,example,fonts,media,sound,webview]'
+    'wxwidgets[core,example,fonts,media,secretstore,sound,webview]'
   ], False)
 ]
 

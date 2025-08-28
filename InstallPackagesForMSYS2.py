@@ -156,6 +156,7 @@ packageList = [
     'color-console',
     'cpptoml',
     'fltk',
+    'gppanel',
     'guilite',
     'gumbo',
     'imgui[core,sdl3-binding,win32-binding]',
@@ -172,17 +173,16 @@ packageList = [
     'sdl3',
     'sqlite3[core,json1,tool,unicode,zlib]',
     'sqlitecpp',
-    'utf8h',
-    'utfcpp',
     'strtk',
     'tiff[core,cxx,jpeg,lzma,tools,webp,zip,zstd]',
     'toml11',
     'tomlplusplus',
     'uberswitch',
     'utf8h',
+    'utfcpp',
     'wildcards',
     'wxcharts',
-    'wxwidgets[core,example,fonts,media,sound]'
+    'wxwidgets[core,example,fonts,media,secretstore,sound]'
   ], False),
 ]
 
@@ -243,6 +243,8 @@ def GetTriplet():
     return "x64-mingw-dynamic"
   if (system == "MINGW32"):
     return "x86-mingw-dynamic"
+  if (system == "UCRT64"):
+    return "x64-mingw-dynamic"
   return ""
 
 def InstallPackages(packages, recurse):
