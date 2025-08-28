@@ -156,6 +156,7 @@ packageList = [
     'color-console',
     'cpptoml',
     'fltk',
+    'gppanel',
     'guilite',
     'gumbo',
     'imgui[core,sdl3-binding,win32-binding]',
@@ -181,7 +182,7 @@ packageList = [
     'utfcpp',
     'wildcards',
     'wxcharts',
-    'wxwidgets[core,example,fonts,media,sound]'
+    'wxwidgets[core,example,fonts,media,secretstore,sound]'
   ], False),
 ]
 
