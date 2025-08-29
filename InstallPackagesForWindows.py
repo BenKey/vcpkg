@@ -226,7 +226,7 @@ packageList = [
 def GetScriptFile() -> str:
   """Obtains the full path and file name of the Python script."""
   if (hasattr(GetScriptFile, "file")):
-    return GetScriptFile.file
+    return getattr(GetScriptFile, "file")
   ret: str = ""
   try:
     # The easy way. Just use __file__.
@@ -243,16 +243,16 @@ def GetScriptFile() -> str:
         # the following format: {PathToExeFile}\{NameOfPythonSourceFile}. This
         # makes it necessary to strip off the file name to get the correct path.
         ret = os.path.dirname(ret)
-  GetScriptFile.file = ret
-  return GetScriptFile.file
+  setattr(GetScriptFile, "file", ret)
+  return getattr(GetScriptFile, "file")
 
 def GetScriptDirectory() -> str:
   """Obtains the path to the directory containing the script."""
   if (hasattr(GetScriptDirectory, "dir")):
-    return GetScriptDirectory.dir
+    return getattr(GetScriptDirectory, "dir")
   module_path: str = GetScriptFile()
-  GetScriptDirectory.dir = os.path.dirname(module_path)
-  return GetScriptDirectory.dir
+  setattr(GetScriptDirectory, "dir", os.path.dirname(module_path))
+  return getattr(GetScriptDirectory, "dir")
 
 def common_member(a: str_list, b: str_list) -> bool:
   a_set = set(a)
