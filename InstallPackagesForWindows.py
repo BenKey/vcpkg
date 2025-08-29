@@ -8,6 +8,7 @@ import sys
 type str_list = list[str]
 
 x64OnlyPackageList = [
+  "qt[default-features]"
 ]
 
 x86OnlyPackageList = [
@@ -167,6 +168,9 @@ arm64PackageList = [
     'strtk',
     'wil',
     'wtl'
+  ], False),
+  ([
+    'qt[default-features]'
   ], False)
 ]
 
