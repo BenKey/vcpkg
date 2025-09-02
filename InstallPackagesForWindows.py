@@ -16,6 +16,8 @@ x86OnlyPackageList = [
 
 arm64PackageList = [
   ([
+    'aixlog',
+    'args',
     'better-enums',
     'boost-accumulators[core]',
     'boost-algorithm[core]',
@@ -158,19 +160,28 @@ arm64PackageList = [
     'boost-winapi[core]',
     'boost-xpressive[core]',
     'boost-yap[core]',
+    'color-console',
+    'cpptoml',
     'gtest',
     'gumbo',
     'icu[core]',
+    'inipp',
+    'jsoncons',
+    'libguarded',
+    'magic-enum',
     'mp3lame',
     'ms-gsl',
     'nana',
     'platform-folders',
+    'rapidcsv',
     'strtk',
+    'toml11',
+    'tomlplusplus',
+    'utf8h',
+    'utfcpp',
     'wil',
+    'wildcards',
     'wtl'
-  ], False),
-  ([
-    'qt[default-features]'
   ], False)
 ]
 
@@ -206,6 +217,7 @@ packageList = [
     'platform-folders',
     'portaudio',
     'python3',
+    'qt[default-features]',
     'rapidcsv',
     'sdl3-image[core,jpeg,png,tiff,webp]',
     'sdl3-ttf',
@@ -219,8 +231,8 @@ packageList = [
     'uberswitch',
     'utf8h',
     'utfcpp',
-    'wildcards',
     'wil',
+    'wildcards',
     'wtl',
     'wxcharts',
     'wxwidgets[core,example,fonts,media,secretstore,sound,webview]'
@@ -258,18 +270,21 @@ def GetScriptDirectory() -> str:
   setattr(GetScriptDirectory, "dir", os.path.dirname(module_path))
   return getattr(GetScriptDirectory, "dir")
 
-def common_member(a: str_list, b: str_list) -> bool:
-  a_set = set(a)
-  b_set = set(b)
-  if len(a_set.intersection(b_set)) > 0:
-    return True
-  return False
+def filter_list(list: str_list, excluded_list: str_list) -> str_list:
+  if (len(excluded_list) == 0):
+    return list
+  excluded_set = set(excluded_list)
+  return [item for item in list if item not in excluded_set]   
+
+def IsDryRun() -> bool:
+  return ("--dry-run" in sys.argv)
 
 def InstallPackagesWorker(packages: str_list, triplet: str, platform: str, recurse: bool) -> bool:
   print("+++++++++++++++++++")
   print(f"++ {triplet} ++")
   print("+++++++++++++++++++")
   print()
+  os.environ["VCPKG_DEFAULT_TRIPLET"] = triplet
   scriptDirectory = GetScriptDirectory()
   args: str_list = []
   args.append("vcpkg")
@@ -284,6 +299,9 @@ def InstallPackagesWorker(packages: str_list, triplet: str, platform: str, recur
     separator: str = ' '
     joinedArgs: str = separator.join(args)
     print(f"Calling '{joinedArgs}'.")
+    if (IsDryRun()):
+      print("Dry run. Not actually installing packages.")
+      return True
     subprocess.check_call(args)
     return True
   except subprocess.CalledProcessError:
@@ -308,14 +326,21 @@ def InstallPackages(packages: str_list, recurse: bool) -> bool:
   print("################################################################################")
   print()
   ret: bool = False
-  if (not common_member(x86OnlyPackageList, packages)):
-    ret = InstallPackagesWorker(packages, "x64-windows", "x64", recurse)
-    if (not ret):
-      return False
-    if (common_member(x64OnlyPackageList, packages)):
-      return ret
+  x64Packages = filter_list(packages, x86OnlyPackageList)
+  if (len(x64Packages) == 0):
+    print("No x64 packages to install.")
+    print()
+    return False
+  ret = InstallPackagesWorker(x64Packages, "x64-windows", "x64", recurse)
+  if (not ret):
+    return False
   print()
-  ret = InstallPackagesWorker(packages, "x86-windows", "x86", recurse)
+  x86Packages = filter_list(packages, x64OnlyPackageList)
+  if (len(x86Packages) == 0):
+    print("No x86 packages to install.")
+    print()
+    return ret
+  ret = InstallPackagesWorker(x86Packages, "x86-windows", "x86", recurse)
   print()
   return ret
 
