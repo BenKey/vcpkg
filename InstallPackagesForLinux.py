@@ -80,6 +80,9 @@ def GetScriptDirectory() -> str:
   setattr(GetScriptDirectory, "dir", os.path.dirname(module_path))
   return getattr(GetScriptDirectory, "dir")
 
+def IsDryRun() -> bool:
+  return ("--dry-run" in sys.argv)
+
 def InstallPackagesWorker(packages, triplet, recurse):
   args = []
   args.append("./vcpkg")
@@ -93,6 +96,9 @@ def InstallPackagesWorker(packages, triplet, recurse):
   try:
     seperator = ' '
     print("Calling '%s'." % seperator.join(args))
+    if (IsDryRun()):
+      print("Dry run. Not actually installing packages.")
+      return True
     subprocess.check_call(args)
     return True
   except subprocess.CalledProcessError as err:
