@@ -217,7 +217,6 @@ packageList = [
     'platform-folders',
     'portaudio',
     'python3',
-    'qt[default-features]',
     'rapidcsv',
     'sdl3-image[core,jpeg,png,tiff,webp]',
     'sdl3-ttf',
