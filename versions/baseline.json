@@ -477,7 +477,7 @@
       "port-version": 0
     },
     "aws-crt-cpp": {
-      "baseline": "0.34.1",
+      "baseline": "0.34.4",
       "port-version": 0
     },
     "aws-lambda-cpp": {
@@ -2133,8 +2133,8 @@
       "port-version": 0
     },
     "cpuinfo": {
-      "baseline": "2022-07-19",
-      "port-version": 3
+      "baseline": "2025-07-25",
+      "port-version": 0
     },
     "cr": {
       "baseline": "2020-04-26",
@@ -2757,7 +2757,7 @@
       "port-version": 0
     },
     "expat": {
-      "baseline": "2.7.1",
+      "baseline": "2.7.2",
       "port-version": 0
     },
     "expected-lite": {
@@ -2866,7 +2866,7 @@
     },
     "fbgemm": {
       "baseline": "1.0.0",
-      "port-version": 0
+      "port-version": 1
     },
     "fbthrift": {
       "baseline": "2025.05.19.00",
@@ -5509,8 +5509,8 @@
       "port-version": 2
     },
     "libtorch": {
-      "baseline": "2.1.2",
-      "port-version": 12
+      "baseline": "2.7.1",
+      "port-version": 0
     },
     "libtorrent": {
       "baseline": "2.0.11",
@@ -5597,7 +5597,7 @@
       "port-version": 1
     },
     "libva": {
-      "baseline": "2.22.0",
+      "baseline": "2.20.0",
       "port-version": 0
     },
     "libvault": {
@@ -5622,7 +5622,7 @@
     },
     "libvpx": {
       "baseline": "1.15.2",
-      "port-version": 1
+      "port-version": 2
     },
     "libwandio": {
       "baseline": "4.2.6-1",
@@ -6267,6 +6267,10 @@
     "microsoft-signalr": {
       "baseline": "0.1.0-alpha4",
       "port-version": 12
+    },
+    "microsoft-windows-devices-midi2": {
+      "baseline": "1.0.13-preview.13.192",
+      "port-version": 0
     },
     "mikktspace": {
       "baseline": "2020-10-06",
@@ -7750,7 +7754,7 @@
     },
     "qnnpack": {
       "baseline": "2021-02-26",
-      "port-version": 3
+      "port-version": 5
     },
     "qoi": {
       "baseline": "2023-08-10",
@@ -8369,7 +8373,7 @@
       "port-version": 0
     },
     "rerun-sdk": {
-      "baseline": "0.24.1",
+      "baseline": "0.25.0",
       "port-version": 0
     },
     "rest-rpc": {
@@ -8765,8 +8769,8 @@
       "port-version": 2
     },
     "sentry-native": {
-      "baseline": "0.10.0",
-      "port-version": 1
+      "baseline": "0.11.0",
+      "port-version": 0
     },
     "septag-dmon": {
       "baseline": "2022-02-08",
@@ -10517,7 +10521,7 @@
       "port-version": 1
     },
     "xnnpack": {
-      "baseline": "2022-12-22",
+      "baseline": "2024-08-20",
       "port-version": 0
     },
     "xorg-macros": {
