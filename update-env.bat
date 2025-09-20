@@ -23,6 +23,8 @@ set VCPKG_FEATURE_FLAGS=-binarycaching
 set VCPKG_ROOT=%_MyDir%
 set Visual_Studio_2022_Install_Directory=%ProgramW6432%\Microsoft Visual Studio\2022\Professional
 set CMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%\scripts\buildsystems\vcpkg.cmake
+set VCPKG_DEFAULT_HOST_TRIPLET=%Platform%-windows
+set VCPKG_DEFAULT_TRIPLET=%Platform%-windows
 
 for %%a in (
 "%_MyDir%\installed\%Platform%-windows\tools\gettext\bin"
