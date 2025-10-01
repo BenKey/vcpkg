@@ -6,17 +6,16 @@
 
 (defconst vcpkg--add-to-path-windows
   '(
-    "${VCPKG_ROOT}/downloads/tools/7zip-24.09-windows"
-    "${VCPKG_ROOT}/downloads/tools/7zr-24.09-windows"
     "${VCPKG_ROOT}/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/bin"
     "${VCPKG_ROOT}/downloads/tools/jom/jom-1_1_4"
     "${VCPKG_ROOT}/downloads/tools/nasm/nasm-2.16.03"
-    "${VCPKG_ROOT}/downloads/tools/perl/5.40.0.1/c/bin"
-    "${VCPKG_ROOT}/downloads/tools/perl/5.40.0.1/c/x86_64-w64-mingw32/bin"
-    "${VCPKG_ROOT}/downloads/tools/perl/5.40.0.1/perl/site/bin"
-    "${VCPKG_ROOT}/downloads/tools/perl/5.40.0.1/perl/bin"
+    "${VCPKG_ROOT}/downloads/tools/perl/5.42.0.1/c/bin"
+    "${VCPKG_ROOT}/downloads/tools/perl/5.42.0.1/c/x86_64-w64-mingw32/bin"
+    "${VCPKG_ROOT}/downloads/tools/perl/5.42.0.1/perl/site/bin"
+    "${VCPKG_ROOT}/downloads/tools/perl/5.42.0.1/perl/bin"
     "${VCPKG_ROOT}/downloads/tools/python/python-3.12.7-${Platform}"
     "${VCPKG_ROOT}/downloads/tools/python/python-3.12.7-${Platform}-1"
+    "${VCPKG_ROOT}/downloads/tools/win_bison/2.5.24"
     "${VCPKG_ROOT}/installed/${Platform}-windows/bin"
     "${VCPKG_ROOT}/installed/${Platform}-windows/tools"
    )
