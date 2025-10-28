@@ -16,7 +16,7 @@ x86OnlyPackageList = [
 
 arm64PackageList = [
   ([
-    'abseil[core,cxx17]',
+    'abseil',
     'aixlog',
     'antlr4',
     'approval-tests-cpp',
@@ -175,7 +175,7 @@ arm64PackageList = [
     'dukglue',
     'duktape',
     'fenster',
-    'gtest[core,cxx17]',
+    'gtest',
     'gumbo',
     'icu[core]',
     'inipp',
@@ -213,7 +213,7 @@ arm64PackageList = [
 
 packageList = [
   ([
-    'abseil[core,cxx17]',
+    'abseil[test-helpers]',
     'aixlog',
     'angelscript',
     'antlr4',
@@ -240,7 +240,7 @@ packageList = [
     'fenster',
     'fltk',
     'gppanel',
-    'gtest[core,cxx17]',
+    'gtest',
     'gtk',
     'gtkmm',
     'guilite',

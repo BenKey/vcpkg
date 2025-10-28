@@ -7,7 +7,7 @@ import sys
 
 packageList = [
   ([
-    'abseil[core,cxx17]',
+    'abseil[test-helpers]',
     'aixlog',
     'angelscript',
     'antlr4',
@@ -172,7 +172,7 @@ packageList = [
     'fenster',
     'fltk',
     'gppanel',
-    'gtest[core,cxx17]',
+    'gtest',
     'guilite',
     'gumbo',
     'hello-imgui[core,glfw-binding,opengl3-binding]',
