@@ -87,6 +87,7 @@ packageList = [
     'boost-local-function',
     'boost-locale[icu]',
     'boost-lockfree',
+    'boost-log',
     'boost-logic',
     'boost-math',
     'boost-metaparse',
