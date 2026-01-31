@@ -1,7 +1,7 @@
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO orefkov/simstr
-	SHA512 faae3caf8bf342d26b0ff6c4ddf6b3f69279d04dcf1cde1c4dbf78057870833fdc85a4bec072fa0ca617e6b60eace72f898cb831b7b9506341d593b3edc99a98
+	SHA512 57923844fe5add71d8434dfbe014266c6465bcf33aadc19b5f7c21f1fdee30edb6231c6b6daf007a812f3688aa63e6bfa6eeae73fe0fdb52fb3d09080c069bd0
     REF "rel${VERSION}"
     HEAD_REF main
 )
