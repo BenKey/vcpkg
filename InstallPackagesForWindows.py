@@ -239,6 +239,7 @@ packageList = [
     'duktape',
     'fenster',
     'fltk',
+    'freeglut',
     'gppanel',
     'gtest',
     'gtk',

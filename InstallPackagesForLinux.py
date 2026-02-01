@@ -31,6 +31,7 @@ packageList = [
     'duktape',
     'fenster',
     'fltk',
+    'freeglut',
     'gppanel',
     'gtest',
     'guilite',
