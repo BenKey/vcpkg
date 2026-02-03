@@ -37,11 +37,11 @@
       "port-version": 17
     },
     "ada-idna": {
-      "baseline": "0.3.4",
+      "baseline": "0.4.0",
       "port-version": 0
     },
     "ada-url": {
-      "baseline": "3.4.1",
+      "baseline": "3.4.2",
       "port-version": 0
     },
     "ade": {
@@ -401,7 +401,7 @@
       "port-version": 0
     },
     "audit": {
-      "baseline": "4.1.2",
+      "baseline": "4.1.3",
       "port-version": 0
     },
     "aurora": {
@@ -465,7 +465,7 @@
       "port-version": 0
     },
     "aws-c-http": {
-      "baseline": "0.10.9",
+      "baseline": "0.10.10",
       "port-version": 0
     },
     "aws-c-io": {
@@ -645,7 +645,7 @@
       "port-version": 0
     },
     "bbstrader": {
-      "baseline": "2.0.5",
+      "baseline": "2.0.6",
       "port-version": 0
     },
     "bcg729": {
@@ -2134,6 +2134,10 @@
     },
     "cpputest": {
       "baseline": "4.0",
+      "port-version": 0
+    },
+    "cppvrf": {
+      "baseline": "1.1.0",
       "port-version": 0
     },
     "cppwinrt": {
@@ -3905,7 +3909,7 @@
       "port-version": 0
     },
     "idyntree": {
-      "baseline": "14.2.0",
+      "baseline": "14.3.0",
       "port-version": 0
     },
     "if97": {
@@ -4029,7 +4033,7 @@
       "port-version": 0
     },
     "intx": {
-      "baseline": "0.14.0",
+      "baseline": "0.15.0",
       "port-version": 0
     },
     "iowa-hills-dsp": {
@@ -4193,7 +4197,7 @@
       "port-version": 0
     },
     "jwsung91-unilink": {
-      "baseline": "0.3.2",
+      "baseline": "0.3.3",
       "port-version": 0
     },
     "jwt-cpp": {
@@ -4429,8 +4433,8 @@
       "port-version": 0
     },
     "kf6archive": {
-      "baseline": "6.7.0",
-      "port-version": 1
+      "baseline": "6.22.0",
+      "port-version": 0
     },
     "kfr": {
       "baseline": "6.3.1",
@@ -4833,7 +4837,7 @@
       "port-version": 0
     },
     "libdwarf": {
-      "baseline": "2.2.0",
+      "baseline": "2.3.0",
       "port-version": 0
     },
     "libe57": {
@@ -4869,7 +4873,7 @@
       "port-version": 4
     },
     "libevdev": {
-      "baseline": "1.13.4",
+      "baseline": "1.13.6",
       "port-version": 0
     },
     "libevent": {
@@ -4989,7 +4993,7 @@
       "port-version": 5
     },
     "libguarded": {
-      "baseline": "1.4.1",
+      "baseline": "2.0.1",
       "port-version": 0
     },
     "libgwenhywfar": {
@@ -5821,7 +5825,7 @@
       "port-version": 0
     },
     "libxext": {
-      "baseline": "1.3.6",
+      "baseline": "1.3.7",
       "port-version": 0
     },
     "libxfixes": {
@@ -5889,7 +5893,7 @@
       "port-version": 0
     },
     "libxrandr": {
-      "baseline": "1.5.4",
+      "baseline": "1.5.5",
       "port-version": 0
     },
     "libxrender": {
@@ -6073,7 +6077,7 @@
       "port-version": 0
     },
     "ltla-cppkmeans": {
-      "baseline": "4.0.5",
+      "baseline": "4.0.6",
       "port-version": 0
     },
     "ltla-powerit": {
@@ -6081,7 +6085,7 @@
       "port-version": 0
     },
     "ltla-sanisizer": {
-      "baseline": "0.1.3",
+      "baseline": "0.1.5",
       "port-version": 0
     },
     "ltla-subpar": {
@@ -6121,7 +6125,7 @@
       "port-version": 1
     },
     "luau": {
-      "baseline": "0.706",
+      "baseline": "0.707",
       "port-version": 0
     },
     "luminoengine": {
@@ -6129,7 +6133,7 @@
       "port-version": 1
     },
     "lunarg-vulkantools": {
-      "baseline": "1.4.328.0",
+      "baseline": "1.4.335.0",
       "port-version": 0
     },
     "lunasvg": {
@@ -6489,7 +6493,7 @@
       "port-version": 0
     },
     "mlpack": {
-      "baseline": "4.6.2",
+      "baseline": "4.7.0",
       "port-version": 0
     },
     "mman": {
@@ -6545,7 +6549,7 @@
       "port-version": 5
     },
     "morcules-swiftnet": {
-      "baseline": "0.3.0",
+      "baseline": "0.4.0",
       "port-version": 0
     },
     "morphologica": {
@@ -7389,7 +7393,7 @@
       "port-version": 0
     },
     "orefkov-simstr": {
-      "baseline": "1.6.0",
+      "baseline": "1.6.2",
       "port-version": 0
     },
     "ormpp": {
@@ -7838,7 +7842,7 @@
     },
     "projectm-eval": {
       "baseline": "1.0.6",
-      "port-version": 0
+      "port-version": 1
     },
     "prometheus-cpp": {
       "baseline": "1.3.0",
@@ -8980,6 +8984,10 @@
       "baseline": "3.4.0",
       "port-version": 0
     },
+    "sdl3-shadercross": {
+      "baseline": "3.0.0-preview1",
+      "port-version": 0
+    },
     "sdl3-ttf": {
       "baseline": "3.2.2",
       "port-version": 1
@@ -9013,7 +9021,7 @@
       "port-version": 0
     },
     "sentry-native": {
-      "baseline": "0.12.4",
+      "baseline": "0.12.5",
       "port-version": 0
     },
     "septag-dmon": {
@@ -9217,7 +9225,7 @@
       "port-version": 0
     },
     "slick-shm": {
-      "baseline": "0.1.3",
+      "baseline": "0.1.4",
       "port-version": 0
     },
     "slikenet": {
@@ -9385,19 +9393,19 @@
       "port-version": 4
     },
     "spirv-cross": {
-      "baseline": "1.4.328.0",
-      "port-version": 1
+      "baseline": "1.4.335.0",
+      "port-version": 0
     },
     "spirv-headers": {
-      "baseline": "1.4.328.0",
+      "baseline": "1.4.335.0",
       "port-version": 0
     },
     "spirv-reflect": {
-      "baseline": "1.4.328.0",
+      "baseline": "1.4.335.0",
       "port-version": 0
     },
     "spirv-tools": {
-      "baseline": "1.4.328.0",
+      "baseline": "1.4.335.0",
       "port-version": 0
     },
     "spix": {
@@ -10449,7 +10457,7 @@
       "port-version": 0
     },
     "vk-bootstrap": {
-      "baseline": "1.4.328",
+      "baseline": "1.4.335",
       "port-version": 0
     },
     "vkfft": {
@@ -10473,7 +10481,7 @@
       "port-version": 0
     },
     "volk": {
-      "baseline": "1.4.328.0",
+      "baseline": "1.4.335.0",
       "port-version": 0
     },
     "voro": {
@@ -10529,11 +10537,11 @@
       "port-version": 0
     },
     "vulkan-extensionlayer": {
-      "baseline": "1.4.328.0",
+      "baseline": "1.4.335.0",
       "port-version": 0
     },
     "vulkan-headers": {
-      "baseline": "1.4.328.0",
+      "baseline": "1.4.335.0",
       "port-version": 0
     },
     "vulkan-hpp": {
@@ -10541,7 +10549,7 @@
       "port-version": 0
     },
     "vulkan-loader": {
-      "baseline": "1.4.328.0",
+      "baseline": "1.4.335.0",
       "port-version": 0
     },
     "vulkan-memory-allocator": {
@@ -10553,19 +10561,19 @@
       "port-version": 1
     },
     "vulkan-sdk-components": {
-      "baseline": "1.4.328.0",
+      "baseline": "1.4.335.0",
       "port-version": 0
     },
     "vulkan-tools": {
-      "baseline": "1.4.328.0",
+      "baseline": "1.4.335.0",
       "port-version": 0
     },
     "vulkan-utility-libraries": {
-      "baseline": "1.4.328.0",
+      "baseline": "1.4.335.0",
       "port-version": 0
     },
     "vulkan-validationlayers": {
-      "baseline": "1.4.328.0",
+      "baseline": "1.4.335.0",
       "port-version": 0
     },
     "vvenc": {
@@ -10613,7 +10621,7 @@
       "port-version": 0
     },
     "webcraft": {
-      "baseline": "1.0.3",
+      "baseline": "1.0.5",
       "port-version": 0
     },
     "websocketpp": {
@@ -10629,7 +10637,7 @@
       "port-version": 0
     },
     "webview2": {
-      "baseline": "1.0.3650.58",
+      "baseline": "1.0.3719.77",
       "port-version": 0
     },
     "wepoll": {
