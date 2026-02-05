@@ -6,8 +6,10 @@
 
 (defconst vcpkg--add-to-path-x64-linux
   '(
-    "${VCPKG_ROOT}/downloads/tools/cmake-3.30.1-linux/cmake-3.30.1-linux-x86_64/bin"
-    "${VCPKG_ROOT}/downloads/tools/ninja/1.10.2-linux"
+    "${VCPKG_ROOT}/downloads/tools/cmake-3.31.10-linux/cmake-3.31.10-linux-x86_64/bin"
+    "${VCPKG_ROOT}/downloads/tools/meson-1.9.0-d1fcc2"
+    "${VCPKG_ROOT}/downloads/tools/ninja-1.13.2-linux"
+    "${VCPKG_ROOT}/downloads/tools/patchelf/0.15.5-x86_64-linux/bin"
     "${VCPKG_ROOT}/installed/x64-linux/tools"
     )
   "Directories to add to the path for x64-linux."
