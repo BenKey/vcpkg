@@ -9,6 +9,7 @@ packageList = [
   ([
     'abseil[test-helpers]',
     'aixlog',
+    'alsa',
     'angelscript',
     'antlr4',
     'approval-tests-cpp',
@@ -45,18 +46,21 @@ packageList = [
     'json11',
     'jsoncons',
     'libguarded',
+    'libsndfile[external-libs,mpeg]',
     'litehtml',
     'magic-enum',
     'mp3lame',
     'mpi',
     'ms-gsl',
     'nana',
+    'openal-soft',
     'platform-folders',
+    'portaudio',
     'rapidcsv',
     'sfgui',
     'sdl3-image[core,jpeg,png,tiff,webp]',
-    'sdl3-ttf',
-    'sdl3',
+    'sdl3-ttf[harfbuzz,svg]',
+    'sdl3[alsa,wayland,x11]',
     'spirit-po',
     'sqlite-modern-cpp',
     'sqlite3[core,json1,tool,unicode,zlib]',
@@ -72,7 +76,7 @@ packageList = [
     'utfcpp',
     'wildcards',
     'wxcharts',
-    'wxwidgets[core,example,fonts,media,sound]'
+    'wxwidgets[core,example,fonts,media,secretstore,sound]'
   ], False),
 ]
 
@@ -151,4 +155,3 @@ def InstallPackagesInPackageList():
   return True
 
 InstallPackagesInPackageList()
-

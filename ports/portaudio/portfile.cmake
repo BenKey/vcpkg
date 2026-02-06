@@ -35,9 +35,9 @@ elseif(VCPKG_TARGET_IS_IOS OR VCPKG_TARGET_IS_OSX)
     )
 else()
     vcpkg_list(APPEND options
-        -DPA_USE_JACK=ON
-        -DCMAKE_REQUIRE_FIND_PACKAGE_Jack=ON
-        -DPA_USE_ALSA=OFF
+        -DPA_USE_JACK=OFF
+        -DCMAKE_REQUIRE_FIND_PACKAGE_Jack=OFF
+        -DPA_USE_ALSA=ON
     )
 endif()
 
@@ -64,3 +64,4 @@ file(REMOVE_RECURSE
 )
 
 vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE.txt")
+

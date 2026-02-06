@@ -3,6 +3,8 @@
 (require 'yekneb-debug)
 (require 'yekneb-env)
 (require 'yekneb-path-manip)
+(require 'yekneb-string-utilities)
+
 
 (defconst vcpkg--add-to-path-x64-linux
   '(
@@ -45,7 +47,7 @@
   "Directories to add to the path for x64-windows."
  )
 
-(defun add-tools-directories-to-path (tools-dir)
+(cl-defun add-tools-directories-to-path (tools-dir)
   (yekneb-log yekneb-log-info "tools-dir is '%s'." tools-dir)
   (yekneb-log yekneb-log-info "Adding the directories in tool-dirs to the path.")
   (when (file-directory-p tools-dir)
@@ -62,7 +64,9 @@
           )
         )
       )
+      (cl-return-from add-tools-directories-to-path t)
     )
+  (cl-return-from add-tools-directories-to-path nil)
   )
 
 (defun update-environment-for-vcpkg-x64-linux ()
@@ -130,19 +134,28 @@
     )
   )
 
-(defun update-environment-for-vcpkg ()
+(cl-defun update-environment-for-vcpkg ()
   "Updates the environment for VCPKG."
+  (let ((VCPKG_ROOT (getenv "VCPKG_ROOT")))
+    (when (yekneb-empty-string-p VCPKG_ROOT)
+      (cl-return-from update-environment-for-vcpkg nil)
+      )
+    )
   (when (eq system-type 'windows-nt)
     (when (file-directory-p (substitute-env-vars "${VCPKG_ROOT}/installed/x64-mingw-dynamic"))
       (update-environment-for-vcpkg-x64-mingw-dynamic)
+      (cl-return-from update-environment-for-vcpkg t)
       )
     (when (file-directory-p (substitute-env-vars "${VCPKG_ROOT}/installed/x64-windows"))
       (update-environment-for-vcpkg-x64-windows)
+      (cl-return-from update-environment-for-vcpkg t)
       )
     )
   (when (eq system-type 'gnu/linux)
     (update-environment-for-vcpkg-x64-linux)
+    (cl-return-from update-environment-for-vcpkg t)
     )
+  (cl-return-from update-environment-for-vcpkg nil)
   )
 
 (update-environment-for-vcpkg)
