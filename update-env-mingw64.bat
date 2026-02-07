@@ -11,8 +11,8 @@ set VCPKG_ROOT=
 
 set LANG=en_US.UTF-8
 set HOME=%LOCALAPPDATA%\Home
-set JAVA_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-24.0.2.12-hotspot
-set JDK_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-24.0.2.12-hotspot
+set JAVA_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-25.0.2.10-hotspot
+set JDK_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-25.0.2.10-hotspot
 set VCPKG_ROOT=%_MyDir%
 set CMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%\scripts\buildsystems\vcpkg.cmake
 set VCPKG_DEFAULT_HOST_TRIPLET=x64-mingw-dynamic
@@ -32,13 +32,16 @@ for %%a in (
 )
 
 for %%a in (
-"%_MyDir%\downloads\tools\python\python-3.12.7-x64-1"
-"%_MyDir%\downloads\tools\ninja\1.12.1-windows"
+"%_MyDir%\downloads\tools\python\python-3.14.2-x64-1"
+"%_MyDir%\downloads\tools\ninja-1.13.2-windows"
+"%_MyDir%\downloads\tools\meson-1.9.0-d1fcc2"
 "%_MyDir%\downloads\tools\cmake-3.30.1-windows\cmake-3.30.1-windows-i386\bin"
-"%_MyDir%\downloads\tools\7zr-24.09-windows"
-"%_MyDir%\downloads\tools\7zip-24.09-windows"
+"%_MyDir%\downloads\tools\7zip-25.01-windows"
+"%_MyDir%\downloads\tools\7zr-25.01-windows"
 "%_MyDir%\installed\x64-mingw-dynamic\tools\wxwidgets"
 "%_MyDir%\installed\x64-mingw-dynamic\tools\tiff"
+"%_MyDir%\installed\x64-mingw-dynamic\tools\pcre2"
+"%_MyDir%\installed\x64-mingw-dynamic\tools\icu\bin"
 "%_MyDir%\installed\x64-mingw-dynamic\tools\gperf"
 "%_MyDir%\installed\x64-mingw-dynamic\tools\fltk"
 "%_MyDir%\installed\x64-mingw-dynamic\tools\bzip2"
@@ -48,6 +51,7 @@ for %%a in (
 "%SystemDrive%\mingw64\x86_64-w64-mingw32\bin"
 "%SystemDrive%\mingw64\opt\bin"
 "%SystemDrive%\mingw64\opt\cmake\bin"
+"%SystemDrive%\mingw64\opt\ntldd\bin"
 "%SystemDrive%\mingw64\libexec\gcc\x86_64-w64-mingw32\15.2.0"
 "%SystemDrive%\mingw64\bin"
 ) do (
