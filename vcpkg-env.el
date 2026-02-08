@@ -31,15 +31,15 @@
 
 (defconst vcpkg--add-to-path-x64-windows
   '(
-    "${VCPKG_ROOT}/downloads/tools/cmake-3.30.1-windows/cmake-3.30.1-windows-i386/bin"
-    "${VCPKG_ROOT}/downloads/tools/jom/jom-1_1_4"
-    "${VCPKG_ROOT}/downloads/tools/nasm/nasm-2.16.03"
-    "${VCPKG_ROOT}/downloads/tools/perl/5.42.0.1/c/bin"
-    "${VCPKG_ROOT}/downloads/tools/perl/5.42.0.1/c/x86_64-w64-mingw32/bin"
+    "${VCPKG_ROOT}/downloads/tools/7zip-25.01-windows"
+    "${VCPKG_ROOT}/downloads/tools/7zr-25.01-windows"
+    "${VCPKG_ROOT}/downloads/tools/jom/jom-1_1_6"
+    "${VCPKG_ROOT}/downloads/tools/meson-1.9.0-d1fcc2"
+    "${VCPKG_ROOT}/downloads/tools/nasm/nasm-3.01"
+    "${VCPKG_ROOT}/downloads/tools/ninja-1.13.2-windows"
     "${VCPKG_ROOT}/downloads/tools/perl/5.42.0.1/perl/site/bin"
     "${VCPKG_ROOT}/downloads/tools/perl/5.42.0.1/perl/bin"
-    "${VCPKG_ROOT}/downloads/tools/python/python-3.12.7-x64"
-    "${VCPKG_ROOT}/downloads/tools/python/python-3.12.7-x64-1"
+    "${VCPKG_ROOT}/downloads/tools/python/python-3.14.2-x64-1"
     "${VCPKG_ROOT}/downloads/tools/win_bison/2.5.24"
     "${VCPKG_ROOT}/installed/x64-windows/bin"
     "${VCPKG_ROOT}/installed/x64-windows/tools"
