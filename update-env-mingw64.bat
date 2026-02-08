@@ -35,7 +35,7 @@ for %%a in (
 "%_MyDir%\downloads\tools\python\python-3.14.2-x64-1"
 "%_MyDir%\downloads\tools\ninja-1.13.2-windows"
 "%_MyDir%\downloads\tools\meson-1.9.0-d1fcc2"
-"%_MyDir%\downloads\tools\cmake-3.30.1-windows\cmake-3.30.1-windows-i386\bin"
+"%_MyDir%\downloads\tools\cmake-3.31.10-windows\cmake-3.31.10-windows-x86_64\bin"
 "%_MyDir%\downloads\tools\7zip-25.01-windows"
 "%_MyDir%\downloads\tools\7zr-25.01-windows"
 "%_MyDir%\installed\x64-mingw-dynamic\tools\wxwidgets"
