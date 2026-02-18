@@ -75,6 +75,7 @@ for %%a in (
 "%LOCALAPPDATA%\Programs\Microsoft VS Code"
 "%OPT%\bin\X64"
 "%OPT%\bin\X86"
+"%OPT%\Apache-Subversion\bin"
 "%OPT%\ExamDiff"
 "%OPT%\Scripts"
 ) do (
