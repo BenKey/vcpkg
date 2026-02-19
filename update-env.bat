@@ -71,6 +71,7 @@ for %%a in (
 "%ProgramW6432%\Pandoc"
 "%ProgramFiles(x86)%\Poedit"
 "%ProgramFiles(x86)%\Poedit\GettextTools\bin"
+"%LOCALAPPDATA%\Microsoft\WindowsApps"
 "%LOCALAPPDATA%\Programs\Pandoc"
 "%LOCALAPPDATA%\Programs\Microsoft VS Code"
 "%OPT%\bin\X64"
