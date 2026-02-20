@@ -24,12 +24,15 @@ if not defined Platform (
 
 set VCPKG_ROOT=
 
-set DOTNET_VERSION=10.0.102
+set DOTNET_VERSION=10.0.103
 set HOME=%LOCALAPPDATA%\Home
 set JAVA_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-25.0.2.10-hotspot
 set JDK_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-25.0.2.10-hotspot
 set LANG=en_US.UTF-8
 set PANDOC_EXE=%ProgramW6432%\Pandoc\pandoc.exe
+set SCRIPT_DRIVE=%~d0
+set SOURCE_ROOT=%SCRIPT_DRIVE%\src
+set SVN_SOURCE_DIR=%SOURCE_ROOT%\svn
 
 set VCPKG_DEFAULT_HOST_TRIPLET=%Platform%-windows
 set VCPKG_DEFAULT_TRIPLET=%Platform%-windows
