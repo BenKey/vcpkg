@@ -15,3 +15,5 @@ do
   fi
 done
 
+[ -f "${vcpkgRootDir}/vcpkg" ] && rm -f "${vcpkgRootDir}/vcpkg"
+[ -f "${vcpkgRootDir}/vcpkg.exe" ] && rm -f "${vcpkgRootDir}/vcpkg.exe"
