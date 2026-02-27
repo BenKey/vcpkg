@@ -2,6 +2,7 @@
 
 import inspect
 import os
+import platform
 import subprocess
 import sys
 
@@ -256,13 +257,15 @@ def GetScriptDirectory() -> str:
 def IsDryRun() -> bool:
   return ("--dry-run" in sys.argv)
 
-def InstallPackagesWorker(packages, triplet, recurse):
+def InstallPackagesWorker(packages, triplet, hostTriplet, recurse):
   args = []
   args.append("vcpkg")
   args.append("install")
   args.extend(packages)
   args.append("--triplet")
   args.append(triplet)
+  args.append("--host-triplet")
+  args.append(hostTriplet)
   args.append("--x-buildtrees-root=%s/bt" % GetScriptDirectory())
   if (recurse):
     args.append("--recurse")
@@ -279,6 +282,11 @@ def InstallPackagesWorker(packages, triplet, recurse):
   except OSError as err:
     return False
 
+def GetHostTriplet():
+  if platform.system() == "Linux":
+    return "x64-linux"
+  return "x64-mingw-dynamic"
+
 def GetTriplet():
   return "x64-mingw-dynamic"
 
@@ -286,12 +294,15 @@ def InstallPackages(packages, recurse):
   triplet = GetTriplet()
   if (len(triplet) == 0):
     return False
+  hostTriplet = GetHostTriplet()
+  if (len(hostTriplet) == 0):
+    return False
   print()
   print("################################################################################")
   print("Installing packages: %s" % packages)
   print("################################################################################")
   print()
-  ret = InstallPackagesWorker(packages, triplet, recurse)
+  ret = InstallPackagesWorker(packages, triplet, hostTriplet, recurse)
   return ret
 
 def InstallPackagesInPackageList():
