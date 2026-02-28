@@ -238,5 +238,79 @@ file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/build")
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/build")
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/share")
 
+if(VCPKG_TARGET_IS_WINDOWS AND NOT VCPKG_HOST_IS_WINDOWS)
+    message(STATUS "Fixing cross-compiled wxWidgets for FindwxWidgets compatibility...")
+
+    # --- 1. Rename Libraries with Logging ---
+    foreach(LIB_DIR IN ITEMS "${CURRENT_PACKAGES_DIR}/lib" "${CURRENT_PACKAGES_DIR}/debug/lib")
+        if(NOT EXISTS "${LIB_DIR}")
+            continue()
+        endif()
+        file(GLOB INSTALLED_LIBS "${LIB_DIR}/libwx_*.dll.a")
+        foreach(OLD_PATH IN LISTS INSTALLED_LIBS)
+            get_filename_component(OLD_NAME "${OLD_PATH}" NAME)
+            
+            # Transformation logic for 3.3
+            string(REPLACE "-3.3-Windows.dll.a" "" BASE_NAME "${OLD_NAME}")
+            if(BASE_NAME MATCHES "libwx_baseu")
+                string(REPLACE "libwx_baseu" "libwxbase33u" NEW_NAME "${BASE_NAME}")
+            elseif(BASE_NAME MATCHES "libwx_mswu")
+                string(REPLACE "libwx_mswu_" "libwxmsw33u_" NEW_NAME "${BASE_NAME}")
+            else()
+                set(NEW_NAME "${BASE_NAME}")
+            endif()
+            string(APPEND NEW_NAME ".a")
+
+            if(NOT OLD_NAME STREQUAL NEW_NAME)
+                message(STATUS "  [Rename] ${OLD_NAME} -> ${NEW_NAME}")
+                file(RENAME "${OLD_PATH}" "${LIB_DIR}/${NEW_NAME}")
+            endif()
+        endforeach()
+    endforeach()
+
+    # --- 2. Fix Header Locations ---
+    # Primary include path for Windows style: <prefix>/include/wx/version.h
+    set(SRC_WX_DIR "${CURRENT_PACKAGES_DIR}/include/wx-3.3/wx")
+    if(EXISTS "${SRC_WX_DIR}")
+        message(STATUS "  [Headers] Mirroring ${SRC_WX_DIR} to include/wx")
+        file(COPY "${SRC_WX_DIR}" DESTINATION "${CURRENT_PACKAGES_DIR}/include")
+    endif()
+
+    # --- 3. Fix 'bin' Search Paths ---
+    foreach(BIN_DIR_SUFFIX IN ITEMS "bin" "debug/bin")
+        set(BIN_DIR "${CURRENT_PACKAGES_DIR}/${BIN_DIR_SUFFIX}")
+        if(EXISTS "${BIN_DIR}")
+            message(STATUS "  [Search Fix] Correcting paths in ${BIN_DIR_SUFFIX}")
+
+            # Path A: Standard Version Search (bin/include/wx-3.3/wx/version.h)
+            set(BIN_INC_33 "${BIN_DIR}/include/wx-3.3")
+            file(MAKE_DIRECTORY "${BIN_INC_33}")
+            if(EXISTS "${SRC_WX_DIR}")
+                message(STATUS "    -> Mirroring headers to ${BIN_INC_33}/wx")
+                file(COPY "${SRC_WX_DIR}" DESTINATION "${BIN_INC_33}")
+            endif()
+
+            # Path B: Double-Include Search (bin/include/include/wx-3.3/wx/version.h)
+            # We keep this as a fallback since your logs showed CMake looking here previously
+            set(BIN_INC_DOUBLE "${BIN_DIR}/include/include/wx-3.3")
+            file(MAKE_DIRECTORY "${BIN_INC_DOUBLE}")
+            if(EXISTS "${SRC_WX_DIR}")
+                file(COPY "${SRC_WX_DIR}" DESTINATION "${BIN_INC_DOUBLE}")
+            endif()
+
+            # Path C: Setup Header Search (bin/lib/wx/include/msw-unicode-3.3/wx/setup.h)
+            set(MSW_CONFIG "msw-unicode-3.3")
+            set(SETUP_SRC "${CURRENT_PACKAGES_DIR}/lib/wx/include/${MSW_CONFIG}/wx/setup.h")
+            set(SETUP_DST "${BIN_DIR}/lib/wx/include/${MSW_CONFIG}/wx")
+            
+            if(EXISTS "${SETUP_SRC}")
+                message(STATUS "    -> Mirroring setup.h to ${SETUP_DST}")
+                file(MAKE_DIRECTORY "${SETUP_DST}")
+                file(COPY "${SETUP_SRC}" DESTINATION "${SETUP_DST}")
+            endif()
+        endif()
+    endforeach()
+endif()
+
 file(INSTALL "${CMAKE_CURRENT_LIST_DIR}/usage" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}")
 vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/docs/licence.txt")
