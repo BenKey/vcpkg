@@ -1,0 +1,26 @@
+diff --git a/source/liblocate/source/liblocate.c b/source/liblocate/source/liblocate.c
+index b98155c..d450674 100644
+--- a/source/liblocate/source/liblocate.c
++++ b/source/liblocate/source/liblocate.c
+@@ -13,7 +13,7 @@
+     #define __USE_GNU
+     #include <dlfcn.h>
+ #elif defined(SYSTEM_WINDOWS)
+-    #include <Windows.h>
++    #include <windows.h>
+ #elif defined(SYSTEM_SOLARIS)
+     #include <limits.h>
+     #include <dlfcn.h>
+diff --git a/source/liblocate/source/utils.c b/source/liblocate/source/utils.c
+index 5664124..be89862 100644
+--- a/source/liblocate/source/utils.c
++++ b/source/liblocate/source/utils.c
+@@ -6,7 +6,7 @@
+ 
+ #ifdef SYSTEM_WINDOWS
+     #define WIN32_LEAN_AND_MEAN
+-    #include <Windows.h>
++    #include <windows.h>
+ #else
+     #include <sys/stat.h>
+ #endif

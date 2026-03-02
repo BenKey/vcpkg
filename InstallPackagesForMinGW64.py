@@ -6,9 +6,18 @@ import platform
 import subprocess
 import sys
 
+type str_list = list[str]
+
+packagesToExcludeOnLinuxHostList: str_list = [
+  'wxcharts',
+  'yasm[tools]'
+]
+
 packageList = [
   ([
     'abseil[test-helpers]',
+    'ada-idna',
+    'ada-url',
     'aixlog',
     'angelscript',
     'antlr4',
@@ -165,39 +174,51 @@ packageList = [
     'boost-winapi',
     'boost-xpressive',
     'boost-yap',
-    'Catch2',
+    'catch2[thread-safe-assertions]',
     'chaiscript',
     'color-console',
+    'constexpr',
     'cpp-base64',
     'cpptoml',
     'decimal-for-cpp',
     'dlfcn-win32',
+    'dirent',
     'dukglue',
     'duktape',
     'fenster',
     'fltk',
+    'fmt',
     'freeglut',
+    'glui',
     'gppanel',
     'gtest',
     'guilite',
     'gumbo',
     'hello-imgui[core,glfw-binding,opengl3-binding]',
     'imgui[core,glfw-binding,opengl3-binding,sdl3-binding,win32-binding]',
+    'imgui-sfml',
     'inipp',
     'json-spirit',
     'json11',
     'jsoncons',
+    'libcpplocate',
+    'libfork',
     'libguarded',
     'libsndfile[external-libs,mpeg]',
     'litehtml',
+    'lua[cpp,tools]',
     'magic-enum',
-    'mp3lame',
+    'mp3lame[frontend]',
     'ms-gsl',
     'nana',
+    'nativefiledialog-extended',
     'openal-soft',
     'platform-folders',
+    'portaudio',
+    'pystring',
     'quickjs-ng',
     'rapidcsv',
+    'safeint',
     'sciter-js',
     'sfgui',
     'sdl3-image[core,jpeg,png,tiff,webp]',
@@ -208,18 +229,24 @@ packageList = [
     'sqlite3[core,json1,tool,unicode,zlib]',
     'sqlitecpp',
     'status-code',
-    'strtk',
-    'tgui',
+    'stduuid',
+    'strtk[boost]',
+    'tgui[sdl3,sfml,tool]',
+    'tidy-html5',
     'tiff[core,cxx,jpeg,lzma,tools,webp,zip,zstd]',
     'toml11',
     'tomlplusplus',
+    'tvision',
     'uberswitch',
+    'uni-algo',
     'utf8h',
     'utfcpp',
     'wildcards',
     'winreg',
+    'wt[dbo,openssl,openssl]',
     'wxcharts',
-    'wxwidgets[core,example,fonts,media,secretstore,sound]'
+    'wxwidgets[core,example,fonts,media,secretstore,sound]',
+    'yasm[tools]'
   ], False),
 ]
 
@@ -254,10 +281,24 @@ def GetScriptDirectory() -> str:
   setattr(GetScriptDirectory, "dir", os.path.dirname(module_path))
   return getattr(GetScriptDirectory, "dir")
 
+def filter_list(list: str_list, excluded_list: str_list) -> str_list:
+  if (len(excluded_list) == 0):
+    return list
+  excluded_set = set(excluded_list)
+  return [item for item in list if item not in excluded_set]   
+
 def IsDryRun() -> bool:
   return ("--dry-run" in sys.argv)
 
-def InstallPackagesWorker(packages, triplet, hostTriplet, recurse):
+def GetHostTriplet() -> str:
+  if platform.system() == "Linux":
+    return "x64-linux"
+  return "x64-mingw-dynamic"
+
+def GetTriplet() -> str:
+  return "x64-mingw-dynamic"
+
+def InstallPackagesWorker(packages: str_list, triplet: str, hostTriplet: str, recurse: bool) -> bool:
   args = []
   args.append("vcpkg")
   args.append("install")
@@ -282,30 +323,30 @@ def InstallPackagesWorker(packages, triplet, hostTriplet, recurse):
   except OSError as err:
     return False
 
-def GetHostTriplet():
-  if platform.system() == "Linux":
-    return "x64-linux"
-  return "x64-mingw-dynamic"
-
-def GetTriplet():
-  return "x64-mingw-dynamic"
-
-def InstallPackages(packages, recurse):
+def InstallPackages(packages: str_list, recurse: bool) -> bool:
   triplet = GetTriplet()
   if (len(triplet) == 0):
     return False
   hostTriplet = GetHostTriplet()
   if (len(hostTriplet) == 0):
     return False
+  
+  # Filter out packages based on platform
+  filtered_packages = packages
+  if hostTriplet == "x64-linux":
+    filtered_packages = filter_list(packages, packagesToExcludeOnLinuxHostList)
+    if len(filtered_packages) != len(packages):
+      print(f"Skipping {', '.join(packagesToExcludeOnLinuxHostList)} on Linux")
+  
   print()
   print("################################################################################")
-  print("Installing packages: %s" % packages)
+  print("Installing packages: %s" % filtered_packages)
   print("################################################################################")
   print()
-  ret = InstallPackagesWorker(packages, triplet, hostTriplet, recurse)
+  ret = InstallPackagesWorker(filtered_packages, triplet, hostTriplet, recurse)
   return ret
 
-def InstallPackagesInPackageList():
+def InstallPackagesInPackageList() -> bool:
   for package in packageList:
     ret = InstallPackages(package[0], package[1])
     if ret == False:

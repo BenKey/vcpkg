@@ -5,9 +5,13 @@ import os
 import subprocess
 import sys
 
+type str_list = list[str]
+
 packageList = [
   ([
     'abseil[test-helpers]',
+    'ada-idna',
+    'ada-url',
     'aixlog',
     'alsa',
     'angelscript',
@@ -23,16 +27,20 @@ packageList = [
     'boost-odeint[core,mpi]',
     'boost-regex[core,icu]',
     'boost[core,mpi]',
-    'Catch2',
+    'catch2[thread-safe-assertions]',
     'chaiscript',
+    'constexpr',
     'cpp-base64',
     'cpptoml',
     'decimal-for-cpp',
+    'dirent',
     'dukglue',
     'duktape',
     'fenster',
     'fltk',
+    'fmt',
     'freeglut',
+    'glui',
     'gppanel',
     'gtest',
     'guilite',
@@ -41,22 +49,31 @@ packageList = [
     'icu[core,tools]',
     'hello-imgui[core,glfw-binding,opengl3-binding]',
     'imgui[core,glfw-binding,opengl3-binding,sdl3-binding]',
+    'imgui-sfml',
     'inipp',
     'json-spirit',
     'json11',
     'jsoncons',
+    'libcpplocate',
+    'libfork',
     'libguarded',
     'libsndfile[external-libs,mpeg]',
     'litehtml',
+    'lua[cpp,tools]',
     'magic-enum',
-    'mp3lame',
+    'mp3lame[frontend]',
     'mpi',
     'ms-gsl',
     'nana',
+    'nativefiledialog-extended',
     'openal-soft',
     'platform-folders',
     'portaudio',
+    'pystring',
+    'quickjs-ng',
     'rapidcsv',
+    'safeint',
+    'sciter-js',
     'sfgui',
     'sdl3-image[core,jpeg,png,tiff,webp]',
     'sdl3-ttf[harfbuzz,svg]',
@@ -65,18 +82,23 @@ packageList = [
     'sqlite-modern-cpp',
     'sqlite3[core,json1,tool,unicode,zlib]',
     'sqlitecpp',
-    'status-code',
-    'strtk',
-    'tgui',
+    'stduuid',
+    'strtk[boost]',
+    'tgui[sdl3,sfml,tool]',
+    'tidy-html5',
     'tiff[core,cxx,jpeg,lzma,tools,webp,zip,zstd]',
     'toml11',
     'tomlplusplus',
+    'tvision',
     'uberswitch',
+    'uni-algo',
     'utf8h',
     'utfcpp',
     'wildcards',
+    'wt[dbo,openssl,openssl]',
     'wxcharts',
-    'wxwidgets[core,example,fonts,media,secretstore,sound]'
+    'wxwidgets[core,example,fonts,media,secretstore,sound]',
+    'yasm[tools]'
   ], False),
 ]
 
@@ -114,7 +136,7 @@ def GetScriptDirectory() -> str:
 def IsDryRun() -> bool:
   return ("--dry-run" in sys.argv)
 
-def InstallPackagesWorker(packages, triplet, recurse):
+def InstallPackagesWorker(packages: str_list, triplet: str, recurse: bool) -> bool:
   args = []
   args.append("./vcpkg")
   args.append("install")
@@ -137,7 +159,7 @@ def InstallPackagesWorker(packages, triplet, recurse):
   except OSError as err:
     return False
 
-def InstallPackages(packages, recurse):
+def InstallPackages(packages: str_list, recurse: bool) -> bool:
   print()
   print("################################################################################")
   print("Installing packages: %s" % packages)
@@ -147,7 +169,7 @@ def InstallPackages(packages, recurse):
   print()
   return ret
 
-def InstallPackagesInPackageList():
+def InstallPackagesInPackageList() -> bool:
   for package in packageList:
     ret = InstallPackages(package[0], package[1])
     if ret == False:

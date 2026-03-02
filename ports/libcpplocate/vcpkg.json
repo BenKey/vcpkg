@@ -1,5 +1,6 @@
 {
   "name": "libcpplocate",
+  "port-version": 1,
   "version-semver": "2.3.0",
   "description": "Cross-platform C++ library providing tools for applications to locate themselves, their data assets as well as dependent modules.",
   "homepage": "https://cpplocate.org/",

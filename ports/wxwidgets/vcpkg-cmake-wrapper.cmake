@@ -6,18 +6,18 @@ cmake_policy(SET CMP0057 NEW)
 get_filename_component(_vcpkg_wx_root "${CMAKE_CURRENT_LIST_DIR}/../.." ABSOLUTE)
 set(wxWidgets_ROOT_DIR "${_vcpkg_wx_root}" CACHE INTERNAL "")
 set(WX_ROOT_DIR "${_vcpkg_wx_root}" CACHE INTERNAL "")
-unset(_vcpkg_wx_root)
 
-if(WIN32)
+if(WIN32 OR (VCPKG_TARGET_IS_WINDOWS AND NOT VCPKG_HOST_IS_WINDOWS))
+    set(wxWidgets_CONFIGURATION mswu)
     # Find all libs with "33" infix which is unknown to FindwxWidgets.cmake
     function(z_vcpkg_wxwidgets_find_base_library BASENAME)
-        find_library(WX_${BASENAME}d wx${BASENAME}33ud NAMES wx${BASENAME}d PATHS "${wxWidgets_ROOT_DIR}/debug/lib" NO_DEFAULT_PATH)
-        find_library(WX_${BASENAME}  wx${BASENAME}33u  NAMES wx${BASENAME}  PATHS "${wxWidgets_ROOT_DIR}/lib" NO_DEFAULT_PATH REQUIRED)
+        find_library(WX_${BASENAME}d NAMES wx${BASENAME}33ud libwx${BASENAME}33ud PATHS "${_vcpkg_wx_root}/debug/lib" NO_DEFAULT_PATH)
+        find_library(WX_${BASENAME}  NAMES wx${BASENAME}33u  libwx${BASENAME}33u  PATHS "${_vcpkg_wx_root}/lib" NO_DEFAULT_PATH REQUIRED)
     endfunction()
     function(z_vcpkg_wxwidgets_find_suffix_library BASENAME)
         foreach(lib IN LISTS ARGN)
-            find_library(WX_${lib}d NAMES wx${BASENAME}33ud_${lib} PATHS "${wxWidgets_ROOT_DIR}/debug/lib" NO_DEFAULT_PATH)
-            find_library(WX_${lib}  NAMES wx${BASENAME}33u_${lib}  PATHS "${wxWidgets_ROOT_DIR}/lib" NO_DEFAULT_PATH)
+            find_library(WX_${lib}d NAMES wx${BASENAME}33ud_${lib} libwx${BASENAME}33ud_${lib} PATHS "${_vcpkg_wx_root}/debug/lib" NO_DEFAULT_PATH)
+            find_library(WX_${lib}  NAMES wx${BASENAME}33u_${lib}  libwx${BASENAME}33u_${lib}  PATHS "${_vcpkg_wx_root}/lib" NO_DEFAULT_PATH)
         endforeach()
     endfunction()
     z_vcpkg_wxwidgets_find_base_library(base)
@@ -47,6 +47,7 @@ else()
     unset(_vcpkg_wxconfig)
 endif()
 set(WX_LIB_DIR "${wxWidgets_LIB_DIR}" CACHE INTERNAL "")
+unset(_vcpkg_wx_root)
 
 # https://gitlab.kitware.com/cmake/cmake/-/issues/26718
 # Instead of special-casing the `atomic` library, we skip the checks entirely.
@@ -69,7 +70,7 @@ if("@VCPKG_LIBRARY_LINKAGE@" STREQUAL "static" AND NOT "wx::core" IN_LIST wxWidg
 endif()
 
 
-if(WIN32 AND "@VCPKG_LIBRARY_LINKAGE@" STREQUAL "static" AND NOT "wx::core" IN_LIST wxWidgets_LIBRARIES)
+if((WIN32 OR (VCPKG_TARGET_IS_WINDOWS AND NOT VCPKG_HOST_IS_WINDOWS)) AND "@VCPKG_LIBRARY_LINKAGE@" STREQUAL "static" AND NOT "wx::core" IN_LIST wxWidgets_LIBRARIES)
     find_package(EXPAT QUIET)
     find_package(JPEG QUIET)
     find_package(PNG QUIET)

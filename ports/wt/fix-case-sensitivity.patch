@@ -1,0 +1,13 @@
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index f91b39f..6f33507 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -645,7 +645,7 @@ IF(HAVE_SSL)
+   TARGET_LINK_LIBRARIES(wt PRIVATE ${OPENSSL_LIBRARIES})
+   INCLUDE_DIRECTORIES(${OPENSSL_INCLUDE_DIR})
+   IF(WIN32)
+-    TARGET_LINK_LIBRARIES(wt PRIVATE Crypt32.lib)
++    TARGET_LINK_LIBRARIES(wt PRIVATE crypt32.lib)
+   ENDIF(WIN32)
+ ELSE(HAVE_SSL)
+   MESSAGE("** Disabling crypto support (Auth::SHA1HashFunction, HTTPS support): requires OpenSSL.")

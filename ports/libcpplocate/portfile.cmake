@@ -6,6 +6,7 @@ vcpkg_from_github(
   HEAD_REF master
   PATCHES
     fix-install-paths.patch
+    fix-case-sensitivity.patch
 )
 
 vcpkg_cmake_configure(
