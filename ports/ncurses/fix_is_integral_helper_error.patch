@@ -1,0 +1,26 @@
+diff --git a/include/curses.h.in b/include/curses.h.in
+index 8cfa0b9..22377b5 100644
+--- a/include/curses.h.in
++++ b/include/curses.h.in
+@@ -283,6 +283,12 @@ typedef @cf_cv_typeof_mmask_t@ mmask_t;
+ #undef FALSE
+ #define FALSE   0
+ 
++#if defined(__cplusplus) && defined(__GNUG__) && (__GNUG__ >= 15)
++
++typedef bool NCURSES_BOOL;
++
++#else
++
+ typedef @cf_cv_type_of_bool@ NCURSES_BOOL;
+ 
+ #if @USE_CXX_BOOL@	/* __cplusplus, etc. */
+@@ -304,6 +310,8 @@ typedef @cf_cv_type_of_bool@ NCURSES_BOOL;
+ 
+ #endif /* !__cplusplus, etc. */
+ 
++#endif
++
+ #ifdef __cplusplus
+ extern "C" {
+ #define NCURSES_CAST(type,value) static_cast<type>(value)

@@ -13,6 +13,12 @@ vcpkg_extract_source_archive(
     ARCHIVE "${ARCHIVE_PATH}"
 )
 
+vcpkg_apply_patches(
+    SOURCE_PATH "${SOURCE_PATH}"
+    PATCHES
+        fix_is_integral_helper_error.patch
+)
+
 vcpkg_list(SET OPTIONS)
 
 if(VCPKG_LIBRARY_LINKAGE STREQUAL "dynamic")
