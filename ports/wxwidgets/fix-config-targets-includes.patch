@@ -1,0 +1,21 @@
+diff --git a/build/cmake/wxWidgetsConfig.cmake.in b/build/cmake/wxWidgetsConfig.cmake.in
+index 1234567..abcdefg 100644
+--- a/build/cmake/wxWidgetsConfig.cmake.in
++++ b/build/cmake/wxWidgetsConfig.cmake.in
+@@ -78,6 +78,16 @@ foreach(libname @wxLIB_TARGETS@)
+         string(SUBSTRING ${libname} 2 -1 name)
+ 
+         # set variables used in check_required_components
++        # Ensure INTERFACE_INCLUDE_DIRECTORIES is populated from base targets
++        get_target_property(_base_includes wx::${libname} INTERFACE_INCLUDE_DIRECTORIES)
++        if(NOT _base_includes)
++            # If not set, compute from installation structure
++            set(_base_includes 
++                "${_IMPORT_PREFIX}/lib/wx/include/@wxBUILD_FILE_ID@"
++                "${_IMPORT_PREFIX}/include/wx-3.3"
++            )
++            set_target_properties(wx::${libname} PROPERTIES INTERFACE_INCLUDE_DIRECTORIES "${_base_includes}")
++        endif()
+         list(APPEND @PROJECT_NAME@_COMPONENTS ${name})
+         set(@PROJECT_NAME@_${name}_FOUND 1)
+         set(@PROJECT_NAME@_FIND_REQUIRED_${name} 1)
