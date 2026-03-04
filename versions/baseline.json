@@ -212,6 +212,10 @@
       "baseline": "0.11.0",
       "port-version": 0
     },
+    "arabica": {
+      "baseline": "2020-April",
+      "port-version": 0
+    },
     "aravis": {
       "baseline": "0.8.35",
       "port-version": 0
@@ -3514,7 +3518,7 @@
     },
     "gppanel": {
       "baseline": "2020-05-20",
-      "port-version": 4
+      "port-version": 5
     },
     "graaf": {
       "baseline": "1.1.1",
@@ -4718,7 +4722,7 @@
     },
     "libcpplocate": {
       "baseline": "2.3.0",
-      "port-version": 0
+      "port-version": 1
     },
     "libcrafter": {
       "baseline": "1.0",
@@ -6718,7 +6722,7 @@
     },
     "nana": {
       "baseline": "1.7.4",
-      "port-version": 5
+      "port-version": 6
     },
     "nano-signal-slot": {
       "baseline": "2.0.1",
@@ -6798,7 +6802,7 @@
     },
     "ncurses": {
       "baseline": "6.5",
-      "port-version": 2
+      "port-version": 3
     },
     "ndis-driver-library": {
       "baseline": "1.2.0",
@@ -10754,7 +10758,7 @@
     },
     "wt": {
       "baseline": "4.12.3",
-      "port-version": 0
+      "port-version": 1
     },
     "wtl": {
       "baseline": "10.0.10320",
@@ -10770,7 +10774,7 @@
     },
     "wxwidgets": {
       "baseline": "3.3.1",
-      "port-version": 1
+      "port-version": 2
     },
     "wyhash": {
       "baseline": "2023-12-03",
