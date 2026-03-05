@@ -17,7 +17,7 @@ packageList = [
   ([
     'abseil[test-helpers]',
     'ada-idna',
-    'ada-url',
+    'ada-url[tools]',
     'aixlog',
     'angelscript',
     'antlr4',
