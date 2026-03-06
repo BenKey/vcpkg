@@ -9,7 +9,7 @@ type str_list = list[str]
 
 packageList = [
   ([
-    'abseil[test-helpers]',
+    'abseil',
     'ada-idna',
     'ada-url[tools]',
     'aixlog',

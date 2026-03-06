@@ -7,7 +7,7 @@ import sys
 
 packageList = [
   ([
-    'abseil[test-helpers]',
+    'abseil',
     'ada-idna',
     'ada-url[tools]',
     'aixlog',

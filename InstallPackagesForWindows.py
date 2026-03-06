@@ -213,7 +213,7 @@ arm64PackageList = [
 
 packageList = [
   ([
-    'abseil[test-helpers]',
+    'abseil',
     'ada-idna',
     'ada-url[tools]',
     'aixlog',
