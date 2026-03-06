@@ -1,7 +1,7 @@
 {
   "name": "uberswitch",
-  "description": "A header-only, unobtrusive, almighty alternative to the C++ switch statement that looks just like the original.",
-  "homepage": "https://github.com/falemagn/uberswitch",
+  "version-string": "2022-05-17",
   "port-version": 1,
-  "version-string": "2022-05-17"
+  "description": "A header-only, unobtrusive, almighty alternative to the C++ switch statement that looks just like the original.",
+  "homepage": "https://github.com/falemagn/uberswitch"
 }
