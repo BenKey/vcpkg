@@ -28,14 +28,32 @@ if (VCPKG_CROSSCOMPILING)
     )
 endif()
 
+set(MINGW_OPTIONS "")
+set(MINGW_DEBUG_OPTIONS "")
+if(VCPKG_TARGET_IS_MINGW)
+    list(APPEND MINGW_OPTIONS 
+        "-DCMAKE_C_FLAGS=-I${CURRENT_INSTALLED_DIR}/include ${VCPKG_C_FLAGS}"
+        "-DCMAKE_CXX_FLAGS=-I${CURRENT_INSTALLED_DIR}/include ${VCPKG_CXX_FLAGS}"
+    )
+    list(APPEND MINGW_OPTIONS 
+        "-DCMAKE_EXE_LINKER_FLAGS=-L${CURRENT_INSTALLED_DIR}/lib -ldl ${VCPKG_LINKER_FLAGS}"
+    )
+    list(APPEND MINGW_DEBUG_OPTIONS 
+        "-DCMAKE_EXE_LINKER_FLAGS=-L${CURRENT_INSTALLED_DIR}/debug/lib -ldl ${VCPKG_LINKER_FLAGS}"
+    )
+endif()
+
 vcpkg_cmake_configure(
     SOURCE_PATH "${SOURCE_PATH}"
     OPTIONS
         ${FEATURE_OPTIONS}
         ${HOST_TOOLS_OPTIONS}
+        ${MINGW_OPTIONS}
         "-DPYTHON_EXECUTABLE=${PYTHON3}"
         -DENABLE_NLS=OFF
         -DYASM_BUILD_TESTS=OFF
+    OPTIONS_DEBUG
+        ${MINGW_DEBUG_OPTIONS}
 )
 
 vcpkg_cmake_install()
@@ -50,9 +68,16 @@ endif()
 if(BUILD_TOOLS)
     vcpkg_copy_tools(TOOL_NAMES vsyasm yasm ytasm AUTO_CLEAN)
     if (VCPKG_LIBRARY_LINKAGE STREQUAL "dynamic")
-        file(COPY "${CURRENT_PACKAGES_DIR}/bin/yasmstd${VCPKG_TARGET_SHARED_LIBRARY_SUFFIX}"
+        # Use the prefix variable to catch 'lib' on MinGW and '' on MSVC
+        file(COPY "${CURRENT_PACKAGES_DIR}/bin/${VCPKG_TARGET_SHARED_LIBRARY_PREFIX}yasmstd${VCPKG_TARGET_SHARED_LIBRARY_SUFFIX}"
             DESTINATION "${CURRENT_PACKAGES_DIR}/tools/${PORT}")
+        # If the prefix is 'lib', rename the copied file to remove it
+        if(VCPKG_TARGET_IS_MINGW)
+            file(RENAME "${CURRENT_PACKAGES_DIR}/tools/${PORT}/libyasmstd.dll" 
+                        "${CURRENT_PACKAGES_DIR}/tools/${PORT}/yasmstd.dll")
+        endif()
     endif()
+    vcpkg_copy_tool_dependencies("${CURRENT_PACKAGES_DIR}/tools/${PORT}")
 endif()
 
 file(COPY "${CURRENT_PORT_DIR}/vcpkg-port-config.cmake" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}")
