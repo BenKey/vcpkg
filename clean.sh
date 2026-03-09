@@ -1,10 +1,8 @@
-#!/bin/bash
+vcpkgRootDir=$(cd -- "$(dirname -- "$0")" && pwd -P)
+# Use a simple string instead of an array
+subdirectories="bt buildtrees downloads installed packages"
 
-vcpkgRootDir=$(X= cd -- "$(dirname -- "$0")" && pwd -P)
-declare -a subdirectories
-subdirectories=( "bt" "buildtrees" "downloads" "installed" "packages" )
-
-for dir in "${subdirectories[@]}"
+for dir in $subdirectories
 do
   if [ -d "${vcpkgRootDir}/${dir}" ]
   then

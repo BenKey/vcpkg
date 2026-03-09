@@ -5,7 +5,7 @@ import os
 import subprocess
 import sys
 
-type str_list = list[str]
+str_list = list[str]
 
 packageList = [
   ([
@@ -13,7 +13,6 @@ packageList = [
     'ada-idna',
     'ada-url[tools]',
     'aixlog',
-    'alsa',
     'angelscript',
     'antlr4',
     'approval-tests-cpp',
@@ -23,10 +22,9 @@ packageList = [
     'bigint',
     'boost-asio[core,ssl]',
     'boost-locale[core,icu]',
-    'boost-mpi[core]',
-    'boost-odeint[core,mpi]',
+    'boost-odeint[core]',
     'boost-regex[core,icu]',
-    'boost[core,mpi]',
+    'boost[core]',
     'catch2[thread-safe-assertions]',
     'chaiscript',
     'constexpr',
@@ -46,6 +44,7 @@ packageList = [
     'guilite',
     'gumbo',
     'hello-imgui',
+    'libiconv',
     'icu[core,tools]',
     'hello-imgui[core,glfw-binding,opengl3-binding]',
     'imgui[core,glfw-binding,opengl3-binding,sdl3-binding]',
@@ -62,7 +61,6 @@ packageList = [
     'lua[cpp,tools]',
     'magic-enum',
     'mp3lame[frontend]',
-    'mpi',
     'ms-gsl',
     'nana',
     'nativefiledialog-extended',
@@ -77,7 +75,7 @@ packageList = [
     'sfgui',
     'sdl3-image[core,jpeg,png,tiff,webp]',
     'sdl3-ttf[harfbuzz,svg]',
-    'sdl3[alsa,wayland,x11]',
+    'sdl3[x11]',
     'spirit-po',
     'sqlite-modern-cpp',
     'sqlite3[core,json1,tool,unicode,zlib]',
