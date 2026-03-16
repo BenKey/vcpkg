@@ -1,0 +1,19 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 862d7db..afc79e8 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -386,6 +386,14 @@ if(LIBXSLT_WITH_PROGRAMS)
+ 	add_executable(LibXslt::xsltproc ALIAS xsltproc)
+ 	target_include_directories(xsltproc PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
+ 	target_link_libraries(xsltproc LibExslt LibXslt)
++	# FreeBSD (vcpkg): libxml2 may reference GNU libiconv symbols (libiconv_*),
++	# provided by the vcpkg static archive libiconv.a. Ensure executables link it.
++	if(CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
++		find_library(VCPKG_LIBICONV NAMES iconv libiconv)
++		if(VCPKG_LIBICONV)
++			target_link_libraries(xsltproc ${VCPKG_LIBICONV})
++		endif()
++	endif()
+ 	install(TARGETS xsltproc EXPORT LibXslt RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} COMPONENT programs)
+ endif ()
+ 

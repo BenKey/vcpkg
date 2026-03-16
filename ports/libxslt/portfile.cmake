@@ -11,6 +11,7 @@ vcpkg_from_github(
         libexslt-pkgconfig.patch
         fix-gcrypt-deps.patch
         skip-install-docs.patch
+        fix-freebsd-libiconv-link.patch
 )
 
 vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
