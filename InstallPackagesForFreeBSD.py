@@ -142,6 +142,7 @@ def InstallPackagesWorker(packages: str_list, triplet: str, recurse: bool) -> bo
   args.append("--triplet")
   args.append(triplet)
   args.append("--x-buildtrees-root=%s/bt" % GetScriptDirectory())
+  args.append("--clean-after-build")
   if (recurse):
     args.append("--recurse")
   try:
