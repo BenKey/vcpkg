@@ -1,0 +1,19 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index bc4be5f..7d65923 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -472,6 +472,14 @@ if(LIBXML2_WITH_PROGRAMS)
+     foreach(PROGRAM ${PROGRAMS})
+         add_executable(LibXml2::${PROGRAM} ALIAS ${PROGRAM})
+         target_link_libraries(${PROGRAM} LibXml2)
++        # FreeBSD (vcpkg): libxml2 may reference GNU libiconv symbols (libiconv_*),
++        # which are provided by libiconv.a. Ensure programs link it.
++        if(CMAKE_SYSTEM_NAME STREQUAL "FreeBSD" AND LIBXML2_WITH_ICONV)
++            find_library(VCPKG_LIBICONV NAMES iconv libiconv)
++            if(VCPKG_LIBICONV)
++                target_link_libraries(${PROGRAM} ${VCPKG_LIBICONV})
++            endif()
++        endif()
+         if(HAVE_LIBHISTORY)
+             target_link_libraries(${PROGRAM} history)
+         endif()

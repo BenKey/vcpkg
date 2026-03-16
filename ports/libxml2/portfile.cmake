@@ -9,6 +9,7 @@ vcpkg_from_github(
         disable-xml2-config.diff
         fix_cmakelist.patch
         fix_ios_compilation.patch
+        fix-freebsd-libiconv-link.patch
 )
 
 vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
