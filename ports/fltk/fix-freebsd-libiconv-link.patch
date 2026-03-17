@@ -1,0 +1,19 @@
+diff --git a/fluid/CMakeLists.txt b/fluid/CMakeLists.txt
+index 472c84c..ffe7696 100644
+--- a/fluid/CMakeLists.txt
++++ b/fluid/CMakeLists.txt
+@@ -75,6 +75,14 @@ if (FLTK_HAVE_CAIRO)
+   endif()
+ endif (FLTK_HAVE_CAIRO)
+ 
++if(CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
++  find_library(VCPKG_LIBICONV NAMES iconv libiconv)
++  if(VCPKG_LIBICONV)
++    target_link_libraries(fluid ${VCPKG_LIBICONV})
++  endif()
++endif()
++
++
+ # install fluid
+ 
+ if (APPLE AND (NOT OPTION_APPLE_X11))

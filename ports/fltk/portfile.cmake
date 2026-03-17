@@ -12,6 +12,7 @@ vcpkg_from_github(
         include.patch
         fix-system-link.patch
         math-h-polyfill.patch
+        fix-freebsd-libiconv-link.patch
 )
 file(REMOVE_RECURSE
     "${SOURCE_PATH}/jpeg"
