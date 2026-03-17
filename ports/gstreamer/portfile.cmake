@@ -157,6 +157,10 @@ vcpkg_configure_meson(
     OPTIONS
         ${FEATURE_OPTIONS}
 
+        # Disable the link undefined option. This is necessary to resolve the following error on Free-BSD:
+        # error: undefined symbol: environ.
+        -Db_lundef=false
+
         # GStreamer subprojects
         -Ddevtools=disabled
         -Drtsp_server=disabled
