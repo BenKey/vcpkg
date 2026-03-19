@@ -135,19 +135,24 @@ def IsDryRun() -> bool:
   return ("--dry-run" in sys.argv)
 
 def InstallPackagesWorker(packages: str_list, triplet: str, recurse: bool) -> bool:
+  scriptDirectory = GetScriptDirectory()
   args = []
   args.append("./vcpkg")
   args.append("install")
   args.extend(packages)
   args.append("--triplet")
   args.append(triplet)
-  args.append("--x-buildtrees-root=%s/bt" % GetScriptDirectory())
+  args.append("--host-triplet")
+  args.append(triplet)
+  args.append(f"--overlay-triplets={scriptDirectory}/triplets/custom")
+  args.append(f"--x-buildtrees-root={scriptDirectory}/bt")
   args.append("--clean-after-build")
   if (recurse):
     args.append("--recurse")
   try:
     seperator = ' '
-    print("Calling '%s'." % seperator.join(args))
+    argsString = seperator.join(args)
+    print(f"Calling '{argsString}'.")
     if (IsDryRun()):
       print("Dry run. Not actually installing packages.")
       return True
@@ -164,7 +169,7 @@ def InstallPackages(packages: str_list, recurse: bool) -> bool:
   print("Installing packages: %s" % packages)
   print("################################################################################")
   print()
-  ret = InstallPackagesWorker(packages, "x64-freebsd", recurse)
+  ret = InstallPackagesWorker(packages, "x64-freebsd-custom", recurse)
   print()
   return ret
 
