@@ -12,6 +12,3 @@ do
     echo "Directory not found: ${vcpkgRootDir}/${dir}"
   fi
 done
-
-[ -f "${vcpkgRootDir}/vcpkg" ] && rm -f "${vcpkgRootDir}/vcpkg"
-[ -f "${vcpkgRootDir}/vcpkg.exe" ] && rm -f "${vcpkgRootDir}/vcpkg.exe"
