@@ -408,7 +408,9 @@ def InstallPackagesWorker(packages: str_list, triplet: str, platform: str, recur
   args.extend(packages)
   args.append("--triplet")
   args.append(triplet)
+  args.append(f"--overlay-triplets={scriptDirectory}/triplets/custom")
   args.append(f"--x-buildtrees-root={scriptDirectory}/bt/{platform}")
+  args.append("--clean-after-build")
   if (recurse):
     args.append("--recurse")
   try:
