@@ -14,9 +14,11 @@ packageList = [
     'ada-url[tools]',
     'aixlog',
     'alsa',
-    'angelscript',
+    'angelscript[addons]',
     'antlr4',
     'approval-tests-cpp',
+    'apr',
+    'apr-util',
     'args',
     'bdwgc',
     'better-enums',
@@ -29,6 +31,7 @@ packageList = [
     'boost[core,mpi]',
     'catch2[thread-safe-assertions]',
     'chaiscript',
+    'configcat[network,sha]',
     'constexpr',
     'cpp-base64',
     'cpptoml',
@@ -71,6 +74,7 @@ packageList = [
     'portaudio',
     'protobuf',
     'pystring',
+    'qt[default-features]',
     'rapidcsv',
     're2',
     'safeint',
@@ -137,18 +141,22 @@ def IsDryRun() -> bool:
   return ("--dry-run" in sys.argv)
 
 def InstallPackagesWorker(packages: str_list, triplet: str, recurse: bool) -> bool:
+  scriptDirectory = GetScriptDirectory()
   args = []
   args.append("./vcpkg")
   args.append("install")
   args.extend(packages)
   args.append("--triplet")
   args.append(triplet)
-  args.append("--x-buildtrees-root=%s/bt" % GetScriptDirectory())
+  args.append(f"--overlay-triplets={scriptDirectory}/triplets/custom")
+  args.append(f"--x-buildtrees-root={scriptDirectory}/bt")
+  args.append("--clean-after-build")
   if (recurse):
     args.append("--recurse")
   try:
     seperator = ' '
-    print("Calling '%s'." % seperator.join(args))
+    argsString = seperator.join(args)
+    print(f"Calling '{argsString}'.")
     if (IsDryRun()):
       print("Dry run. Not actually installing packages.")
       return True
@@ -162,7 +170,7 @@ def InstallPackagesWorker(packages: str_list, triplet: str, recurse: bool) -> bo
 def InstallPackages(packages: str_list, recurse: bool) -> bool:
   print()
   print("################################################################################")
-  print("Installing packages: %s" % packages)
+  print(f"Installing packages: {packages}")
   print("################################################################################")
   print()
   ret = InstallPackagesWorker(packages, "x64-linux", recurse)

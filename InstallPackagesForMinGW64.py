@@ -19,7 +19,7 @@ packageList = [
     'ada-idna',
     'ada-url[tools]',
     'aixlog',
-    'angelscript',
+    'angelscript[addons]',
     'antlr4',
     'approval-tests-cpp',
     'args',
@@ -177,6 +177,7 @@ packageList = [
     'catch2[thread-safe-assertions]',
     'chaiscript',
     'color-console',
+    'configcat[network,sha]',
     'constexpr',
     'cpp-base64',
     'cpptoml',
@@ -217,6 +218,7 @@ packageList = [
     'portaudio',
     'protobuf',
     'pystring',
+    'qt[default-features]',
     'quickjs-ng',
     'rapidcsv',
     're2',
@@ -301,6 +303,7 @@ def GetTriplet() -> str:
   return "x64-mingw-dynamic"
 
 def InstallPackagesWorker(packages: str_list, triplet: str, hostTriplet: str, recurse: bool) -> bool:
+  scriptDirectory = GetScriptDirectory()
   args = []
   args.append("vcpkg")
   args.append("install")
@@ -309,12 +312,15 @@ def InstallPackagesWorker(packages: str_list, triplet: str, hostTriplet: str, re
   args.append(triplet)
   args.append("--host-triplet")
   args.append(hostTriplet)
-  args.append("--x-buildtrees-root=%s/bt" % GetScriptDirectory())
+  args.append(f"--overlay-triplets={scriptDirectory}/triplets/custom")
+  args.append(f"--x-buildtrees-root={scriptDirectory}/bt")
+  args.append("--clean-after-build")
   if (recurse):
     args.append("--recurse")
   try:
     seperator = ' '
-    print("Calling '%s'." % seperator.join(args))
+    argsString = seperator.join(args)
+    print(f"Calling '{argsString}'.")
     if (IsDryRun()):
       print("Dry run. Not actually installing packages.")
       return True
@@ -342,7 +348,7 @@ def InstallPackages(packages: str_list, recurse: bool) -> bool:
   
   print()
   print("################################################################################")
-  print("Installing packages: %s" % filtered_packages)
+  print(f"Installing packages: {filtered_packages}")
   print("################################################################################")
   print()
   ret = InstallPackagesWorker(filtered_packages, triplet, hostTriplet, recurse)

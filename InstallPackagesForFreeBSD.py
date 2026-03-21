@@ -13,9 +13,11 @@ packageList = [
     'ada-idna',
     'ada-url[tools]',
     'aixlog',
-    'angelscript',
+    'angelscript[addons]',
     'antlr4',
     'approval-tests-cpp',
+    'apr',
+    'apr-util',
     'args',
     'bdwgc',
     'better-enums',
@@ -27,6 +29,7 @@ packageList = [
     'boost[core]',
     'catch2[thread-safe-assertions]',
     'chaiscript',
+    'configcat[network,sha]',
     'constexpr',
     'cpp-base64',
     'cpptoml',
@@ -69,6 +72,7 @@ packageList = [
     'portaudio',
     'protobuf',
     'pystring',
+    'qt[default-features]',
     'rapidcsv',
     're2',
     'safeint',
@@ -166,7 +170,7 @@ def InstallPackagesWorker(packages: str_list, triplet: str, recurse: bool) -> bo
 def InstallPackages(packages: str_list, recurse: bool) -> bool:
   print()
   print("################################################################################")
-  print("Installing packages: %s" % packages)
+  print(f"Installing packages: {packages}")
   print("################################################################################")
   print()
   ret = InstallPackagesWorker(packages, "x64-freebsd-custom", recurse)
