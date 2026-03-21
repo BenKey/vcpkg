@@ -9,7 +9,7 @@
 (defconst vcpkg--add-to-path-x64-linux
   '(
     "${VCPKG_ROOT}/downloads/tools/cmake-3.31.10-linux/cmake-3.31.10-linux-x86_64/bin"
-    "${VCPKG_ROOT}/downloads/tools/meson-1.9.0-d1fcc2"
+    "${VCPKG_ROOT}/downloads/tools/meson-1.9.0-4452e3"
     "${VCPKG_ROOT}/downloads/tools/ninja-1.13.2-linux"
     "${VCPKG_ROOT}/downloads/tools/patchelf/0.15.5-x86_64-linux/bin"
     "${VCPKG_ROOT}/installed/x64-linux/tools"
@@ -78,6 +78,8 @@
      (tool-dirs nil)
      (tools-dir "${VCPKG_ROOT}/installed/x64-linux/tools")
      )
+    (setenv "CMAKE_GENERATOR" "Unix Makefiles")
+    (setenv "VCPKG_DEFAULT_TRIPLET" "x64-linux")
     (setq tools-dir (substitute-env-vars tools-dir))
     (yekneb-log yekneb-log-info "Adding the directories in vcpkg--add-to-path-x64-linux to the path.")
     (yekneb-add-dirs-to-path vcpkg--add-to-path-x64-linux t t load-file-dir)
@@ -141,6 +143,10 @@
       (cl-return-from update-environment-for-vcpkg nil)
       )
     )
+  (setenv "CMAKE_TOOLCHAIN_FILE" "${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" t)
+  (setenv "VCPKG_DISABLE_METRICS" "ON")
+  (setenv "VCPKG_FEATURE_FLAGS" "-binarycaching")
+  (setenv "VCPKG_OVERLAY_TRIPLETS" "${VCPKG_ROOT}/triplets/custom" t)
   (when (eq system-type 'windows-nt)
     (when (file-directory-p (substitute-env-vars "${VCPKG_ROOT}/installed/x64-mingw-dynamic"))
       (update-environment-for-vcpkg-x64-mingw-dynamic)
