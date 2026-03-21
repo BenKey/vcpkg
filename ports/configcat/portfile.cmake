@@ -8,6 +8,8 @@ vcpkg_from_github(
     REF "v${VERSION}"
     SHA512 e292608042f695fdded36490f1a6ec7ba956cd400c0d3cfb54bf4199d65cd88a7a7b2ffc10b5d9f346c1f3b916781df14fcbeb3e329c6683a9efab32338b9ac0
     HEAD_REF master
+    PATCHES
+        fix-uint32_t-has-not-been-declared-error.patch
 )
 
 vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
