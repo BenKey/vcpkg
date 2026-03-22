@@ -352,7 +352,7 @@ def InstallPackages(packages: str_list, recurse: bool) -> bool:
   hostTriplet = GetHostTriplet()
   if (len(hostTriplet) == 0):
     return False
-  filtered_packages: str_list = FilterPackagesList(packages)
+  filtered_packages: str_list = FilterPackagesList(packages, hostTriplet)
   if len(filtered_packages) != len(packages):
     print(f"Skipping {', '.join(packagesToExcludeOnLinuxHostList)} on Linux")
   print()
