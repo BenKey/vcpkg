@@ -2,106 +2,110 @@
 
 import inspect
 import os
+import platform
 import subprocess
 import sys
 
 str_list = list[str]
 
-packageList = [
-  ([
-    'abseil',
-    'ada-idna',
-    'ada-url[tools]',
-    'aixlog',
-    'angelscript[addons]',
-    'antlr4',
-    'approval-tests-cpp',
-    'apr',
-    'apr-util',
-    'args',
-    'bdwgc',
-    'better-enums',
-    'bigint',
-    'boost-asio[core,ssl]',
-    'boost-locale[core,icu]',
-    'boost-odeint[core]',
-    'boost-regex[core,icu]',
-    'boost[core]',
-    'catch2[thread-safe-assertions]',
-    'chaiscript',
-    'configcat[network,sha]',
-    'constexpr',
-    'cpp-base64',
-    'cpptoml',
-    'decimal-for-cpp',
-    'dirent',
-    'dukglue',
-    'duktape',
-    'fenster',
-    'fltk',
-    'fmt',
-    'freeglut',
-    'glui',
-    'gppanel',
-    'gtest',
-    'guilite',
-    'gumbo',
-    'hello-imgui',
-    'libiconv',
-    'icu[core,tools]',
-    'hello-imgui[core,glfw-binding,opengl3-binding]',
-    'imgui[core,glfw-binding,opengl3-binding,sdl3-binding]',
-    'imgui-sfml',
-    'inipp',
-    'json-spirit',
-    'json11',
-    'jsoncons',
-    'libcpplocate',
-    'libfork',
-    'libguarded',
-    'libsndfile[external-libs,mpeg]',
-    'litehtml',
-    'lua[cpp,tools]',
-    'magic-enum',
-    'mp3lame[frontend]',
-    'ms-gsl',
-    'nana',
-    'nativefiledialog-extended',
-    'openal-soft',
-    'platform-folders',
-    'portaudio',
-    'protobuf',
-    'pystring',
-    'qt[default-features]',
-    'rapidcsv',
-    're2',
-    'safeint',
-    'sfgui',
-    'sdl3-image[core,jpeg,png,tiff,webp]',
-    'sdl3-ttf[harfbuzz,svg]',
-    'sdl3[x11]',
-    'spirit-po',
-    'sqlite-modern-cpp',
-    'sqlite3[core,json1,tool,unicode,zlib]',
-    'sqlitecpp',
-    'stduuid',
-    'strtk[boost]',
-    'tgui[sdl3,sfml,tool]',
-    'tidy-html5',
-    'tiff[core,cxx,jpeg,lzma,tools,webp,zip,zstd]',
-    'toml11',
-    'tomlplusplus',
-    'tvision',
-    'uberswitch',
-    'uni-algo',
-    'utf8h',
-    'utfcpp',
-    'wildcards',
-    'wt[dbo,openssl,openssl]',
-    'wxcharts',
-    'wxwidgets[core,example,fonts,media,secretstore,sound]',
-    'yasm[tools]'
-  ], False),
+packageList: str_list = [
+  'abseil',
+  'ada-idna',
+  'ada-url[tools]',
+  'aixlog',
+  'angelscript[addons]',
+  'antlr4',
+  'approval-tests-cpp',
+  'apr',
+  'apr-util',
+  'args',
+  'atk',
+  'atkmm',
+  'bdwgc',
+  'better-enums',
+  'bigint',
+  'boost-asio[core,ssl]',
+  'boost-locale[core,icu]',
+  'boost-odeint[core]',
+  'boost-regex[core,icu]',
+  'boost[core]',
+  'catch2[thread-safe-assertions]',
+  'chaiscript',
+  'configcat[network,sha]',
+  'constexpr',
+  'cpp-base64',
+  'cpptoml',
+  'decimal-for-cpp',
+  'dirent',
+  'dukglue',
+  'duktape',
+  'fenster',
+  'fltk',
+  'fmt',
+  'freeglut',
+  'glui',
+  'gppanel',
+  'gtest',
+  'gtk',
+  'gtkmm',
+  'guilite',
+  'gumbo',
+  'hello-imgui[core,glfw-binding,opengl3-binding]',
+  'libiconv',
+  'icu[core,tools]',
+  'imgui[core,glfw-binding,opengl3-binding,sdl3-binding]',
+  'imgui-sfml',
+  'inipp',
+  'json-spirit',
+  'json11',
+  'jsoncons',
+  'libcpplocate',
+  'libfork',
+  'libguarded',
+  'libsndfile[external-libs,mpeg]',
+  'litehtml',
+  'lua[cpp,tools]',
+  'magic-enum',
+  'mp3lame[frontend]',
+  'ms-gsl',
+  'nana',
+  'nativefiledialog-extended',
+  'openal-soft',
+  'platform-folders',
+  'portaudio',
+  'protobuf',
+  'pystring',
+  'python3',
+  'qt[default-features]',
+  'rapidcsv',
+  're2',
+  'safeint',
+  'sfgui',
+  'sdl3-image[core,jpeg,png,tiff,webp]',
+  'sdl3-ttf[harfbuzz,svg]',
+  'sdl3[x11]',
+  'spirit-po',
+  'sqlite-modern-cpp',
+  'sqlite3[core,json1,tool,unicode,zlib]',
+  'sqlitecpp',
+  'status-code',
+  'stduuid',
+  'strtk[boost]',
+  'tgui[sdl3,sfml,tool]',
+  'tidy-html5',
+  'tiff[core,cxx,jpeg,lzma,tools,webp,zip,zstd]',
+  'toml11',
+  'tomlplusplus',
+  'tvision',
+  'uberswitch',
+  'uni-algo',
+  'utf8h',
+  'utfcpp',
+  'wildcards',
+  'wt[dbo,openssl,openssl]',
+  'wxcharts',
+  'wxwidgets[core,example,fonts,media,secretstore,sound]',
+  'yasm[tools]'
 ]
 
 def GetScriptFile() -> str:
@@ -138,50 +142,64 @@ def GetScriptDirectory() -> str:
 def IsDryRun() -> bool:
   return ("--dry-run" in sys.argv)
 
-def InstallPackagesWorker(packages: str_list, triplet: str, recurse: bool) -> bool:
-  scriptDirectory = GetScriptDirectory()
-  args = []
+def ShouldRecurse() -> bool:
+  return ("--recurse" in sys.argv)
+
+def GetHostTriplet() -> str:
+  return "x64-freebsd-custom"
+
+def GetTriplet() -> str:
+  return "x64-freebsd-custom"
+
+def InstallPackagesWorker(packages: str_list, triplet: str, hostTriplet: str, recurse: bool) -> bool:
+  scriptDirectory: str = GetScriptDirectory()
+  args: str_list = []
   args.append("./vcpkg")
   args.append("install")
   args.extend(packages)
   args.append("--triplet")
   args.append(triplet)
   args.append("--host-triplet")
-  args.append(triplet)
+  args.append(hostTriplet)
   args.append(f"--overlay-triplets={scriptDirectory}/triplets/custom")
   args.append(f"--x-buildtrees-root={scriptDirectory}/bt")
   args.append("--clean-after-build")
   if (recurse):
     args.append("--recurse")
   try:
-    seperator = ' '
-    argsString = seperator.join(args)
-    print(f"Calling '{argsString}'.")
+    separator: str = ' '
+    joinedArgs: str = separator.join(args)
+    print(f"Calling '{joinedArgs}'.")
     if (IsDryRun()):
       print("Dry run. Not actually installing packages.")
       return True
     subprocess.check_call(args)
     return True
-  except subprocess.CalledProcessError as err:
+  except subprocess.CalledProcessError:
     return False
-  except OSError as err:
+  except OSError:
     return False
 
 def InstallPackages(packages: str_list, recurse: bool) -> bool:
+  triplet: str = GetTriplet()
+  if (len(triplet) == 0):
+    return False
+  hostTriplet = GetHostTriplet()
+  if (len(hostTriplet) == 0):
+    return False
   print()
   print("################################################################################")
   print(f"Installing packages: {packages}")
   print("################################################################################")
   print()
-  ret = InstallPackagesWorker(packages, "x64-freebsd-custom", recurse)
+  ret: bool = InstallPackagesWorker(packages, triplet, hostTriplet, recurse)
   print()
   return ret
 
 def InstallPackagesInPackageList() -> bool:
-  for package in packageList:
-    ret = InstallPackages(package[0], package[1])
-    if ret == False:
-      return False
+  ret: bool = InstallPackages(packageList, ShouldRecurse())
+  if ret == False:
+    return False
   return True
 
 InstallPackagesInPackageList()
