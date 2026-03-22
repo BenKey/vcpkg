@@ -9,6 +9,7 @@ import sys
 type str_list = list[str]
 
 packagesToExcludeOnLinuxHostList: str_list = [
+  'qt[default-features]',
   'wxcharts',
   'yasm[tools]'
 ]
@@ -296,7 +297,7 @@ def filter_list(list: str_list, excluded_list: str_list) -> str_list:
   return [item for item in list if item not in excluded_set]   
 
 def FilterPackagesList(packages: str_list, hostTriplet: str) -> str_list:
-  filtered_packages = packages
+  filtered_packages: str_list = packages
   if hostTriplet == "x64-linux":
     filtered_packages = filter_list(packages, packagesToExcludeOnLinuxHostList)
   return filtered_packages
@@ -345,10 +346,10 @@ def InstallPackagesWorker(packages: str_list, triplet: str, hostTriplet: str, re
     return False
 
 def InstallPackages(packages: str_list, recurse: bool) -> bool:
-  triplet = GetTriplet()
+  triplet: str = GetTriplet()
   if (len(triplet) == 0):
     return False
-  hostTriplet = GetHostTriplet()
+  hostTriplet: str = GetHostTriplet()
   if (len(hostTriplet) == 0):
     return False
   filtered_packages: str_list = FilterPackagesList(packages, hostTriplet)
