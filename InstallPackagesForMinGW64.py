@@ -223,7 +223,6 @@ packageList: str_list = [
   'portaudio',
   'protobuf',
   'pystring',
-  'python3',
   'qt[default-features]',
   'quickjs-ng',
   'rapidcsv',
