@@ -311,10 +311,10 @@ def ShouldRecurse() -> bool:
 def GetHostTriplet() -> str:
   if platform.system() == "Linux":
     return "x64-linux"
-  return "x64-mingw-dynamic"
+  return "x64-mingw-dynamic-custom"
 
 def GetTriplet() -> str:
-  return "x64-mingw-dynamic"
+  return "x64-mingw-dynamic-custom"
 
 def InstallPackagesWorker(packages: str_list, triplet: str, hostTriplet: str, recurse: bool) -> bool:
   scriptDirectory: str = GetScriptDirectory()
