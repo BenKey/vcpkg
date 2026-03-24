@@ -1,6 +1,7 @@
 {
   "name": "directx-headers",
   "version": "1.619.1",
+  "port-version": 1,
   "description": "Official DirectX 12 Headers",
   "homepage": "https://devblogs.microsoft.com/directx/",
   "documentation": "https://devblogs.microsoft.com/directx/gettingstarted-dx12agility/",

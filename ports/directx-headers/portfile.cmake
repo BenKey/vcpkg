@@ -6,6 +6,29 @@ vcpkg_from_github(
     HEAD_REF main
 )
 
+if(VCPKG_TARGET_IS_MINGW)
+    # MIDL-generated headers often emit both DEFINE_GUID(IID_...) and
+    # EXTERN_C const IID IID_... declarations for the same symbol.
+    # GCC/MinGW warns about these as redundant declarations and GTK builds
+    # treat that warning as an error. Remove only the duplicate EXTERN_C IID
+    # declarations that have a matching DEFINE_GUID in the same header.
+    file(GLOB DIRECTX_HEADER_FILES "${SOURCE_PATH}/include/directx/*.h")
+    foreach(DIRECTX_HEADER IN LISTS DIRECTX_HEADER_FILES)
+        file(READ "${DIRECTX_HEADER}" HEADER_CONTENT)
+
+        string(REGEX MATCHALL "DEFINE_GUID\\((IID_[A-Za-z0-9_]+)," GUID_DEFINITION_MATCHES "${HEADER_CONTENT}")
+        foreach(GUID_DEFINITION_MATCH IN LISTS GUID_DEFINITION_MATCHES)
+            string(REGEX REPLACE "DEFINE_GUID\\((IID_[A-Za-z0-9_]+)," "\\1" GUID_SYMBOL "${GUID_DEFINITION_MATCH}")
+            string(REPLACE "EXTERN_C const IID ${GUID_SYMBOL};"
+                           "/* vcpkg-mingw workaround: duplicate IID declaration removed */"
+                           HEADER_CONTENT
+                           "${HEADER_CONTENT}")
+        endforeach()
+
+        file(WRITE "${DIRECTX_HEADER}" "${HEADER_CONTENT}")
+    endforeach()
+endif()
+
 vcpkg_cmake_configure(
     SOURCE_PATH ${SOURCE_PATH}
     OPTIONS -DDXHEADERS_INSTALL=ON -DDXHEADERS_BUILD_TEST=OFF -DDXHEADERS_BUILD_GOOGLE_TEST=OFF
