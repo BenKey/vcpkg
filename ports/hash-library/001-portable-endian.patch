@@ -53,10 +53,10 @@ index 2743319..657b8b2 100644
  MD5::MD5()
 diff --git a/portable_endian.h b/portable_endian.h
 new file mode 100644
-index 0000000..e92903d
+index 0000000..ad7bb85
 --- /dev/null
 +++ b/portable_endian.h
-@@ -0,0 +1,421 @@
+@@ -0,0 +1,391 @@
 +// "License": Public Domain
 +// I, Mathias Panzenböck, place this file hereby into the public domain. Use it at your own risk for whatever you like.
 +// In case there are jurisdictions that don't support putting things in the public domain you can also consider it to
@@ -94,7 +94,7 @@ index 0000000..e92903d
 +    return OSSwapHostToLittleInt16(x);
 +}
 +
-+ inline uint16_t be16toh(uint16_t x)
++inline uint16_t be16toh(uint16_t x)
 +{
 +    return OSSwapBigToHostInt16(x);
 +}
@@ -160,37 +160,7 @@ index 0000000..e92903d
 +
 +#elif defined(__NetBSD__) || defined(__FreeBSD__) || defined(__DragonFly__)
 +
-+#   include <sys/endian.h>
-+
-+inline uint16_t be16toh(uint16_t x)
-+{
-+    return betoh16(x);
-+}
-+
-+inline uint16_t le16toh(uint16_t x)
-+{
-+    return letoh16(x);
-+}
-+
-+inline uint32_t be32toh(uint32_t x)
-+{
-+    return betoh32(x);
-+}
-+
-+inline uint32_t le32toh(uint32_t x)
-+{
-+    return letoh32(x);
-+}
-+
-+inline uint64_t be64toh(uint64_t x)
-+{
-+    return betoh64(x);
-+}
-+
-+inline uint64_t le64toh(uint64_t x)
-+{
-+    return letoh64(x);
-+}
++#   include <endian.h>
 +
 +#elif defined(__WINDOWS__)
 +
