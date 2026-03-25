@@ -76,7 +76,6 @@ packageList: str_list = [
   'protobuf',
   'pystring',
   'python3',
-  'qt[default-features]',
   'rapidcsv',
   're2',
   'safeint',
