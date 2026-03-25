@@ -1,0 +1,27 @@
+diff --git a/gtk/roaring/roaring.h b/gtk/roaring/roaring.h
+index e5bfec9..c590e37 100644
+--- a/gtk/roaring/roaring.h
++++ b/gtk/roaring/roaring.h
+@@ -465,7 +465,21 @@ static inline int roaring_hamming(uint64_t x) {
+ #if defined(__linux__)
+ #define croaring_htobe64(x) bswap_64(x)
+ #elif defined(__FreeBSD__)
+-#define croaring_htobe64(x) bswap64(x)
++
++# if defined(bswap64)
++   // It appears that bswap64 does not exist.
++#  define croaring_htobe64(x) bswap64(x)
++# elif defined(bswap_64)
++   // bswap_64 may be defined in <byteswap.h>.
++#  define croaring_htobe64(x) bswap_64(x)
++# elif defined(__bswap64)
++   // __bswap64 may be defined in <sys/_endian.h>.
++#  define croaring_htobe64(x) __bswap64(x)
++# else
++   // Just fall back to __builtin_bswap64.
++#  define croaring_htobe64(x) __builtin_bswap64(x)
++# endif
++
+ #else
+ #warning "Unknown platform, report as an error"
+ #endif
