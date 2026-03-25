@@ -5,7 +5,7 @@ set(VCPKG_LIBRARY_LINKAGE static)
 set(VCPKG_CMAKE_SYSTEM_NAME FreeBSD)
 
 # List of ports that must NOT see /usr/local to avoid "Header Pollution"
-set(SYSTEM_PATH_BLACKLIST "abseil;icu;libiconv;protobuf;sqlite3")
+set(SYSTEM_PATH_BLACKLIST "abseil;grpc;icu;libiconv;protobuf;sqlite3")
 
 if(PORT IN_LIST SYSTEM_PATH_BLACKLIST)
     message(STATUS ">>> [CUSTOM TRIPLET] Building ${PORT} without '-I/usr/local/include' and '-L/usr/local/lib'.")
