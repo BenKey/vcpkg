@@ -4,10 +4,16 @@ set(VCPKG_LIBRARY_LINKAGE static)
 
 set(VCPKG_CMAKE_SYSTEM_NAME FreeBSD)
 
-# List of ports that must NOT see /usr/local to avoid "Header Pollution"
-set(SYSTEM_PATH_BLACKLIST "abseil;grpc;icu;libiconv;protobuf;sqlite3")
+# List of ports that should allow undefined symbols when linking shared
+# libraries.
+set(ALLOW_UNDEFINED_SYMBOLS_WHEN_LINKING_SHARED_LIBRARIES_LIST "gtk")
+if(PORT IN_LIST ALLOW_UNDEFINED_SYMBOLS_WHEN_LINKING_SHARED_LIBRARIES_LIST)
+  set(VCPKG_MESON_CONFIGURE_OPTIONS "-Db_lundef=false")
+endif()
 
-if(PORT IN_LIST SYSTEM_PATH_BLACKLIST)
+# List of ports that must NOT use '-I/usr/local/include' and '-L/usr/local/lib'.
+set(NO_USR_LOCAL_LIST "abseil;grpc;icu;libiconv;protobuf;sqlite3")
+if(PORT IN_LIST NO_USR_LOCAL_LIST)
     message(STATUS ">>> [CUSTOM TRIPLET] Building ${PORT} without '-I/usr/local/include' and '-L/usr/local/lib'.")
     set(VCPKG_C_FLAGS "-std=gnu17")
     set(VCPKG_CXX_FLAGS "-std=gnu++17")

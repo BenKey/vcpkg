@@ -14,6 +14,7 @@ vcpkg_extract_source_archive(SOURCE_PATH
     ARCHIVE "${ARCHIVE}"
     PATCHES
         0001-build.patch
+        0002-FreeBSD-bswap64-fix.patch
 )
 
 vcpkg_find_acquire_program(PKGCONFIG)
