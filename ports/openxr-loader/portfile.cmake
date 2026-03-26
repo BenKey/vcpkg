@@ -7,6 +7,7 @@ vcpkg_from_github(
     PATCHES
         fix-openxr-sdk-jsoncpp.patch
         msvc-crt.diff
+        fix-mingw64.patch
 )
 
 vcpkg_from_github(

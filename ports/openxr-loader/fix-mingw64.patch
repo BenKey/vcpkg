@@ -1,0 +1,15 @@
+diff --git a/src/common/xr_dependencies.h b/src/common/xr_dependencies.h
+index 838b0bf..dd9166e 100644
+--- a/src/common/xr_dependencies.h
++++ b/src/common/xr_dependencies.h
+@@ -16,6 +16,10 @@
+ #ifdef XR_USE_PLATFORM_WIN32
+ 
+ #include <winapifamily.h>
++#if !defined(WINAPI_PARTITION_SYSTEM)
++  /* WINAPI_PARTITION_SYSTEM is not defined in the version of winapifamily.h included in MinGW64. Define it here. */
++#  define WINAPI_PARTITION_SYSTEM 0
++#endif
+ #if !(WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM))
+ // Enable desktop partition APIs, such as RegOpenKeyEx, LoadLibraryEx, PathFileExists etc.
+ #undef WINAPI_PARTITION_DESKTOP
