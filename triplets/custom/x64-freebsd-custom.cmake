@@ -8,7 +8,16 @@ set(VCPKG_CMAKE_SYSTEM_NAME FreeBSD)
 # libraries.
 set(ALLOW_UNDEFINED_SYMBOLS_WHEN_LINKING_SHARED_LIBRARIES_LIST "gtk")
 if(PORT IN_LIST ALLOW_UNDEFINED_SYMBOLS_WHEN_LINKING_SHARED_LIBRARIES_LIST)
-  set(VCPKG_MESON_CONFIGURE_OPTIONS "-Db_lundef=false")
+    set(VCPKG_MESON_CONFIGURE_OPTIONS "-Db_lundef=false")
+endif()
+
+# List of ports that must use '-std=gnu++17'. All other ports use '-std=gnu++23'.
+set(CPP17_PORTS_LIST libsass)
+if(PORT IN_LIST CPP17_PORTS_LIST)
+    message(STATUS ">>> [CUSTOM TRIPLET] Using C++17 for ${PORT}.")
+    set(CPP_STANDARD "gnu++17")
+else()
+    set(CPP_STANDARD "gnu++23")
 endif()
 
 # List of ports that must NOT use '-I/usr/local/include' and '-L/usr/local/lib'.
@@ -16,11 +25,11 @@ set(NO_USR_LOCAL_LIST "abseil;grpc;icu;libiconv;protobuf;sqlite3")
 if(PORT IN_LIST NO_USR_LOCAL_LIST)
     message(STATUS ">>> [CUSTOM TRIPLET] Building ${PORT} without '-I/usr/local/include' and '-L/usr/local/lib'.")
     set(VCPKG_C_FLAGS "-std=gnu17 ")
-    set(VCPKG_CXX_FLAGS "-std=gnu++23 ")
+    set(VCPKG_CXX_FLAGS "-std=${CPP_STANDARD} ")
     set(VCPKG_LINKER_FLAGS " ")
 else()
     set(VCPKG_C_FLAGS "-I/usr/local/include -std=gnu17 ")
-    set(VCPKG_CXX_FLAGS "-I/usr/local/include -std=gnu++23 ")
+    set(VCPKG_CXX_FLAGS "-I/usr/local/include -std=${CPP_STANDARD} ")
     set(VCPKG_LINKER_FLAGS "-L/usr/local/lib ")
 endif()
 
