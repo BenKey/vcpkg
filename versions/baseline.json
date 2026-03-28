@@ -4428,23 +4428,7 @@
       "baseline": "6.23.0",
       "port-version": 0
     },
-    "kf6i18n": {
-      "baseline": "6.23.0",
-      "port-version": 0
-    },
-    "kf6globalaccel": {
-      "baseline": "6.23.0",
-      "port-version": 0
-    },
-    "kf6itemmodels": {
-      "baseline": "6.23.0",
-      "port-version": 0
-    },
-    "kf6dbusaddons": {
-      "baseline": "6.23.0",
-      "port-version": 0
-    },
-    "kf6coreaddons": {
+    "kf6breezeicons": {
       "baseline": "6.23.0",
       "port-version": 0
     },
@@ -4452,7 +4436,23 @@
       "baseline": "6.23.0",
       "port-version": 0
     },
-    "kf6breezeicons": {
+    "kf6coreaddons": {
+      "baseline": "6.23.0",
+      "port-version": 0
+    },
+    "kf6dbusaddons": {
+      "baseline": "6.23.0",
+      "port-version": 0
+    },
+    "kf6globalaccel": {
+      "baseline": "6.23.0",
+      "port-version": 0
+    },
+    "kf6i18n": {
+      "baseline": "6.23.0",
+      "port-version": 0
+    },
+    "kf6itemmodels": {
       "baseline": "6.23.0",
       "port-version": 0
     },
@@ -7410,7 +7410,7 @@
     },
     "openxr-loader": {
       "baseline": "1.1.54",
-      "port-version": 0
+      "port-version": 1
     },
     "openzl": {
       "baseline": "0.1.0",
@@ -9906,7 +9906,7 @@
     },
     "tgui": {
       "baseline": "1.8.0",
-      "port-version": 2
+      "port-version": 3
     },
     "thermadiag-seq": {
       "baseline": "2.0",
