@@ -23,6 +23,7 @@ vcpkg_from_github(
     HEAD_REF 1.x
     PATCHES
         devendor-stb.patch
+        fix-std-equal-error.patch
 )
 
 file(REMOVE_RECURSE "${SOURCE_PATH}/src/Backends/SDL/cmake_modules") # Config available
