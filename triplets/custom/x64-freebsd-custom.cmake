@@ -12,7 +12,7 @@ if(PORT IN_LIST ALLOW_UNDEFINED_SYMBOLS_WHEN_LINKING_SHARED_LIBRARIES_LIST)
 endif()
 
 # List of ports that must use '-std=gnu++17'. All other ports use '-std=gnu++23'.
-set(CPP17_PORTS_LIST libsass)
+set(CPP17_PORTS_LIST "libsass;nana")
 if(PORT IN_LIST CPP17_PORTS_LIST)
     message(STATUS ">>> [CUSTOM TRIPLET] Using C++17 for ${PORT}.")
     set(CPP_STANDARD "gnu++17")
