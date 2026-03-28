@@ -22,7 +22,7 @@ endif()
 
 # List of ports that must NOT use '-I/usr/local/include' and '-L/usr/local/lib'.
 set(NO_USR_LOCAL_LIST "abseil;grpc;icu;libiconv;protobuf;sqlite3")
-if(PORT IN_LIST NO_USR_LOCAL_LIST)
+if(PORT IN_LIST NO_USR_LOCAL_LIST OR PORT MATCHES "boost")
     message(STATUS ">>> [CUSTOM TRIPLET] Building ${PORT} without '-I/usr/local/include' and '-L/usr/local/lib'.")
     set(VCPKG_C_FLAGS "-std=gnu17 ")
     set(VCPKG_CXX_FLAGS "-std=${CPP_STANDARD} ")
