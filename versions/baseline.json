@@ -497,7 +497,7 @@
       "port-version": 0
     },
     "aws-crt-cpp": {
-      "baseline": "0.38.1",
+      "baseline": "0.38.3",
       "port-version": 0
     },
     "aws-lambda-cpp": {
@@ -757,7 +757,7 @@
       "port-version": 0
     },
     "blake3": {
-      "baseline": "1.8.3",
+      "baseline": "1.8.4",
       "port-version": 0
     },
     "blas": {
@@ -1797,7 +1797,7 @@
       "port-version": 8
     },
     "clblast": {
-      "baseline": "1.6.3",
+      "baseline": "1.7.0",
       "port-version": 0
     },
     "cld3": {
@@ -2537,7 +2537,7 @@
       "port-version": 3
     },
     "dispenso": {
-      "baseline": "1.5.0",
+      "baseline": "1.5.1",
       "port-version": 0
     },
     "distorm": {
@@ -5553,8 +5553,8 @@
       "port-version": 0
     },
     "libsigcpp": {
-      "baseline": "3.6.0",
-      "port-version": 2
+      "baseline": "3.8.0",
+      "port-version": 0
     },
     "libslirp": {
       "baseline": "4.9.1",
@@ -9209,7 +9209,7 @@
       "port-version": 0
     },
     "simdjson": {
-      "baseline": "4.5.0",
+      "baseline": "4.6.0",
       "port-version": 0
     },
     "simdutf": {
@@ -9269,7 +9269,7 @@
       "port-version": 0
     },
     "slick-logger": {
-      "baseline": "1.0.6",
+      "baseline": "1.0.7",
       "port-version": 0
     },
     "slick-net": {
@@ -9633,7 +9633,7 @@
       "port-version": 0
     },
     "stormlib": {
-      "baseline": "9.26",
+      "baseline": "9.31",
       "port-version": 0
     },
     "str-view": {
@@ -10933,7 +10933,7 @@
       "port-version": 2
     },
     "xdigest": {
-      "baseline": "0.4.0",
+      "baseline": "0.5.0",
       "port-version": 0
     },
     "xerces-c": {
