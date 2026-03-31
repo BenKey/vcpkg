@@ -39,6 +39,14 @@ else()
     vcpkg_cmake_config_fixup(PACKAGE_NAME SDL2_image CONFIG_PATH lib/cmake/SDL2_image)
 endif()
 
+# Move pkgconfig files from FreeBSD-specific libdata to standard lib path
+if(EXISTS "${CURRENT_PACKAGES_DIR}/libdata/pkgconfig")
+    file(RENAME "${CURRENT_PACKAGES_DIR}/libdata/pkgconfig" "${CURRENT_PACKAGES_DIR}/lib/pkgconfig")
+endif()
+if(EXISTS "${CURRENT_PACKAGES_DIR}/debug/libdata/pkgconfig")
+    file(RENAME "${CURRENT_PACKAGES_DIR}/debug/libdata/pkgconfig" "${CURRENT_PACKAGES_DIR}/debug/lib/pkgconfig")
+endif()
+
 vcpkg_fixup_pkgconfig()
 
 set(debug_libname "SDL2_imaged")
