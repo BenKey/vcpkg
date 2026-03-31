@@ -42,6 +42,39 @@ vcpkg_cmake_configure(
 vcpkg_cmake_install()
 vcpkg_cmake_config_fixup(CONFIG_PATH "lib/cmake/assimp")
 
+# Fix: add generic IMPORTED_IMPLIB/IMPORTED_LOCATION fallback properties so that
+# try_compile probes (e.g. Qt3D's TEST_assimp) work when no CMAKE_BUILD_TYPE is set.
+# Without these, CMake warns CMP0111 and the link test silently fails.
+if("${VCPKG_LIBRARY_LINKAGE}" STREQUAL "dynamic")
+    set(_assimp_targets_cmake "${CURRENT_PACKAGES_DIR}/share/assimp/assimpTargets.cmake")
+    file(READ "${_assimp_targets_cmake}" _assimp_targets_contents)
+    set(_assimp_generic_props [=[
+# Provide generic IMPORTED_IMPLIB/IMPORTED_LOCATION fallback for try_compile probes
+# (needed when no CMAKE_BUILD_TYPE is set, e.g. Qt3D's TEST_assimp feature test)
+get_target_property(_assimp_implib assimp::assimp IMPORTED_IMPLIB_RELEASE)
+if(_assimp_implib)
+  set_property(TARGET assimp::assimp PROPERTY IMPORTED_IMPLIB "${_assimp_implib}")
+endif()
+get_target_property(_assimp_loc assimp::assimp IMPORTED_LOCATION_RELEASE)
+if(_assimp_loc)
+  set_property(TARGET assimp::assimp PROPERTY IMPORTED_LOCATION "${_assimp_loc}")
+endif()
+unset(_assimp_implib)
+unset(_assimp_loc)
+
+]=])
+    string(REPLACE
+        "# Commands beyond this point should not need to know the version."
+        "${_assimp_generic_props}# Commands beyond this point should not need to know the version."
+        _assimp_targets_contents
+        "${_assimp_targets_contents}"
+    )
+    file(WRITE "${_assimp_targets_cmake}" "${_assimp_targets_contents}")
+    unset(_assimp_targets_contents)
+    unset(_assimp_generic_props)
+    unset(_assimp_targets_cmake)
+endif()
+
 vcpkg_copy_pdbs()
 
 if(VCPKG_TARGET_IS_WINDOWS)
