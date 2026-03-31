@@ -9026,7 +9026,7 @@
     },
     "sdl2-ttf": {
       "baseline": "2.24.0",
-      "port-version": 0
+      "port-version": 1
     },
     "sdl2pp": {
       "baseline": "0.18.1",
