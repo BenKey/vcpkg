@@ -22,6 +22,12 @@ endif()
 string(APPEND VCPKG_C_FLAGS " -std=gnu17")
 string(APPEND VCPKG_CXX_FLAGS " -std=${CPP_STANDARD}")
 
+set(UNSET_SIGC_API_PORTS_LIST "atkmm;cairomm;glibmm;gtkmm;libsigc++;libxml++;pangomm")
+if(PORT IN_LIST UNSET_SIGC_API_PORTS_LIST)
+  string(APPEND VCPKG_C_FLAGS " -DSIGC_API=")
+  string(APPEND VCPKG_CXX_FLAGS " -DSIGC_API=")
+endif()
+
 # Conditional /usr/local Inclusion.
 set(NO_USR_LOCAL_LIST "abseil;grpc;icu;libiconv;protobuf;sqlite3")
 if(NOT (PORT IN_LIST NO_USR_LOCAL_LIST OR PORT MATCHES "boost"))
