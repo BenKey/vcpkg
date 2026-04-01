@@ -22,10 +22,10 @@ endif()
 string(APPEND VCPKG_C_FLAGS " -std=gnu17")
 string(APPEND VCPKG_CXX_FLAGS " -std=${CPP_STANDARD}")
 
-set(UNSET_SIGC_API_PORTS_LIST "atkmm;cairomm;glibmm;gtkmm;libsigc++;libxml++;pangomm")
-if(PORT IN_LIST UNSET_SIGC_API_PORTS_LIST)
-  string(APPEND VCPKG_C_FLAGS " -DSIGC_API=")
-  string(APPEND VCPKG_CXX_FLAGS " -DSIGC_API=")
+set(DECLSPEC_FIX_PORTS_LIST "atkmm;cairomm;glibmm;gtkmm;libsigc++;libxml++;pangomm")
+if(PORT IN_LIST DECLSPEC_FIX_PORTS_LIST)
+  string(APPEND VCPKG_C_FLAGS " -D__declspec\\(x\\)=")
+  string(APPEND VCPKG_CXX_FLAGS " -D__declspec\\(x\\)=")
 endif()
 
 # Conditional /usr/local Inclusion.
