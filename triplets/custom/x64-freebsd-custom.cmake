@@ -1,6 +1,6 @@
 set(VCPKG_TARGET_ARCHITECTURE x64)
 set(VCPKG_CRT_LINKAGE dynamic)
-set(VCPKG_LIBRARY_LINKAGE static)
+set(VCPKG_LIBRARY_LINKAGE dynamic)
 
 set(VCPKG_CMAKE_SYSTEM_NAME FreeBSD)
 
@@ -11,31 +11,25 @@ if(PORT IN_LIST ALLOW_UNDEFINED_SYMBOLS_WHEN_LINKING_SHARED_LIBRARIES_LIST)
     set(VCPKG_MESON_CONFIGURE_OPTIONS "-Db_lundef=false")
 endif()
 
-# List of ports that must use '-std=gnu++17'. All other ports use '-std=gnu++23'.
+# 1. Determine C++ Standard
 set(CPP17_PORTS_LIST "libsass;nana")
 if(PORT IN_LIST CPP17_PORTS_LIST)
-    message(STATUS ">>> [CUSTOM TRIPLET] Using C++17 for ${PORT}.")
     set(CPP_STANDARD "gnu++17")
 else()
     set(CPP_STANDARD "gnu++23")
 endif()
 
-# List of ports that must NOT use '-I/usr/local/include' and '-L/usr/local/lib'.
-set(NO_USR_LOCAL_LIST "abseil;grpc;icu;libiconv;protobuf;sqlite3")
-if(PORT IN_LIST NO_USR_LOCAL_LIST OR PORT MATCHES "boost")
-    message(STATUS ">>> [CUSTOM TRIPLET] Building ${PORT} without '-I/usr/local/include' and '-L/usr/local/lib'.")
-    set(VCPKG_C_FLAGS "-std=gnu17 ")
-    set(VCPKG_CXX_FLAGS "-std=${CPP_STANDARD} ")
-    set(VCPKG_LINKER_FLAGS " ")
-else()
-    set(VCPKG_C_FLAGS "-I/usr/local/include -std=gnu17 ")
-    set(VCPKG_CXX_FLAGS "-I/usr/local/include -std=${CPP_STANDARD} ")
-    set(VCPKG_LINKER_FLAGS "-L/usr/local/lib ")
-endif()
+# 2. Apply Global Standards
+string(APPEND VCPKG_C_FLAGS " -std=gnu17")
+string(APPEND VCPKG_CXX_FLAGS " -std=${CPP_STANDARD}")
 
-# Fallback search paths for CMake-based ports
-list(APPEND VCPKG_CMAKE_CONFIGURE_OPTIONS
-    "-DCMAKE_REQUIRED_INCLUDES=/usr/local/include"
-    "-DCMAKE_REQUIRED_LIBRARIES=/usr/local/lib"
-    "-DCMAKE_PREFIX_PATH=/usr/local"
-)
+# 3. Conditional /usr/local Inclusion
+set(NO_USR_LOCAL_LIST "abseil;grpc;icu;libiconv;protobuf;sqlite3")
+if(NOT (PORT IN_LIST NO_USR_LOCAL_LIST OR PORT MATCHES "boost"))
+    # Tells CMake's find_package where to look
+    list(APPEND VCPKG_CMAKE_CONFIGURE_OPTIONS "-DCMAKE_SYSTEM_PREFIX_PATH=${VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET};/usr/local")
+    # Force flags for non-CMake ports or ports that don't use find_package correctly
+    string(APPEND VCPKG_C_FLAGS " -I/usr/local/include")
+    string(APPEND VCPKG_CXX_FLAGS " -I/usr/local/include")
+    string(APPEND VCPKG_LINKER_FLAGS " -L/usr/local/lib")
+endif()
