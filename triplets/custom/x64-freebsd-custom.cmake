@@ -4,8 +4,9 @@ set(VCPKG_LIBRARY_LINKAGE dynamic)
 
 set(VCPKG_CMAKE_SYSTEM_NAME FreeBSD)
 
-set(ALLOW_UNDEFINED_SYMBOLS_WHEN_LINKING_SHARED_LIBRARIES_LIST "gtk")
+set(ALLOW_UNDEFINED_SYMBOLS_WHEN_LINKING_SHARED_LIBRARIES_LIST "atk;cairo;fontconfig;gdk-pixbuf;glib;gtk;harfbuzz;libarchive;pango;zix")
 if(PORT IN_LIST ALLOW_UNDEFINED_SYMBOLS_WHEN_LINKING_SHARED_LIBRARIES_LIST)
+  message(STATUS "FreeBSD Workaround: Allowing undefined symbols for port: ${PORT}")
   set(VCPKG_MESON_CONFIGURE_OPTIONS "-Db_lundef=false")
 endif()
 
