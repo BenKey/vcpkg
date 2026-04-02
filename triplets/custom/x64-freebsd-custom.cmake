@@ -28,6 +28,13 @@ if(PORT IN_LIST DECLSPEC_FIX_PORTS_LIST)
   string(APPEND VCPKG_CXX_FLAGS " -D__declspec\\(x\\)=")
 endif()
 
+set(USE_NCURSES_PORTS_LIST "lua")
+if(PORT IN_LIST USE_NCURSES_PORTS_LIST)
+  string(APPEND VCPKG_LINKER_FLAGS " -lncurses")
+  string(APPEND VCPKG_C_FLAGS " -I${VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/include")
+  string(APPEND VCPKG_CXX_FLAGS " -I${VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/include")
+endif()
+
 # Conditional /usr/local Inclusion.
 set(NO_USR_LOCAL_LIST "abseil;grpc;icu;libiconv;protobuf;sqlite3")
 if(NOT (PORT IN_LIST NO_USR_LOCAL_LIST OR PORT MATCHES "boost"))
@@ -38,3 +45,4 @@ if(NOT (PORT IN_LIST NO_USR_LOCAL_LIST OR PORT MATCHES "boost"))
   string(APPEND VCPKG_CXX_FLAGS " -I/usr/local/include")
   string(APPEND VCPKG_LINKER_FLAGS " -L/usr/local/lib")
 endif()
+

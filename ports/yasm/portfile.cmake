@@ -69,8 +69,13 @@ if(BUILD_TOOLS)
     vcpkg_copy_tools(TOOL_NAMES vsyasm yasm ytasm AUTO_CLEAN)
     if (VCPKG_LIBRARY_LINKAGE STREQUAL "dynamic")
         # Use the prefix variable to catch 'lib' on MinGW and '' on MSVC
-        file(COPY "${CURRENT_PACKAGES_DIR}/bin/${VCPKG_TARGET_SHARED_LIBRARY_PREFIX}yasmstd${VCPKG_TARGET_SHARED_LIBRARY_SUFFIX}"
-            DESTINATION "${CURRENT_PACKAGES_DIR}/tools/${PORT}")
+        if(EXISTS "${CURRENT_PACKAGES_DIR}/bin/${VCPKG_TARGET_SHARED_LIBRARY_PREFIX}yasmstd${VCPKG_TARGET_SHARED_LIBRARY_SUFFIX}")
+            file(COPY "${CURRENT_PACKAGES_DIR}/bin/${VCPKG_TARGET_SHARED_LIBRARY_PREFIX}yasmstd${VCPKG_TARGET_SHARED_LIBRARY_SUFFIX}"
+                DESTINATION "${CURRENT_PACKAGES_DIR}/tools/${PORT}")
+        elseif(EXISTS "${CURRENT_PACKAGES_DIR}/lib/${VCPKG_TARGET_SHARED_LIBRARY_PREFIX}yasmstd${VCPKG_TARGET_SHARED_LIBRARY_SUFFIX}")
+            file(COPY "${CURRENT_PACKAGES_DIR}/lib/${VCPKG_TARGET_SHARED_LIBRARY_PREFIX}yasmstd${VCPKG_TARGET_SHARED_LIBRARY_SUFFIX}"
+                DESTINATION "${CURRENT_PACKAGES_DIR}/tools/${PORT}")
+        endif()
         # If the prefix is 'lib', rename the copied file to remove it
         if(VCPKG_TARGET_IS_MINGW)
             file(RENAME "${CURRENT_PACKAGES_DIR}/tools/${PORT}/libyasmstd.dll" 
