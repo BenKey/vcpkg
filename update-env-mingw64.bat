@@ -15,8 +15,8 @@ set JAVA_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-25.0.2.10-hotspot
 set JDK_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-25.0.2.10-hotspot
 set VCPKG_ROOT=%_MyDir%
 set CMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%\scripts\buildsystems\vcpkg.cmake
-set VCPKG_DEFAULT_HOST_TRIPLET=x64-mingw-dynamic
-set VCPKG_DEFAULT_TRIPLET=x64-mingw-dynamic
+set VCPKG_DEFAULT_HOST_TRIPLET=x64-mingw-dynamic-custom
+set VCPKG_DEFAULT_TRIPLET=x64-mingw-dynamic-custom
 
 for %%a in (
 "%ProgramW6432%\Git"
@@ -32,22 +32,54 @@ for %%a in (
 )
 
 for %%a in (
+"%_MyDir%\downloads\tools\win_flex\2.5.24"
+"%_MyDir%\downloads\tools\win_bison\2.5.24"
 "%_MyDir%\downloads\tools\python\python-3.14.2-x64-1"
 "%_MyDir%\downloads\tools\ninja-1.13.2-windows"
-"%_MyDir%\downloads\tools\meson-1.9.0-d1fcc2"
+"%_MyDir%\downloads\tools\nasm\nasm-3.01"
+"%_MyDir%\downloads\tools\meson-1.9.0-4452e3"
 "%_MyDir%\downloads\tools\cmake-3.31.10-windows\cmake-3.31.10-windows-x86_64\bin"
-"%_MyDir%\downloads\tools\7zip-25.01-windows"
-"%_MyDir%\downloads\tools\7zr-25.01-windows"
-"%_MyDir%\installed\x64-mingw-dynamic\tools\wxwidgets"
-"%_MyDir%\installed\x64-mingw-dynamic\tools\tiff"
-"%_MyDir%\installed\x64-mingw-dynamic\tools\pcre2"
-"%_MyDir%\installed\x64-mingw-dynamic\tools\icu\bin"
-"%_MyDir%\installed\x64-mingw-dynamic\tools\gperf"
-"%_MyDir%\installed\x64-mingw-dynamic\tools\fltk"
-"%_MyDir%\installed\x64-mingw-dynamic\tools\bzip2"
-"%_MyDir%\installed\x64-mingw-dynamic\tools\brotli"
-"%_MyDir%\installed\x64-mingw-dynamic\tools"
-"%_MyDir%\installed\x64-mingw-dynamic\bin"
+"%_MyDir%\downloads\tools\7zr-26.00-windows"
+"%_MyDir%\downloads\tools\7zip-26.00-windows"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\yasm"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\wxwidgets"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\tiff"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\tidy-html5"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\tgui"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\sciter-js"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\sassc\bin"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\quickjs-ng"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\Qt6\bin"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\protobuf"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\pkgconf"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\pcre2"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\pango"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\node"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\ncurses\bin"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\mp3lame\bin"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\lua"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\libpq\bin"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\libiconv\bin"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\icu\bin"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\hwloc\bin"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\harfbuzz"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\gtk"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\grpc"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\gperf"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\glib"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\gettext\bin"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\gdk-pixbuf"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\fluidsynth"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\fltk"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\draco"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\dbus"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\curl\bin"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\bzip2"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\brotli"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools\ada-url"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\tools"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\debug\bin"
+"%_MyDir%\installed\x64-mingw-dynamic-custom\bin"
 "%SystemDrive%\mingw64\x86_64-w64-mingw32\bin"
 "%SystemDrive%\mingw64\opt\bin"
 "%SystemDrive%\mingw64\opt\cmake\bin"
@@ -70,7 +102,7 @@ for %%a in (
   "%SystemDrive%\mingw64\x86_64-w64-mingw32\include\sec_api"
   "%SystemDrive%\mingw64\include"
   "%SystemDrive%\mingw64\opt\include"
-  "%_MyDir%\installed\x64-mingw-dynamic\include"
+  "%_MyDir%\installed\x64-mingw-dynamic-custom\include"
 ) do (
   call :AppendToIncludePath "%%~a"
 )
@@ -85,7 +117,7 @@ for %%a in (
   "%SystemDrive%\mingw64\x86_64-w64-mingw32\include\sec_api"
   "%SystemDrive%\mingw64\include"
   "%SystemDrive%\mingw64\opt\include"
-  "%_MyDir%\installed\x64-mingw-dynamic\include"
+  "%_MyDir%\installed\x64-mingw-dynamic-custom\include"
 ) do (
   call :AppendToCIncludePath "%%~a"
 )
@@ -99,7 +131,7 @@ for %%a in (
   "%SystemDrive%\mingw64\lib\gcc\x86_64-w64-mingw32\15.2.0"
   "%SystemDrive%\mingw64\opt\lib"
   "%SystemDrive%\mingw64\x86_64-w64-mingw32\lib"
-  "%_MyDir%\installed\x64-mingw-dynamic\lib"
+  "%_MyDir%\installed\x64-mingw-dynamic-custom\lib"
 ) do (
   call :AppendToLibraryPath "%%~a"
 )
@@ -222,10 +254,10 @@ goto :EOF
 :: Function to set wxWidgets environment variables
 :: Usage: call :SetWXWidgetsEnv
 :SetWXWidgetsEnv
-  if not exist "%_MyDir%\installed\x64-mingw-dynamic\lib\." exit /b 1
-  if not exist "%_MyDir%\installed\x64-mingw-dynamic\include\wx\." exit /b 1
+  if not exist "%_MyDir%\installed\x64-mingw-dynamic-custom\lib\." exit /b 1
+  if not exist "%_MyDir%\installed\x64-mingw-dynamic-custom\include\wx\." exit /b 1
   set wxWidgets_CONFIGURATION=mswu
-  set wxWidgets_LIB_DIR=%_MyDir%\installed\x64-mingw-dynamic\lib
-  set wxWidgets_ROOT_DIR=%_MyDir%\installed\x64-mingw-dynamic
+  set wxWidgets_LIB_DIR=%_MyDir%\installed\x64-mingw-dynamic-custom\lib
+  set wxWidgets_ROOT_DIR=%_MyDir%\installed\x64-mingw-dynamic-custom
   exit /b 0
 goto :EOF
