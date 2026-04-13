@@ -6,7 +6,6 @@
   "homepage": "https://github.com/assimp/assimp",
   "license": "BSD-3-Clause",
   "dependencies": [
-    "draco",
     "jhasse-poly2tri",
     "kubazip",
     "minizip",
@@ -24,5 +23,13 @@
       "host": true
     },
     "zlib"
-  ]
+  ],
+  "features": {
+    "draco": {
+      "description": "Enable Draco compressed mesh support",
+      "dependencies": [
+        "draco"
+      ]
+    }
+  }
 }
