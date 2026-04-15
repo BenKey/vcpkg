@@ -59,12 +59,6 @@ if(NOT SQLITE3_SKIP_TOOLS)
         RUNTIME_OUTPUT_NAME sqlite3
     )
 
-    if(MINGW)
-        # shell.c provides a Windows wmain() wrapper; MinGW needs -municode
-        # so the CRT startup uses wmain instead of searching for WinMain.
-        target_link_options(sqlite3-bin PRIVATE -municode)
-    endif()
-
     target_link_libraries(sqlite3-bin PRIVATE sqlite3)
     if (WITH_ZLIB)
         find_package(ZLIB REQUIRED)
