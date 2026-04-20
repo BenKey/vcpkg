@@ -8294,7 +8294,7 @@
     },
     "qtapplicationmanager": {
       "baseline": "6.10.2",
-      "port-version": 1
+      "port-version": 2
     },
     "qtbase": {
       "baseline": "6.10.2",
@@ -9550,7 +9550,7 @@
     },
     "sqlite3": {
       "baseline": "3.53.0",
-      "port-version": 1
+      "port-version": 2
     },
     "sqlitecpp": {
       "baseline": "3.3.3",
