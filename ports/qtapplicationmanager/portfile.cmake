@@ -66,9 +66,10 @@ qt_cmake_configure(OPTIONS
 # Qt's generated .rc files only need windows.h, but CMake can attach very long
 # define/include lists from the full target, which overflows on Windows.
 # Replace the RC command with a minimal wrapper for this port build.
-if(VCPKG_TARGET_IS_WINDOWS)
+if(VCPKG_TARGET_IS_MINGW)
     # Find the tool dynamically
     find_program(WINRES_EXE NAMES windres windres.exe REQUIRED)
+    file(TO_NATIVE_PATH "${WINRES_EXE}" winres_native_path)
 
     set(windres_wrapper "${CURRENT_BUILDTREES_DIR}/windres-minimal.bat")
     file(WRITE "${windres_wrapper}" "@echo off\n")
@@ -81,13 +82,9 @@ if(VCPKG_TARGET_IS_WINDOWS)
     foreach(config_suffix "rel" "dbg")
         set(rules_ninja "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-${config_suffix}/CMakeFiles/rules.ninja")
         if(EXISTS "${rules_ninja}")
-            # Escape backslashes for the regex match if the path comes from Windows find_program
-            file(TO_NATIVE_PATH "${WINRES_EXE}" winres_native_path)
-            string(REPLACE "\\" "\\\\" winres_escaped "${winres_native_path}")
-
             vcpkg_replace_string(
                 "${rules_ninja}"
-                " command = \${LAUNCHER}\${CODE_CHECK}${winres_escaped} -O coff $DEFINES $INCLUDES $FLAGS $in $out"
+                " command = \${LAUNCHER}\${CODE_CHECK}${winres_native_path} -O coff $DEFINES $INCLUDES $FLAGS $in $out"
                 " command = ${windres_wrapper} $in $out"
             )
         endif()
