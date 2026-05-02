@@ -75,6 +75,7 @@ packageList: str_list = [
   'nativefiledialog-extended',
   'openal-soft',
   'platform-folders',
+  'plog',
   'portaudio',
   'protobuf',
   'pystring',
