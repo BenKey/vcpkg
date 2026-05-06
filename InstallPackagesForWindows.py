@@ -1,18 +1,20 @@
-#!/usr/bin/env python
-
 import inspect
 import os
-import platform
 import subprocess
 import sys
+
+from enum import Enum
+
+class ExitCode(Enum):
+  EX_OK = getattr(os, 'EX_OK', 0)
+  EX_NOINPUT = getattr(os, 'EX_NOINPUT', 66)
+  EX_UNAVAILABLE = getattr(os, 'EX_UNAVAILABLE', 69)
+  EX_SOFTWARE = getattr(os, 'EX_SOFTWARE', 70)
 
 type str_list = list[str]
 
 x64OnlyPackageList: str_list = [
   "qt[default-features]"
-]
-
-x86OnlyPackageList: str_list = [
 ]
 
 arm64PackageList: str_list = [
@@ -29,147 +31,147 @@ arm64PackageList: str_list = [
   'bdwgc',
   'better-enums',
   'bigint',
-  'boost-accumulators[core]',
-  'boost-algorithm[core]',
-  'boost-align[core]',
-  'boost-any[core]',
-  'boost-array[core]',
-  'boost-assert[core]',
-  'boost-assign[core]',
-  'boost-atomic[core]',
-  'boost-beast[core]',
-  'boost-bimap[core]',
-  'boost-bind[core]',
-  'boost-callable-traits[core]',
-  'boost-charconv[core]',
-  'boost-chrono[core]',
-  'boost-circular-buffer[core]',
-  'boost-cobalt[core]',
-  'boost-compat[core]',
-  'boost-compute[core]',
-  'boost-concept-check[core]',
-  'boost-config[core]',
-  'boost-container[core]',
-  'boost-container-hash[core]',
-  'boost-context[core]',
-  'boost-contract[core]',
-  'boost-convert[core]',
-  'boost-core[core]',
-  'boost-crc[core]',
-  'boost-date-time[core]',
-  'boost-describe[core]',
-  'boost-detail[core]',
-  'boost-dll[core]',
-  'boost-dynamic-bitset[core]',
-  'boost-endian[core]',
-  'boost-exception[core]',
-  'boost-filesystem[core]',
-  'boost-flyweight[core]',
-  'boost-foreach[core]',
-  'boost-format[core]',
-  'boost-function[core]',
-  'boost-function-types[core]',
-  'boost-functional[core]',
-  'boost-fusion[core]',
-  'boost-geometry[core]',
-  'boost-gil[core]',
-  'boost-graph[core]',
-  'boost-hana[core]',
-  'boost-headers[core]',
-  'boost-heap[core]',
-  'boost-histogram[core]',
-  'boost-hof[core]',
-  'boost-icl[core]',
-  'boost-integer[core]',
-  'boost-interprocess[core]',
-  'boost-interval[core]',
-  'boost-intrusive[core]',
-  'boost-io[core]',
-  'boost-iostreams[core]',
-  'boost-iterator[core]',
-  'boost-json[core]',
-  'boost-lambda[core]',
-  'boost-lambda2[core]',
-  'boost-leaf[core]',
-  'boost-lexical-cast[core]',
-  'boost-local-function[core]',
-  'boost-locale[core,icu]',
-  'boost-lockfree[core]',
-  'boost-log[core]',
-  'boost-logic[core]',
-  'boost-math[core]',
-  'boost-metaparse[core]',
-  'boost-move[core]',
-  'boost-mp11[core]',
-  'boost-mpl[core]',
-  'boost-msm[core]',
-  'boost-multi-array[core]',
-  'boost-multi-index[core]',
-  'boost-multiprecision[core]',
-  'boost-mysql[core]',
-  'boost-nowide[core]',
-  'boost-odeint[core]',
-  'boost-optional[core]',
-  'boost-outcome[core]',
-  'boost-parameter[core]',
-  'boost-pfr[core]',
-  'boost-phoenix[core]',
-  'boost-poly-collection[core]',
-  'boost-polygon[core]',
-  'boost-pool[core]',
-  'boost-predef[core]',
-  'boost-preprocessor[core]',
-  'boost-process[core]',
-  'boost-program-options[core]',
-  'boost-property-map[core]',
-  'boost-property-tree[core]',
-  'boost-proto[core]',
-  'boost-ptr-container[core]',
-  'boost-qvm[core]',
-  'boost-random[core]',
-  'boost-range[core]',
-  'boost-ratio[core]',
-  'boost-rational[core]',
-  'boost-redis[core]',
-  'boost-regex[core,icu]',
-  'boost-safe-numerics[core]',
-  'boost-scope[core]',
-  'boost-scope-exit[core]',
-  'boost-serialization[core]',
-  'boost-signals2[core]',
-  'boost-smart-ptr[core]',
-  'boost-sort[core]',
-  'boost-spirit[core]',
-  'boost-stacktrace[core]',
-  'boost-statechart[core]',
-  'boost-static-assert[core]',
-  'boost-static-string[core]',
-  'boost-stl-interfaces[core]',
-  'boost-system[core]',
-  'boost-test[core]',
-  'boost-thread[core]',
-  'boost-throw-exception[core]',
-  'boost-timer[core]',
-  'boost-tokenizer[core]',
-  'boost-tti[core]',
-  'boost-tuple[core]',
-  'boost-type-erasure[core]',
-  'boost-type-index[core]',
-  'boost-type-traits[core]',
-  'boost-typeof[core]',
-  'boost-ublas[core]',
-  'boost-units[core]',
-  'boost-unordered[core]',
-  'boost-url[core]',
-  'boost-utility[core]',
-  'boost-uuid[core]',
-  'boost-variant[core]',
-  'boost-variant2[core]',
-  'boost-vmd[core]',
-  'boost-wave[core]',
-  'boost-winapi[core]',
-  'boost-xpressive[core]',
-  'boost-yap[core]',
+  'boost-accumulators',
+  'boost-algorithm',
+  'boost-align',
+  'boost-any',
+  'boost-array',
+  'boost-assert',
+  'boost-assign',
+  'boost-atomic',
+  'boost-beast',
+  'boost-bimap',
+  'boost-bind',
+  'boost-callable-traits',
+  'boost-charconv',
+  'boost-chrono',
+  'boost-circular-buffer',
+  'boost-cobalt',
+  'boost-compat',
+  'boost-compute',
+  'boost-concept-check',
+  'boost-config',
+  'boost-container',
+  'boost-container-hash',
+  'boost-context',
+  'boost-contract',
+  'boost-convert',
+  'boost-core',
+  'boost-crc',
+  'boost-date-time',
+  'boost-describe',
+  'boost-detail',
+  'boost-dll',
+  'boost-dynamic-bitset',
+  'boost-endian',
+  'boost-exception',
+  'boost-filesystem',
+  'boost-flyweight',
+  'boost-foreach',
+  'boost-format',
+  'boost-function',
+  'boost-function-types',
+  'boost-functional',
+  'boost-fusion',
+  'boost-geometry',
+  'boost-gil',
+  'boost-graph',
+  'boost-hana',
+  'boost-headers',
+  'boost-heap',
+  'boost-histogram',
+  'boost-hof',
+  'boost-icl',
+  'boost-integer',
+  'boost-interprocess',
+  'boost-interval',
+  'boost-intrusive',
+  'boost-io',
+  'boost-iostreams',
+  'boost-iterator',
+  'boost-json',
+  'boost-lambda',
+  'boost-lambda2',
+  'boost-leaf',
+  'boost-lexical-cast',
+  'boost-local-function',
+  'boost-locale[icu]',
+  'boost-lockfree',
+  'boost-log',
+  'boost-logic',
+  'boost-math',
+  'boost-metaparse',
+  'boost-move',
+  'boost-mp11',
+  'boost-mpl',
+  'boost-msm',
+  'boost-multi-array',
+  'boost-multi-index',
+  'boost-multiprecision',
+  'boost-mysql',
+  'boost-nowide',
+  'boost-odeint',
+  'boost-optional',
+  'boost-outcome',
+  'boost-parameter',
+  'boost-pfr',
+  'boost-phoenix',
+  'boost-poly-collection',
+  'boost-polygon',
+  'boost-pool',
+  'boost-predef',
+  'boost-preprocessor',
+  'boost-process',
+  'boost-program-options',
+  'boost-property-map',
+  'boost-property-tree',
+  'boost-proto',
+  'boost-ptr-container',
+  'boost-qvm',
+  'boost-random',
+  'boost-range',
+  'boost-ratio',
+  'boost-rational',
+  'boost-redis',
+  'boost-regex[icu]',
+  'boost-safe-numerics',
+  'boost-scope',
+  'boost-scope-exit',
+  'boost-serialization',
+  'boost-signals2',
+  'boost-smart-ptr',
+  'boost-sort',
+  'boost-spirit',
+  'boost-stacktrace',
+  'boost-statechart',
+  'boost-static-assert',
+  'boost-static-string',
+  'boost-stl-interfaces',
+  'boost-system',
+  'boost-test',
+  'boost-thread',
+  'boost-throw-exception',
+  'boost-timer',
+  'boost-tokenizer',
+  'boost-tti',
+  'boost-tuple',
+  'boost-type-erasure',
+  'boost-type-index',
+  'boost-type-traits',
+  'boost-typeof',
+  'boost-ublas',
+  'boost-units',
+  'boost-unordered',
+  'boost-url',
+  'boost-utility',
+  'boost-uuid',
+  'boost-variant',
+  'boost-variant2',
+  'boost-vmd',
+  'boost-wave',
+  'boost-winapi',
+  'boost-xpressive',
+  'boost-yap',
   'catch2[thread-safe-assertions]',
   'chaiscript',
   'color-console',
@@ -191,7 +193,7 @@ arm64PackageList: str_list = [
   'gtest',
   'guilite',
   'gumbo',
-  'icu[core]',
+  'icu',
   'inipp',
   'json-spirit',
   'json11',
@@ -219,25 +221,25 @@ arm64PackageList: str_list = [
   'safeint',
   'sfgui',
   'sdl2',
-  'sdl2-image[core,libjpeg-turbo,libwebp,tiff]',
-  'sdl2-mixer[core,fluidsynth,libflac,mpg123]',
+  'sdl2-image[libjpeg-turbo,libwebp,tiff]',
+  'sdl2-mixer[fluidsynth,libflac,mpg123]',
   'sdl2-net',
   'sdl2-ttf[harfbuzz]',
   'sdl2pp[sdl2-image,sdl2-mixer,sdl2-ttf]',
   'sdl3',
-  'sdl3-image[core,jpeg,png,tiff,webp]',
-  'sdl3-mixer[core,fluidsynth,libflac,libvorbis,mpg123]',
+  'sdl3-image[jpeg,png,tiff,webp]',
+  'sdl3-mixer[fluidsynth,libflac,libvorbis,mpg123]',
   'sdl3-ttf[harfbuzz,svg]',
   'spirit-po',
   'sqlite-modern-cpp',    
-  'sqlite3[core,json1,tool,unicode,zlib]',
+  'sqlite3[json1,tool,unicode,zlib]',
   'sqlitecpp',
   'status-code',
   'stduuid',
   'strtk[boost]',
   'tgui[sdl3,sfml,tool]',
   'tidy-html5',
-  'tiff[core,cxx,jpeg,lzma,tools,webp,zip,zstd]',
+  'tiff[cxx,jpeg,lzma,tools,webp,zip,zstd]',
   'toml11',
   'tomlplusplus',
   'tvision',
@@ -250,7 +252,7 @@ arm64PackageList: str_list = [
   'winreg',
   'wtl',
   'wxcharts',
-  'wxwidgets[core,example,fonts,media,secretstore,sound,webview]'
+  'wxwidgets[example,fonts,media,secretstore,sound,webview]'
 ]
 
 packageList: str_list = [
@@ -269,12 +271,12 @@ packageList: str_list = [
   'bdwgc',
   'better-enums',
   'bigint',
-  'boost-asio[core,ssl]',
-  'boost-locale[core,icu]',
-  'boost-mpi[core,python3]',
-  'boost-odeint[core,mpi]',
-  'boost-regex[core,icu]',
-  'boost[core,mpi]',
+  'boost-asio[ssl]',
+  'boost-locale[icu]',
+  'boost-mpi[python3]',
+  'boost-odeint[mpi]',
+  'boost-regex[icu]',
+  'boost[mpi]',
   'catch2[thread-safe-assertions]',
   'chaiscript',
   'color-console',
@@ -298,10 +300,10 @@ packageList: str_list = [
   'gtkmm',
   'guilite',
   'gumbo',
-  'hello-imgui[core,glfw-binding,opengl3-binding]',
+  'hello-imgui[glfw-binding,opengl3-binding]',
   'libiconv',
-  'icu[core,tools]',
-  'imgui[core,glfw-binding,opengl3-binding,sdl3-binding,win32-binding]',
+  'icu[tools]',
+  'imgui[glfw-binding,opengl3-binding,sdl3-binding,win32-binding]',
   'imgui-sfml',
   'inipp',
   'json-spirit',
@@ -334,25 +336,25 @@ packageList: str_list = [
   'sciter-js',
   'sfgui',
   'sdl2',
-  'sdl2-image[core,libjpeg-turbo,libwebp,tiff]',
-  'sdl2-mixer[core,fluidsynth,libflac,mpg123]',
+  'sdl2-image[libjpeg-turbo,libwebp,tiff]',
+  'sdl2-mixer[fluidsynth,libflac,mpg123]',
   'sdl2-net',
   'sdl2-ttf[harfbuzz]',
   'sdl2pp[sdl2-image,sdl2-mixer,sdl2-ttf]',
   'sdl3',
-  'sdl3-image[core,jpeg,png,tiff,webp]',
-  'sdl3-mixer[core,fluidsynth,libflac,libvorbis,mpg123]',
+  'sdl3-image[jpeg,png,tiff,webp]',
+  'sdl3-mixer[fluidsynth,libflac,libvorbis,mpg123]',
   'sdl3-ttf[harfbuzz,svg]',
   'spirit-po',
   'sqlite-modern-cpp',
-  'sqlite3[core,json1,tool,unicode,zlib]',
+  'sqlite3[json1,tool,unicode,zlib]',
   'sqlitecpp',
   'status-code',
   'stduuid',
   'strtk[boost]',
   'tgui[sdl3,sfml,tool]',
   'tidy-html5',
-  'tiff[core,cxx,jpeg,lzma,tools,webp,zip,zstd]',
+  'tiff[cxx,jpeg,lzma,tools,webp,zip,zstd]',
   'toml11',
   'tomlplusplus',
   'tvision',
@@ -367,7 +369,7 @@ packageList: str_list = [
   'wt[dbo,openssl,openssl]',
   'wtl',
   'wxcharts',
-  'wxwidgets[core,example,fonts,media,secretstore,sound,webview]',
+  'wxwidgets[example,fonts,media,secretstore,sound,webview]',
   'yasm[tools]'
 ]
 
@@ -404,11 +406,11 @@ def GetScriptDirectory() -> str:
   setattr(GetScriptDirectory, "dir", ret)
   return getattr(GetScriptDirectory, "dir")
 
-def filter_list(list: str_list, excluded_list: str_list) -> str_list:
+def filter_list(unfiltered_list: str_list, excluded_list: str_list) -> str_list:
   if (len(excluded_list) == 0):
-    return list
+    return unfiltered_list
   excluded_set = set(excluded_list)
-  return [item for item in list if item not in excluded_set]   
+  return [item for item in unfiltered_list if item not in excluded_set]   
 
 def IsDryRun() -> bool:
   return ("--dry-run" in sys.argv)
@@ -416,115 +418,95 @@ def IsDryRun() -> bool:
 def ShouldRecurse() -> bool:
   return ("--recurse" in sys.argv)
 
-def GetHostTriplet() -> str:
-  return "x64-windows"
+def GetPackageListForPlatform(vcpkgPlatform: str) -> str_list:
+  if (vcpkgPlatform == "arm64"):
+    return arm64PackageList
+  if (vcpkgPlatform == "x86"):
+    return filter_list(packageList, x64OnlyPackageList)
+  if (vcpkgPlatform == "x64"):
+    return packageList
+  raise ValueError(f"Unsupported platform '{vcpkgPlatform}'.")
 
-def GetTriplet(platform: str) -> str:
-  return f"{platform}-windows"
+def GetUnifiedPackageList() -> str_list:
+  unifiedList: str_list = []
+  arm64Packages: str_list = GetPackageListForPlatform("arm64")
+  suffix: str = ":arm64-windows"
+  arm64Packages = [pkg + suffix for pkg in arm64Packages]
+  unifiedList.extend(arm64Packages)
+  suffix = ":x64-windows"
+  x64Packages: str_list = GetPackageListForPlatform("x64")
+  x64Packages = [pkg + suffix for pkg in x64Packages]
+  unifiedList.extend(x64Packages)
+  x86Packages: str_list = GetPackageListForPlatform("x86")
+  suffix = ":x86-windows"
+  x86Packages = [pkg + suffix for pkg in x86Packages]
+  unifiedList.extend(x86Packages)
+  return unifiedList
 
-def InstallPackagesWorker(packages: str_list, triplet: str, hostTriplet: str, platform: str, recurse: bool) -> bool:
-  print("+++++++++++++++++++")
-  print(f"++ {triplet} ++")
-  print("+++++++++++++++++++")
-  print()
-  os.environ["VCPKG_DEFAULT_TRIPLET"] = triplet
+def create_vcpkg_response(filename, packages, options):
+    """Generates a vcpkg response file for classic mode."""
+    with open(filename, 'w') as f:
+        # Write configuration flags
+        for flag, value in options.items():
+            if value:
+                f.write(f"{flag}={value}\n")
+            else:
+                f.write(f"{flag}\n") # For flags without values
+        # Write package list
+        for package in packages:
+            f.write(f"{package}\n")
+
+def InstallPackagesUsingResponseFile(responseFile: str) -> bool:
+    scriptDirectory: str = GetScriptDirectory()
+    executable_name: str = "vcpkg.exe" if os.name == "nt" else "vcpkg"
+    vcpkg_executable: str = os.path.join(scriptDirectory, executable_name)
+    args: str_list = []
+    args.append(vcpkg_executable)
+    args.append("install")
+    args.append(f"@{responseFile}")
+    try:
+        separator: str = ' '
+        joinedArgs: str = separator.join(args)
+        print(f"Calling '{joinedArgs}'.")
+        subprocess.check_call(args)
+        return True
+    except subprocess.CalledProcessError:
+        return False
+    except OSError:
+        return False
+
+def CreateConfigObject(scriptDirectory: str) -> dict:
+    config = {
+        "--buildtrees-root": f"{scriptDirectory}/bt",
+        "--classic": "",
+        "--host-triplet": "x64-windows",
+        "--overlay-triplets": f"{scriptDirectory}/triplets/custom"
+    }
+    if (ShouldRecurse()):
+        config["--recurse"] = ""
+    return config
+
+def main():
   scriptDirectory: str = GetScriptDirectory()
-  args: str_list = []
-  args.append("vcpkg")
-  args.append("install")
-  args.extend(packages)
-  args.append("--triplet")
-  args.append(triplet)
-  args.append("--host-triplet")
-  args.append(hostTriplet)
-  args.append(f"--overlay-triplets={scriptDirectory}/triplets/custom")
-  args.append(f"--x-buildtrees-root={scriptDirectory}/bt/{platform}")
-  args.append("--clean-after-build")
-  args.append("--classic")
-  if (recurse):
-    args.append("--recurse")
-  try:
-    separator: str = ' '
-    joinedArgs: str = separator.join(args)
-    print(f"Calling '{joinedArgs}'.")
-    if (IsDryRun()):
-      print("Dry run. Not actually installing packages.")
-      return True
-    subprocess.check_call(args)
-    return True
-  except subprocess.CalledProcessError:
-    return False
-  except OSError:
-    return False
+  config = CreateConfigObject(scriptDirectory)
+  packages: str_list = GetUnifiedPackageList()
+  responseFile: str = f"{scriptDirectory}/vcpkg_response.txt"
+  create_vcpkg_response(responseFile, packages, config)
+  if (not os.path.exists(responseFile)):
+      print(f"Error: Response file '{responseFile}' does not exist.")
+      return ExitCode.EX_NOINPUT.value
+  if (IsDryRun()):
+      print(f"Dry run: vcpkg response file created at '{responseFile}'.")
+      return ExitCode.EX_OK.value
+  if (os.name != 'nt'):
+      print(f"Only dry run is supported on this platform.")
+      return ExitCode.EX_UNAVAILABLE.value
+  if (InstallPackagesUsingResponseFile(responseFile)):
+      print("Packages installed successfully.")
+      return ExitCode.EX_OK.value
+  else:
+      print("Failed to install packages.")
+      return ExitCode.EX_SOFTWARE.value
 
-def InstallARM64Packages(packages: str_list, recurse: bool) -> bool:
-  triplet: str = GetTriplet("arm64")
-  if (len(triplet) == 0):
-    return False
-  hostTriplet = GetHostTriplet()
-  if (len(hostTriplet) == 0):
-    return False
-  print()
-  print("################################################################################")
-  print(f"Installing packages: {packages}")
-  print("################################################################################")
-  print()
-  ret: bool = InstallPackagesWorker(packages, triplet, hostTriplet, "arm64", recurse)
-  print()
-  return ret
-
-def InstallPackages(packages: str_list, recurse: bool) -> bool:
-  hostTriplet: str = GetHostTriplet()
-  if (len(hostTriplet) == 0):
-    return False
-  print()
-  print("################################################################################")
-  print(f"Installing packages: {packages}")
-  print("################################################################################")
-  print()
-  ret: bool = False
-  filtered_packages: str_list = filter_list(packages, x86OnlyPackageList)
-  if (len(filtered_packages) == 0):
-    print("No x64 packages to install.")
-    print()
-    return False
-  triplet: str = GetTriplet("x64")
-  if (len(triplet) == 0):
-    return False
-  ret = InstallPackagesWorker(filtered_packages, triplet, hostTriplet, "x64", recurse)
-  if (not ret):
-    return False
-  print()
-  filtered_packages = filter_list(packages, x64OnlyPackageList)
-  if (len(filtered_packages) == 0):
-    print("No x86 packages to install.")
-    print()
-    return ret
-  triplet = GetTriplet("x86")
-  if (len(triplet) == 0):
-    return False
-  ret = InstallPackagesWorker(filtered_packages, triplet, hostTriplet, "x86", recurse)
-  print()
-  return ret
-
-def InstallPackagesInARM64PackageList() -> bool:
-  ret: bool = InstallARM64Packages(arm64PackageList, ShouldRecurse())
-  if ret == False:
-    return False
-  return True
-
-def InstallPackagesInPackageList() -> bool:
-  ret: bool = InstallPackages(packageList, ShouldRecurse())
-  if ret == False:
-    return False
-  return True
-
-ret: bool = InstallPackagesInARM64PackageList()
-if ret == False:
-  sys.exit(1)
-
-ret = InstallPackagesInPackageList()
-if ret == False:
-  sys.exit(2)
-
-sys.exit(os.EX_OK)
+if __name__ == "__main__":
+    sys.exit(main())
