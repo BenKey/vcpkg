@@ -477,10 +477,10 @@ def InstallPackagesUsingResponseFile(responseFile: str) -> bool:
 
 def CreateConfigObject(scriptDirectory: str) -> dict:
     config = {
-        "--buildtrees-root": f"{scriptDirectory}/bt",
         "--classic": "",
         "--host-triplet": "x64-windows",
-        "--overlay-triplets": f"{scriptDirectory}/triplets/custom"
+        "--overlay-triplets": f"{scriptDirectory}/triplets/custom",
+        "--x-buildtrees-root": f"{scriptDirectory}/bt"
     }
     if (ShouldRecurse()):
         config["--recurse"] = ""
