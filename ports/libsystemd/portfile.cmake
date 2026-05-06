@@ -5,6 +5,7 @@ vcpkg_from_github(
   SHA512 30331df5eb7a1556da8c017a0e6c07b8b99f0cb31da055c1b86c9b9e6fd7074f7c6746efa3e69711b73af48a15d61a84f35ad6e554d32a23441ba910398f7f65
   PATCHES
     disable-warning-nonnull.patch
+    fix-errno-aliases.patch
     only-libsystemd.patch
     pkgconfig.patch
 )

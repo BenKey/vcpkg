@@ -1,0 +1,13 @@
+diff --git a/src/basic/generate-errno-list.sh b/src/basic/generate-errno-list.sh
+--- a/src/basic/generate-errno-list.sh
++++ b/src/basic/generate-errno-list.sh
+@@ -6,6 +6,7 @@
+ # In kernel's arch/parisc/include/uapi/asm/errno.h, ECANCELLED and EREFUSED are defined as aliases of
+-# ECANCELED and ECONNREFUSED, respectively. Let's drop them.
++# ECANCELED and ECONNREFUSED, respectively. EFSBADCRC and EFSCORRUPTED may alias
++# EBADMSG and EUCLEAN on Linux. Drop alias names to avoid duplicate designated initializers.
+ 
+ ${1:?} -dM -include errno.h - </dev/null | \
+-       grep -Ev '^#define[[:space:]]+(ECANCELLED|EREFUSED)' | \
++       grep -Ev '^#define[[:space:]]+(ECANCELLED|EREFUSED|EFSBADCRC|EFSCORRUPTED)' | \
+        awk '/^#define[ \t]+E[^ _]+[ \t]+/ { print $2; }'
