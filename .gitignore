@@ -328,3 +328,4 @@ pythonenv3.8/
 
 CMake-Information.txt
 vcpkg-install.out
+vcpkg_response.txt
