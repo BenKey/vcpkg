@@ -8,6 +8,7 @@ vcpkg_from_github(
     fix-errno-aliases.patch
     only-libsystemd.patch
     pkgconfig.patch
+    fix-2604-build.patch
 )
 
 set(static false)
