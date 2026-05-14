@@ -7,10 +7,10 @@ from enum import Enum
 type str_list = list[str]
 
 class ExitCode(Enum):
-  EX_OK = getattr(os, 'EX_OK', 0)
-  EX_NOINPUT = getattr(os, 'EX_NOINPUT', 66)
-  EX_UNAVAILABLE = getattr(os, 'EX_UNAVAILABLE', 69)
-  EX_SOFTWARE = getattr(os, 'EX_SOFTWARE', 70)
+    EX_OK = getattr(os, 'EX_OK', 0)
+    EX_NOINPUT = getattr(os, 'EX_NOINPUT', 66)
+    EX_UNAVAILABLE = getattr(os, 'EX_UNAVAILABLE', 69)
+    EX_SOFTWARE = getattr(os, 'EX_SOFTWARE', 70)
 
 def filter_list(unfiltered_list: str_list, excluded_list: str_list) -> str_list:
     if len(excluded_list) == 0:
@@ -26,7 +26,7 @@ def ShouldRecurse() -> bool:
 
 def create_vcpkg_response(filename: str, packages: str_list, options: dict[str, str]) -> None:
     """Generates a vcpkg response file for classic mode."""
-    with open(filename, "w") as f:
+    with open(filename, "w", encoding="utf-8") as f:
         # Write configuration flags.
         for flag, value in options.items():
             if value:
@@ -65,7 +65,7 @@ def CreateConfigObject(scriptDirectory: str) -> dict[str, str]:
 
     return config
 
-def ModuleMain(scriptDirectory: str, packages: str_list, requiredOS: str) -> int:
+def ModuleMain(scriptDirectory: str, packages: str_list, requiredOS: str = "") -> int:
     config: dict[str, str] = CreateConfigObject(scriptDirectory)
     responseFile: str = f"{scriptDirectory}/vcpkg_response.txt"
     create_vcpkg_response(responseFile, packages, config)
@@ -75,7 +75,7 @@ def ModuleMain(scriptDirectory: str, packages: str_list, requiredOS: str) -> int
     if (IsDryRun()):
         print(f"Dry run: vcpkg response file created at '{responseFile}'.")
         return ExitCode.EX_OK.value
-    if (os.name != 'nt'):
+    if (requiredOS and os.name != requiredOS):
         print(f"Only dry run is supported on this platform.")
         return ExitCode.EX_UNAVAILABLE.value
     if (InstallPackagesUsingResponseFile(scriptDirectory, responseFile)):
