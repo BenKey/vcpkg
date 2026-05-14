@@ -1,3 +1,18 @@
 {
-  "pythonPlatform": "All"
+  "pythonPlatform": "All",
+  "include": [
+    "."
+  ],
+  "extraPaths": [
+    ".",
+    "./"
+  ],
+  "executionEnvironments": [
+    {
+      "root": ".",
+      "extraPaths": [
+        "."
+      ]
+    }
+  ]
 }
