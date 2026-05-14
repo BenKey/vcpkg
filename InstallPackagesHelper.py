@@ -93,7 +93,20 @@ def CreateConfigObject(scriptDirectory: str, hostTriplet: str) -> dict[str, str]
         config["--recurse"] = ""
     return config
 
-def ModuleMain(scriptDirectory: str, packages: str_list, hostTriplet: str, requiredOS: str = "") -> int:
+def IsRequiredPlatform(requiredPlatform: str) -> bool:
+    if not requiredPlatform:
+        return True
+    currentOS: str = os.name
+    if requiredPlatform == currentOS:
+        return True
+    currentPlatform: str = sys.platform
+    if currentPlatform == requiredPlatform:
+        return True
+    if currentPlatform.startswith(requiredPlatform):
+        return True
+    return False
+
+def ModuleMain(scriptDirectory: str, packages: str_list, hostTriplet: str, requiredPlatform: str = "") -> int:
     config: dict[str, str] = CreateConfigObject(scriptDirectory, hostTriplet)
     responseFile: str = f"{scriptDirectory}/vcpkg_response.txt"
     create_vcpkg_response(responseFile, packages, config)
@@ -103,7 +116,7 @@ def ModuleMain(scriptDirectory: str, packages: str_list, hostTriplet: str, requi
     if (IsDryRun()):
         print(f"Dry run: vcpkg response file created at '{responseFile}'.")
         return ExitCode.EX_OK.value
-    if (requiredOS and os.name != requiredOS):
+    if (not IsRequiredPlatform(requiredPlatform)):
         print(f"Only dry run is supported on this platform.")
         return ExitCode.EX_UNAVAILABLE.value
     if (InstallPackagesUsingResponseFile(scriptDirectory, responseFile)):

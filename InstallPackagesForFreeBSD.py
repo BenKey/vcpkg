@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-
+import os
 import sys
 
 from InstallPackagesHelper import GetScriptDirectory
@@ -133,8 +132,10 @@ def main() -> int:
     packages: str_list = GetPackageList(hostTriplet, triplet)
     print()
     print(f"Script directory: {scriptDirectory}")
+    print(f"OS: {os.name}")
+    print(f"Platform: {sys.platform}")
     print()
-    return ModuleMain(scriptDirectory, packages, hostTriplet)
+    return ModuleMain(scriptDirectory, packages, hostTriplet, "freebsd")
 
 if __name__ == "__main__":
     sys.exit(main())
