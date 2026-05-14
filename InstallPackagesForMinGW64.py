@@ -305,10 +305,10 @@ def FilterPackagesList(packages: str_list, hostTriplet: str) -> str_list:
 def GetHostTriplet() -> str:
     if platform.system() == "Linux":
         return "x64-linux"
-    return "x64-mingw-dynamic-custom"
+    return "x64-mingw-dynamic-dev"
 
 def GetTriplet() -> str:
-    return "x64-mingw-dynamic-custom"
+    return "x64-mingw-dynamic-dev"
 
 def GetPackageList(hostTriplet: str, triplet: str) -> str_list:
     packages: str_list = FilterPackagesList(packageList, hostTriplet)
