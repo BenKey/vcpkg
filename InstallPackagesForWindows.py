@@ -426,7 +426,7 @@ def GetUnifiedPackageList() -> str_list:
 def main():
     scriptDirectory: str = GetScriptDirectory()
     packages: str_list = GetUnifiedPackageList()
-    return ModuleMain(scriptDirectory, packages, "nt")
+    return ModuleMain(scriptDirectory, packages, "x64-windows", "nt")
 
 if __name__ == "__main__":
     sys.exit(main())

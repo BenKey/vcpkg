@@ -33,7 +33,6 @@ def create_vcpkg_response(filename: str, packages: str_list, options: dict[str, 
                 f.write(f"{flag}={value}\n")
             else:
                 f.write(f"{flag}\n")
-
         # Write package list.
         for package in packages:
             f.write(f"{package}\n")
@@ -42,9 +41,7 @@ def create_vcpkg_response(filename: str, packages: str_list, options: dict[str, 
 def InstallPackagesUsingResponseFile(scriptDirectory: str, responseFile: str) -> bool:
     executable_name: str = "vcpkg.exe" if os.name == "nt" else "vcpkg"
     vcpkg_executable: str = os.path.join(scriptDirectory, executable_name)
-
     args: str_list = [vcpkg_executable, "install", f"@{responseFile}"]
-
     try:
         print(f"Calling '{' '.join(args)}'.")
         subprocess.check_call(args)
@@ -52,21 +49,19 @@ def InstallPackagesUsingResponseFile(scriptDirectory: str, responseFile: str) ->
     except (subprocess.CalledProcessError, OSError):
         return False
 
-def CreateConfigObject(scriptDirectory: str) -> dict[str, str]:
+def CreateConfigObject(scriptDirectory: str, hostTriplet: str) -> dict[str, str]:
     config: dict[str, str] = {
         "--classic": "",
-        "--host-triplet": "x64-windows",
+        "--host-triplet": hostTriplet,
         "--overlay-triplets": f"{scriptDirectory}/triplets/custom",
         "--x-buildtrees-root": f"{scriptDirectory}/bt",
     }
-
     if ShouldRecurse():
         config["--recurse"] = ""
-
     return config
 
-def ModuleMain(scriptDirectory: str, packages: str_list, requiredOS: str = "") -> int:
-    config: dict[str, str] = CreateConfigObject(scriptDirectory)
+def ModuleMain(scriptDirectory: str, packages: str_list, hostTriplet: str, requiredOS: str = "") -> int:
+    config: dict[str, str] = CreateConfigObject(scriptDirectory, hostTriplet)
     responseFile: str = f"{scriptDirectory}/vcpkg_response.txt"
     create_vcpkg_response(responseFile, packages, config)
     if (not os.path.exists(responseFile)):
