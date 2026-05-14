@@ -423,7 +423,7 @@ def GetUnifiedPackageList() -> str_list:
     unifiedList.extend(x86Packages)
     return unifiedList
 
-def main():
+def main() -> int:
     scriptDirectory: str = GetScriptDirectory()
     packages: str_list = GetUnifiedPackageList()
     return ModuleMain(scriptDirectory, packages, "x64-windows", "nt")

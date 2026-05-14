@@ -6,6 +6,7 @@ call :GetBatchFileDirectory _MyDir
 for %%a in (
 "bt"
 "buildtrees"
+"packages"
 ) do (
   if exist "%_MyDir%\%%~a\." (
     echo Deleting %%~a directory.

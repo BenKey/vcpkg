@@ -52,6 +52,8 @@ def InstallPackagesUsingResponseFile(scriptDirectory: str, responseFile: str) ->
 def CreateConfigObject(scriptDirectory: str, hostTriplet: str) -> dict[str, str]:
     config: dict[str, str] = {
         "--classic": "",
+        "--clean-buildtrees-after-build": "",
+        "--clean-packages-after-build": "",
         "--host-triplet": hostTriplet,
         "--overlay-triplets": f"{scriptDirectory}/triplets/custom",
         "--x-buildtrees-root": f"{scriptDirectory}/bt",
