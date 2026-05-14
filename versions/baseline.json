@@ -212,6 +212,10 @@
       "baseline": "0.11.0",
       "port-version": 2
     },
+    "arabica": {
+      "baseline": "2020-April",
+      "port-version": 0
+    },
     "aravis": {
       "baseline": "0.8.36",
       "port-version": 0
@@ -338,7 +342,7 @@
     },
     "assimp": {
       "baseline": "6.0.4",
-      "port-version": 1
+      "port-version": 2
     },
     "astr": {
       "baseline": "0.3.1",
@@ -1954,7 +1958,7 @@
     },
     "configcat": {
       "baseline": "4.0.5",
-      "port-version": 0
+      "port-version": 1
     },
     "conjure-enum": {
       "baseline": "1.2.0",
@@ -2506,7 +2510,7 @@
     },
     "directx-headers": {
       "baseline": "1.619.1",
-      "port-version": 0
+      "port-version": 1
     },
     "directx12-agility": {
       "baseline": "1.619.1",
@@ -3546,7 +3550,7 @@
     },
     "gppanel": {
       "baseline": "2020-05-20",
-      "port-version": 4
+      "port-version": 5
     },
     "graaf": {
       "baseline": "1.1.1",
@@ -3606,7 +3610,7 @@
     },
     "gstreamer": {
       "baseline": "1.26.5",
-      "port-version": 1
+      "port-version": 2
     },
     "gtest": {
       "baseline": "1.17.0",
@@ -3614,7 +3618,7 @@
     },
     "gtk": {
       "baseline": "4.22.3",
-      "port-version": 0
+      "port-version": 1
     },
     "gtk3": {
       "baseline": "3.24.52",
@@ -3758,7 +3762,7 @@
     },
     "hash-library": {
       "baseline": "8",
-      "port-version": 3
+      "port-version": 5
     },
     "hashids": {
       "baseline": "1.2.2",
@@ -4822,7 +4826,7 @@
     },
     "libcpplocate": {
       "baseline": "2.3.0",
-      "port-version": 0
+      "port-version": 1
     },
     "libcrafter": {
       "baseline": "1.0",
@@ -5966,7 +5970,7 @@
     },
     "libxml2": {
       "baseline": "2.15.3",
-      "port-version": 0
+      "port-version": 1
     },
     "libxmlb": {
       "baseline": "0.3.26",
@@ -6014,7 +6018,7 @@
     },
     "libxslt": {
       "baseline": "1.1.45",
-      "port-version": 0
+      "port-version": 1
     },
     "libxt": {
       "baseline": "1.3.1",
@@ -6842,7 +6846,7 @@
     },
     "nana": {
       "baseline": "1.7.4",
-      "port-version": 5
+      "port-version": 6
     },
     "nano-signal-slot": {
       "baseline": "2.0.1",
@@ -6922,7 +6926,7 @@
     },
     "ncurses": {
       "baseline": "6.5",
-      "port-version": 3
+      "port-version": 4
     },
     "ndis-driver-library": {
       "baseline": "1.2.0",
@@ -7482,7 +7486,7 @@
     },
     "openxr-loader": {
       "baseline": "1.1.59",
-      "port-version": 0
+      "port-version": 1
     },
     "openzl": {
       "baseline": "0.2.0",
@@ -8154,7 +8158,7 @@
     },
     "qt": {
       "baseline": "6.10.3",
-      "port-version": 0
+      "port-version": 1
     },
     "qt-advanced-docking-system": {
       "baseline": "4.5.0",
@@ -8346,7 +8350,7 @@
     },
     "qtapplicationmanager": {
       "baseline": "6.10.3",
-      "port-version": 0
+      "port-version": 1
     },
     "qtbase": {
       "baseline": "6.10.3",
@@ -9074,7 +9078,7 @@
     },
     "sdl2": {
       "baseline": "2.32.10",
-      "port-version": 0
+      "port-version": 1
     },
     "sdl2-gfx": {
       "baseline": "1.0.4",
@@ -9082,11 +9086,11 @@
     },
     "sdl2-image": {
       "baseline": "2.8.12",
-      "port-version": 0
+      "port-version": 1
     },
     "sdl2-mixer": {
       "baseline": "2.8.2",
-      "port-version": 0
+      "port-version": 1
     },
     "sdl2-mixer-ext": {
       "baseline": "2.6.0",
@@ -9098,7 +9102,7 @@
     },
     "sdl2-ttf": {
       "baseline": "2.24.0",
-      "port-version": 0
+      "port-version": 1
     },
     "sdl2pp": {
       "baseline": "0.18.1",
@@ -9202,7 +9206,7 @@
     },
     "sfml": {
       "baseline": "3.0.2",
-      "port-version": 0
+      "port-version": 1
     },
     "sfsexp": {
       "baseline": "1.4.1",
@@ -9994,7 +9998,7 @@
     },
     "tgui": {
       "baseline": "1.8.0",
-      "port-version": 2
+      "port-version": 3
     },
     "thermadiag-seq": {
       "baseline": "2.0",
@@ -10315,6 +10319,10 @@
     "typecast-ai": {
       "baseline": "1.1.0",
       "port-version": 0
+    },
+    "uberswitch": {
+      "baseline": "2022-05-17",
+      "port-version": 1
     },
     "uchardet": {
       "baseline": "0.0.8",
@@ -10930,7 +10938,7 @@
     },
     "wt": {
       "baseline": "4.13.2",
-      "port-version": 0
+      "port-version": 1
     },
     "wtl": {
       "baseline": "10.0.10320",
@@ -10946,7 +10954,7 @@
     },
     "wxwidgets": {
       "baseline": "3.3.1",
-      "port-version": 1
+      "port-version": 2
     },
     "wyhash": {
       "baseline": "2023-12-03",
@@ -11138,7 +11146,7 @@
     },
     "yasm": {
       "baseline": "1.3.0",
-      "port-version": 7
+      "port-version": 9
     },
     "yasm-tool-helper": {
       "baseline": "2020-03-11",
