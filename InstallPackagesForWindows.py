@@ -1,7 +1,6 @@
-import inspect
-import os
 import sys
 
+from InstallPackagesHelper import GetScriptDirectory
 from InstallPackagesHelper import filter_list
 from InstallPackagesHelper import ModuleMain
 
@@ -365,39 +364,6 @@ packageList: str_list = [
     'yasm[tools]'
 ]
 
-def GetScriptFile() -> str:
-    """Obtains the full path and file name of the Python script."""
-    if (hasattr(GetScriptFile, "file")):
-        return getattr(GetScriptFile, "file")
-    
-    ret: str = ""
-    try:
-        # Use abspath instead of realpath to keep subst drives
-        ret = os.path.abspath(__file__)
-    except NameError:
-        if (len(sys.argv) > 0 and len(sys.argv[0]) > 0 and os.path.isabs(sys.argv[0])):
-            ret = os.path.abspath(sys.argv[0])
-        else:
-            ret = os.path.abspath(inspect.getfile(GetScriptFile))
-            
-    if (not os.path.exists(ret)):
-        ret = os.path.dirname(ret)
-
-    ret = os.path.normpath(ret) 
-    ret = ret.replace("\\", "/")
-    setattr(GetScriptFile, "file", ret)
-    return getattr(GetScriptFile, "file")
-
-def GetScriptDirectory() -> str:
-    """Obtains the path to the directory containing the script."""
-    if (hasattr(GetScriptDirectory, "dir")):
-        return getattr(GetScriptDirectory, "dir")
-    ret: str = os.path.dirname(GetScriptFile())
-    if (len(ret) == 3 and ret[1] == ":" and ret[2] == "/"):
-        ret = ret[0:2]
-    setattr(GetScriptDirectory, "dir", ret)
-    return getattr(GetScriptDirectory, "dir")
-
 def GetPackageListForPlatform(vcpkgPlatform: str) -> str_list:
     if (vcpkgPlatform == "arm64"):
         return arm64PackageList
@@ -407,7 +373,7 @@ def GetPackageListForPlatform(vcpkgPlatform: str) -> str_list:
         return packageList
     raise ValueError(f"Unsupported platform '{vcpkgPlatform}'.")
 
-def GetUnifiedPackageList() -> str_list:
+def GetPackageList() -> str_list:
     unifiedList: str_list = []
     arm64Packages: str_list = GetPackageListForPlatform("arm64")
     suffix: str = ":arm64-windows"
@@ -425,7 +391,7 @@ def GetUnifiedPackageList() -> str_list:
 
 def main() -> int:
     scriptDirectory: str = GetScriptDirectory()
-    packages: str_list = GetUnifiedPackageList()
+    packages: str_list = GetPackageList()
     return ModuleMain(scriptDirectory, packages, "x64-windows", "nt")
 
 if __name__ == "__main__":

@@ -1,3 +1,4 @@
+import inspect
 import os
 import subprocess
 import sys
@@ -11,6 +12,36 @@ class ExitCode(Enum):
     EX_NOINPUT = getattr(os, 'EX_NOINPUT', 66)
     EX_UNAVAILABLE = getattr(os, 'EX_UNAVAILABLE', 69)
     EX_SOFTWARE = getattr(os, 'EX_SOFTWARE', 70)
+
+def GetScriptFile() -> str:
+    """Obtains the full path and file name of the Python script."""
+    if (hasattr(GetScriptFile, "file")):
+        return getattr(GetScriptFile, "file")
+    ret: str = ""
+    try:
+        # Use abspath instead of realpath to keep subst drives
+        ret = os.path.abspath(__file__)
+    except NameError:
+        if (len(sys.argv) > 0 and len(sys.argv[0]) > 0 and os.path.isabs(sys.argv[0])):
+            ret = os.path.abspath(sys.argv[0])
+        else:
+            ret = os.path.abspath(inspect.getfile(GetScriptFile))
+    if (not os.path.exists(ret)):
+        ret = os.path.dirname(ret)
+    ret = os.path.normpath(ret) 
+    ret = ret.replace("\\", "/")
+    setattr(GetScriptFile, "file", ret)
+    return getattr(GetScriptFile, "file")
+
+def GetScriptDirectory() -> str:
+    """Obtains the path to the directory containing the script."""
+    if (hasattr(GetScriptDirectory, "dir")):
+        return getattr(GetScriptDirectory, "dir")
+    ret: str = os.path.dirname(GetScriptFile())
+    if (len(ret) == 3 and ret[1] == ":" and ret[2] == "/"):
+        ret = ret[0:2]
+    setattr(GetScriptDirectory, "dir", ret)
+    return getattr(GetScriptDirectory, "dir")
 
 def filter_list(unfiltered_list: str_list, excluded_list: str_list) -> str_list:
     if len(excluded_list) == 0:
