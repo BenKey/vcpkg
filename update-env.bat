@@ -24,10 +24,10 @@ if not defined Platform (
 
 set VCPKG_ROOT=
 
-set DOTNET_VERSION=10.0.103
+set DOTNET_VERSION=10.0.300
 set HOME=%LOCALAPPDATA%\Home
-set JAVA_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-25.0.2.10-hotspot
-set JDK_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-25.0.2.10-hotspot
+set JAVA_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-25.0.3.9-hotspot
+set JDK_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-25.0.3.9-hotspot
 set LANG=en_US.UTF-8
 set PANDOC_EXE=%ProgramW6432%\Pandoc\pandoc.exe
 set SCRIPT_DRIVE=%~d0
@@ -42,24 +42,25 @@ set VCPKG_ROOT=%_MyDir%
 set CMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%\scripts\buildsystems\vcpkg.cmake
 
 for %%a in (
+"%_MyDir%\installed\%Platform%-windows\tools\curl\bin"
 "%_MyDir%\installed\%Platform%-windows\tools\gettext\bin"
+"%_MyDir%\installed\%Platform%-windows\tools\hwloc\bin"
 "%_MyDir%\installed\%Platform%-windows\tools\icu\bin"
 "%_MyDir%\installed\%Platform%-windows\tools\libiconv\bin"
 "%_MyDir%\installed\%Platform%-windows\tools\python3\DLLs"
 "%_MyDir%\installed\%Platform%-windows\tools\sassc\bin"
-"%_MyDir%\downloads\tools\7zip-26.00-windows"
-"%_MyDir%\downloads\tools\7zr-26.00-windows"
-"%_MyDir%\downloads\tools\cmake-3.31.10-windows\cmake-3.31.10-windows-x86_64\bin"
-"%_MyDir%\downloads\tools\jom\jom-1_1_6"
-"%_MyDir%\downloads\tools\meson-1.9.0-d1fcc2"
+"%_MyDir%\downloads\tools\7zip-26.01-windows"
+"%_MyDir%\downloads\tools\7zr-26.01-windows"
+"%_MyDir%\downloads\tools\cmake-4.3.2-windows\cmake-4.3.2-windows-x86_64\bin"
+"%_MyDir%\downloads\tools\jom\jom-1_1_7"
+"%_MyDir%\downloads\tools\meson-1.9.0-99f340"
 "%_MyDir%\downloads\tools\nasm\nasm-3.01"
 "%_MyDir%\downloads\tools\ninja-1.13.2-windows"
-"%_MyDir%\downloads\tools\perl\5.42.0.1\perl\site\bin"
-"%_MyDir%\downloads\tools\perl\5.42.0.1\perl\bin"
-"%_MyDir%\downloads\tools\python\python-3.14.2-x64"
+"%_MyDir%\downloads\tools\perl\5.42.2.1\perl\site\bin"
+"%_MyDir%\downloads\tools\perl\5.42.2.1\perl\bin"
 "%_MyDir%\downloads\tools\python\python-3.14.2-x64-1"
 "%_MyDir%\downloads\tools\win_bison\2.5.24"
-"%ProgramW6432%\Beyond Compare 4"
+"%ProgramW6432%\Beyond Compare 5"
 "%ProgramW6432%\Git\cmd"
 "%JDK_HOME%\bin"
 "%JDK_HOME%\bin\server"

@@ -9,12 +9,14 @@ call :GetBatchFileDirectory _MyDir
 
 set VCPKG_ROOT=
 
-set LANG=en_US.UTF-8
+set DOTNET_VERSION=10.0.300
 set HOME=%LOCALAPPDATA%\Home
-set JAVA_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-25.0.2.10-hotspot
-set JDK_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-25.0.2.10-hotspot
+set JAVA_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-25.0.3.9-hotspot
+set JDK_HOME=%ProgramW6432%\Eclipse Adoptium\jdk-25.0.3.9-hotspot
+set LANG=en_US.UTF-8
 set VCPKG_ROOT=%_MyDir%
 set CMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%\scripts\buildsystems\vcpkg.cmake
+
 set VCPKG_DEFAULT_HOST_TRIPLET=x64-mingw-dynamic-dev
 set VCPKG_DEFAULT_TRIPLET=x64-mingw-dynamic-dev
 set VCPKG_OVERLAY_TRIPLETS=%VCPKG_ROOT%\triplets\custom
@@ -25,6 +27,7 @@ for %%a in (
 "%JDK_HOME%\bin"
 "%JDK_HOME%\bin\server"
 "%ProgramW6432%\dotnet"
+"%ProgramW6432%\dotnet\sdk\%DOTNET_VERSION%"
 "%USERPROFILE%\.dotnet\tools"
 "%ProgramW6432%\PowerShell\7"
 "%LOCALAPPDATA%\Programs\Microsoft VS Code"
@@ -38,10 +41,10 @@ for %%a in (
 "%_MyDir%\downloads\tools\python\python-3.14.2-x64-1"
 "%_MyDir%\downloads\tools\ninja-1.13.2-windows"
 "%_MyDir%\downloads\tools\nasm\nasm-3.01"
-"%_MyDir%\downloads\tools\meson-1.9.0-4452e3"
-"%_MyDir%\downloads\tools\cmake-3.31.10-windows\cmake-3.31.10-windows-x86_64\bin"
-"%_MyDir%\downloads\tools\7zr-26.00-windows"
-"%_MyDir%\downloads\tools\7zip-26.00-windows"
+"%_MyDir%\downloads\tools\meson-1.9.0-99f340"
+"%_MyDir%\downloads\tools\cmake-4.3.2-windows\cmake-4.3.2-windows-x86_64\bin"
+"%_MyDir%\downloads\tools\7zr-26.01-windows"
+"%_MyDir%\downloads\tools\7zip-26.01-windows"
 "%_MyDir%\installed\x64-mingw-dynamic-dev\tools\yasm"
 "%_MyDir%\installed\x64-mingw-dynamic-dev\tools\wxwidgets"
 "%_MyDir%\installed\x64-mingw-dynamic-dev\tools\tiff"
